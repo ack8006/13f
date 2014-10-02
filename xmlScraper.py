@@ -19,12 +19,20 @@ class xmlScraper():
 		self.get13FList(cik)
 
 	def get13FList(self, cik):
+		#first zeros unneeded
+
 		rssListString = "http://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=%s&type=13f&start=0&count=40&output=atom" % (cik)
 		page = requests.get(rssListString)
 		tree = etree.fromstring(page.content)
 
-		#STUCK HERE
+		#*****STUCK HERE
 		authors = tree.xpath('*')
+
+	def scrape13F(self, accessionNumber):
+		#http://www.sec.gov/Archives/edgar/data/1167483/000091957414004747/infotable.xml
+		#data/CIKwoZeros/Accession-number/infotable.xml
+
+		pass
 		
 
 #will delete when functional
