@@ -28,17 +28,19 @@ class xmlScraper():
 		#*****STUCK HERE
 		authors = tree.xpath('*')
 
+
 	def scrape13F(self, accessionNumber):
 		#http://www.sec.gov/Archives/edgar/data/1167483/000091957414004747/infotable.xml
 		#data/CIKwoZeros/Accession-number/infotable.xml
-
+		
 		pass
 		
 
 #will delete when functional
 def main():
 	xml = xmlScraper()
-	xml.initializeScrape("0001167483")
+	#xml.initializeScrape("0001167483")
+	xml.scrape13F()
 
 
 if __name__ == "__main__":
