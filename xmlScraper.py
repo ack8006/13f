@@ -23,10 +23,14 @@ class xmlScraper():
 
 		rssListString = "http://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=%s&type=13f&start=0&count=40&output=atom" % (cik)
 		page = requests.get(rssListString)
+		#print page.content
 		tree = etree.fromstring(page.content)
 
-		#*****STUCK HERE
-		authors = tree.xpath('*')
+		namespace = "{%s}" % (tree.nsmap[None])
+		#print namespace
+
+		authors = tree.findall('{0}entry'.format(namespace))
+		print authors
 
 
 	def scrape13F(self, accessionNumber):
@@ -39,8 +43,8 @@ class xmlScraper():
 #will delete when functional
 def main():
 	xml = xmlScraper()
-	#xml.initializeScrape("0001167483")
-	xml.scrape13F()
+	xml.initializeScrape("0001167483")
+	#xml.scrape13F()
 
 
 if __name__ == "__main__":
