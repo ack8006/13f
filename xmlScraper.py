@@ -56,6 +56,7 @@ class xmlScraper():
 		#http://www.sec.gov/Archives/edgar/data/1167483/000091957414004747/infotable.xml
 		#data/CIKwoZeros/Accession-nunber/infotable.xml
 		
+		
 		pass
 
 	def upload13F(self, cik, accessionNunber, infoTables):
