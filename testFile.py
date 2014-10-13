@@ -6,8 +6,11 @@ from xmlScraper import xmlScraper
 def main():
 
 	xml = xmlScraper()
-	cik = "0001167483"
+	cik = "1167483"
 	get13FListTest(xml, cik)
+
+	entries = [['000091957414004747', '2014-08-14']]
+	setScrapeAndUploadTest(xml, cik, entries)
 
 
 def get13FListTest(xml, cik):
@@ -15,7 +18,9 @@ def get13FListTest(xml, cik):
 	print entries
 
 def setScrapeAndUploadTest(xml, cik, entries):
-	
+	xml.setScrapeAndUpload(cik, entries)
+
+
 
 if __name__ == "__main__":
     main()

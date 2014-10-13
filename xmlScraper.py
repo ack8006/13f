@@ -40,7 +40,7 @@ class xmlScraper():
 			#get and clean accession from "-"
 			accessionNunber = entry.find('{0}content/{0}accession-nunber'.format(namespace)).text.replace("-","")
 			filingDate = entry.find('{0}content/{0}filing-date'.format(namespace)).text
-			entries.append((accessionNunber,filingDate))
+			entries.append([accessionNunber,filingDate])
 
 		#entries is a list of tuples.  tuple has accessionNunber and date	
 		return entries
@@ -49,15 +49,19 @@ class xmlScraper():
 		for entry in entries:
 			accessionNunber = entry[0]
 			filingDate = entry[1]
-			infoTables = self.scrape13F(accessionNunber)
+			infoTables = self.scrape13F(cik, accessionNunber)
 			self.upload13F(cik, accessionNunber, infoTables)
 
-	def scrape13F(self, accessionNunber):
+	def scrape13F(self, cik, accessionNunber):
 		#http://www.sec.gov/Archives/edgar/data/1167483/000091957414004747/infotable.xml
 		#data/CIKwoZeros/Accession-nunber/infotable.xml
-		
-		
-		pass
+		xmlURLString = "http://www.sec.gov/Archives/edgar/data/{0}/{1}/infotable.xml".format(cik, accessionNunber)
+		page = requests.get(xmlURLString)
+		tree = etree.fromstring(page.content)
+		namespace = "{%s}" % (tree.nsmap[None])
+		infoTableElements = tree.findall('')
+		print infoTableElements
+
 
 	def upload13F(self, cik, accessionNunber, infoTables):
 		pass
