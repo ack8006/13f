@@ -1,24 +1,26 @@
 
-from xmlScraper import xmlScraper
+from xmlScraper import UpdateChecker, Form13FUpdater
 
 
 
 def main():
 
-	xml = xmlScraper()
+	upCheck = UpdateChecker()
 	cik = "1167483"
-	get13FListTest(xml, cik)
+	#entries = get13FListTest(upCheck, cik)
 
 	entries = [['000091957414004747', '2014-08-14']]
-	setScrapeAndUploadTest(xml, cik, entries)
+	formUpdate = Form13FUpdater(cik, entries)
+	entryParserTest(formUpdate)
 
 
-def get13FListTest(xml, cik):
-	entries = xml.get13FList(cik)
+def get13FListTest(upCheck, cik):
+	entries = upCheck.get13FList(cik)
 	print entries
+	return entries
 
-def setScrapeAndUploadTest(xml, cik, entries):
-	xml.setScrapeAndUpload(cik, entries)
+def entryParserTest(formUpdate):
+	formUpdate.entryParser()
 
 
 
