@@ -51,10 +51,15 @@ class UpdateChecker(object):
 
 
 class Form13FUpdater(object):
+	#initializes class with the CIK and a 2d list called entires
+	#the CIK is the identification number of the Firm
+	#entries is a list containing lists of as accessionNunbers and filing dates 
 	def __init__(self, cik, entries):
 		self.cik = cik
 		self.entries = entries
 
+	#entryParser goes through the entry list, and calls scrapeForm13F which returns infoTables
+	#it then passes infoTables to uploadForm13F
 	def entryParser(self):
 		for entry in self.entries:
 			accessionNunber = entry[0]
@@ -63,6 +68,10 @@ class Form13FUpdater(object):
 			print infoTables
 			self.uploadForm13F(accessionNunber, infoTables)
 
+	#scrapeForm13F takes teh accessionNunber as an argurment then downloads an xml with the 
+	#data. And puts all of the "infoTables" from the file into a list called infoTableElements
+	#it then calls cleanInfoTableElements which returns a cleaned infoTables
+	#this function returns infoTables
 	def scrapeForm13F(self, accessionNunber):
 		#http://www.sec.gov/Archives/edgar/data/1167483/000091957414004747/infotable.xml
 		#data/CIKwoZeros/Accession-nunber/infotable.xml
@@ -74,7 +83,8 @@ class Form13FUpdater(object):
 		infoTables = self.cleanInfoTableElements(infoTableElements, namespace)
 		return infoTables
 
-
+	#clean InfoTableElements takes infoTableElements and the namespace of the xml as 
+	#parameters
 	def cleanInfoTableElements(self, infoTableElements, namespace):
 		def createInfoDict(keys):
 			infoDict = {}
@@ -98,6 +108,7 @@ class Form13FUpdater(object):
 			}
 			#appends infoDict to infoTables
 			infoTables.append(createInfoDict(keys))
+			
 		return infoTables
 			
 
