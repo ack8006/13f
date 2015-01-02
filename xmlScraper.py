@@ -9,11 +9,15 @@
 #this is the RSS feed
 #provides the filing-date and filing-href
 
+#search for *** for $$$ for things to work on within the code
+
 from lxml import etree
 import lxml
 import requests
 
 import xml.etree.cElementTree as ET
+
+#**************Files were submitted as text files prior to 3Q13...shit
 
 #Notes
 #Don't need zeros in front of CIK and should take those out at the initial upload level
@@ -24,6 +28,8 @@ class UpdateChecker(object):
 	#********checks database for most recent 13F and returns the last date
 	#********checks to see whether or not a 13F should even be available
 	#********will return the last date, this date will eventually be used to call get13FList
+	#**** maybe this should be its own class that will track if and when a 13F needs to be checked
+	#for, then the get13FList and cleanEntryElement classes could be it's own class
 	def mostRecentForm13F(self, cik):
 		pass
 		#return lastDate
@@ -49,6 +55,7 @@ class UpdateChecker(object):
 			accessionNunber = entry.find('{0}content/{0}accession-nunber'.format(namespace)).text.replace("-","")
 			filingDate = entry.find('{0}content/{0}filing-date'.format(namespace)).text
 			#**********A bit hacky incase display format changes at all
+			#****this should really be comparing the date with a < instead of an ==
 			if (filingDate == lastDate):
 				return entries
 			entries.append([accessionNunber,filingDate])
@@ -72,7 +79,7 @@ class Form13FUpdater(object):
 			accessionNunber = entry[0]
 			filingDate = entry[1]
 			infoTables = self.scrapeForm13F(accessionNunber)
-			print infoTables
+			#print infoTables
 			#******calls function that doesn't do anything yet
 			self.uploadForm13F(accessionNunber, infoTables)
 
