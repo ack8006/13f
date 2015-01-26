@@ -144,7 +144,7 @@ class Form13FUpdater(object):
 		
 
 	def uploadForm13F(self, accessionNunber, infoTables):
-		pass
+		db = MySQLdb.connect(host="localhost",user = "root", db="Quarterly13F")
 
 
 
