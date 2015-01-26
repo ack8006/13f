@@ -12,8 +12,12 @@
 #search for *** for $$$ for things to work on within the code
 
 from lxml import etree
-import lxml
+
+import MySQLdb
 import requests
+import lxml
+
+
 
 import xml.etree.cElementTree as ET
 
@@ -57,6 +61,7 @@ class UpdateChecker(object):
 			#**********A bit hacky incase display format changes at all
 			#****this should really be comparing the date with a < instead of an ==
 			if (filingDate == lastDate):
+				print filingDate
 				return entries
 			entries.append([accessionNunber,filingDate])
 		return entries
@@ -79,9 +84,10 @@ class Form13FUpdater(object):
 			accessionNunber = entry[0]
 			filingDate = entry[1]
 			infoTables = self.scrapeForm13F(accessionNunber)
-			#print infoTables
-			#******calls function that doesn't do anything yet
-			self.uploadForm13F(accessionNunber, infoTables)
+			#the only reason it wouldn't be info tables is if the http request is not 200
+			if infoTables:
+				#******calls function that doesn't do anything yet
+				self.uploadForm13F(accessionNunber, infoTables)
 
 	#scrapeForm13F takes the accessionNunber as an argurment then downloads an xml with the 
 	#data. And puts all of the "infoTables" from the file into a list called infoTableElements
@@ -92,11 +98,16 @@ class Form13FUpdater(object):
 		#data/CIKwoZeros/Accession-nunber/infotable.xml
 		xmlURLString = "http://www.sec.gov/Archives/edgar/data/{0}/{1}/infotable.xml".format(self.cik, accessionNunber)
 		page = requests.get(xmlURLString)
-		tree = etree.fromstring(page.content)
-		namespace = "{%s}" % (tree.nsmap[None])
-		infoTableElements = tree.findall('{0}infoTable'.format(namespace))
-		infoTables = self.cleanInfoTableElements(infoTableElements, namespace)
-		return infoTables
+		#checks if page returns
+		if page.status_code == 200:
+			tree = etree.fromstring(page.content)
+			namespace = "{%s}" % (tree.nsmap[None])
+			infoTableElements = tree.findall('{0}infoTable'.format(namespace))
+			infoTables = self.cleanInfoTableElements(infoTableElements, namespace)
+			print infoTables
+			return infoTables
+		else:
+			return 
 
 	#clean InfoTableElements takes infoTableElements and the namespace of the xml as 
 	#parameters.  The xml names are defined within this section in the keys
@@ -130,11 +141,12 @@ class Form13FUpdater(object):
 			infoTables.append(infoDict)
 			
 		return infoTables
-			
-
-
-
+		
 
 	def uploadForm13F(self, accessionNunber, infoTables):
 		pass
+
+
+
+
 
