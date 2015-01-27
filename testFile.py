@@ -6,8 +6,8 @@ from xmlScraper import UpdateChecker, Form13FUpdater
 def main():
 
 	upCheck = UpdateChecker()
-	cik = "1167483"
-	#cik = "1336528"
+	#cik = "1167483" #tiger
+	cik = "1336528" #persh
 	#entries = get13FListTest(upCheck, cik)
 	#entries = get13FListTest(upCheck, cik, '2010-02-16')
 	entries = get13FListTest(upCheck, cik, '2014-08-14')

@@ -16,6 +16,7 @@ from lxml import etree
 import MySQLdb
 import requests
 import lxml
+from contextlib import closing
 
 
 
@@ -147,21 +148,21 @@ class Form13FUpdater(object):
 
 	def uploadForm13F(self, accessionNunber, infoTables):
 		db = MySQLdb.connect(host="127.0.0.1",user = "user1", passwd = "password", db="Quarterly13Fs")
-		cursor = db.cursor()
 
 		#load the data into 13FHoldings and if successful then add to the 13FList database
 
 #*********Add a belt and suspenders check here to see if the accessiionNunber is already in
 #the 13FHolding Database and if it is don't do shit
-
-		for iT in infoTables:
-			cursor.execute("INSERT INTO 13FHoldings (accessionNunber, nameOfIssuer, titleOfClass, cusip, \
-				value, sshPrnamt, sshPrnamtType, putCall, investmentDiscretion, Sole, Shared, None) \
-				VALUES ('%s', '%s', '%s', '%s','%s','%s','%s','%s','%s','%s','%s','%s')" 
-				% (accessionNunber, iT['nameOfIssuer'].replace("'","''"), iT['titleOfClass'].replace("'","''"), 
-					iT['cusip'], iT['value'],iT['sshPrnamt'], iT['sshPrnamtType'], iT['putCall'], 
-					iT['investmentDiscretion'], iT['Sole'], iT['Shared'],iT['None']))
-
+		
+		with closing(db.cursor()) as cur:
+			for iT in infoTables:
+				cur.execute("INSERT INTO 13FHoldings (accessionNunber, nameOfIssuer, titleOfClass, cusip, \
+					value, sshPrnamt, sshPrnamtType, putCall, investmentDiscretion, Sole, Shared, None) \
+					VALUES ('%s', '%s', '%s', '%s','%s','%s','%s','%s','%s','%s','%s','%s')" 
+					% (accessionNunber, iT['nameOfIssuer'].replace("'","''"), iT['titleOfClass'].replace("'","''"), 
+						iT['cusip'], iT['value'],iT['sshPrnamt'], iT['sshPrnamtType'], iT['putCall'], 
+						iT['investmentDiscretion'], iT['Sole'], iT['Shared'],iT['None']))
 			db.commit()
 
+		db.close()	
 
