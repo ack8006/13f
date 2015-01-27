@@ -138,15 +138,30 @@ class Form13FUpdater(object):
 				#this if is for the "putcall" tag as not all infoTables have this
 				if (infoTable.find(path.format(namespace))) is not None:
 					infoDict[key] = infoTable.find(path.format(namespace)).text	
+				#should put in "n/a" for putcall if it is empty
+				else:
+					infoDict[key] = 'n/a'
 			infoTables.append(infoDict)
 			
 		return infoTables
-		
 
 	def uploadForm13F(self, accessionNunber, infoTables):
-		db = MySQLdb.connect(host="localhost",user = "root", db="Quarterly13F")
+		db = MySQLdb.connect(host="127.0.0.1",user = "user1", passwd = "password", db="Quarterly13Fs")
+		cursor = db.cursor()
 
+		#load the data into 13FHoldings and if successful then add to the 13FList database
 
+#*********Add a belt and suspenders check here to see if the accessiionNunber is already in
+#the 13FHolding Database and if it is don't do shit
 
+		for iT in infoTables:
+			cursor.execute("INSERT INTO 13FHoldings (accessionNunber, nameOfIssuer, titleOfClass, cusip, \
+				value, sshPrnamt, sshPrnamtType, putCall, investmentDiscretion, Sole, Shared, None) \
+				VALUES ('%s', '%s', '%s', '%s','%s','%s','%s','%s','%s','%s','%s','%s')" 
+				% (accessionNunber, iT['nameOfIssuer'].replace("'","''"), iT['titleOfClass'].replace("'","''"), 
+					iT['cusip'], iT['value'],iT['sshPrnamt'], iT['sshPrnamtType'], iT['putCall'], 
+					iT['investmentDiscretion'], iT['Sole'], iT['Shared'],iT['None']))
+
+			db.commit()
 
 

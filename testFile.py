@@ -7,18 +7,17 @@ def main():
 
 	upCheck = UpdateChecker()
 	cik = "1167483"
+	#cik = "1336528"
 	#entries = get13FListTest(upCheck, cik)
 	#entries = get13FListTest(upCheck, cik, '2010-02-16')
-	#entries = get13FListTest(upCheck, cik, '2014-08-14')
-	#*******The 5/15/2014 File is returning an error for some reason isn't 
-	#parsing correctly, need to check
+	entries = get13FListTest(upCheck, cik, '2014-08-14')
 
 
-	entries = [['000091957414004747', '2014-08-14']]
+	#entries = [['000091957414004747', '2014-08-14']]
 	
 	formUpdate = Form13FUpdater(cik, entries)
-	#entryParserTest(formUpdate)
-	connectionCheckTest(formUpdate)
+	entryParserTest(formUpdate)
+	#connectionCheckTest(formUpdate)
 
 
 def get13FListTest(upCheck, cik, lastDate):
