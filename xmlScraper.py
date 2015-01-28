@@ -79,7 +79,7 @@ class Form13FUpdater(object):
 		self.entries = entries
 
 	#entryParser goes through the entry list, and calls scrapeForm13F which returns infoTables
-	#it then passes infoTables to uploadForm13F
+	#it then passes infoTables to upload13FHoldings
 	def entryParser(self):
 		for entry in self.entries:
 			accessionNunber = entry[0]
@@ -87,8 +87,12 @@ class Form13FUpdater(object):
 			infoTables = self.scrapeForm13F(accessionNunber)
 			#the only reason it wouldn't be info tables is if the http request is not 200
 			if infoTables:
-				#******calls function that doesn't do anything yet
-				self.uploadForm13F(accessionNunber, infoTables)
+				#uploads the holdings into the database, the form info to 13FList
+				self.upload13FHoldings(accessionNunber, filingDate, infoTables)
+
+				#***********Should take this opportunity to update CUSIP Database 
+				#Maybe in the process can implement fuzzywuzzy library when looking up cusip and tickers
+
 
 	#scrapeForm13F takes the accessionNunber as an argurment then downloads an xml with the 
 	#data. And puts all of the "infoTables" from the file into a list called infoTableElements
@@ -146,23 +150,41 @@ class Form13FUpdater(object):
 			
 		return infoTables
 
-	def uploadForm13F(self, accessionNunber, infoTables):
+	def upload13FHoldings(self, accessionNunber, filingDate, infoTables):
 		db = MySQLdb.connect(host="127.0.0.1",user = "user1", passwd = "password", db="Quarterly13Fs")
 
 		#load the data into 13FHoldings and if successful then add to the 13FList database
 
-#*********Add a belt and suspenders check here to see if the accessiionNunber is already in
-#the 13FHolding Database and if it is don't do shit
-		
 		with closing(db.cursor()) as cur:
-			for iT in infoTables:
-				cur.execute("INSERT INTO 13FHoldings (accessionNunber, nameOfIssuer, titleOfClass, cusip, \
-					value, sshPrnamt, sshPrnamtType, putCall, investmentDiscretion, Sole, Shared, None) \
-					VALUES ('%s', '%s', '%s', '%s','%s','%s','%s','%s','%s','%s','%s','%s')" 
-					% (accessionNunber, iT['nameOfIssuer'].replace("'","''"), iT['titleOfClass'].replace("'","''"), 
-						iT['cusip'], iT['value'],iT['sshPrnamt'], iT['sshPrnamtType'], iT['putCall'], 
-						iT['investmentDiscretion'], iT['Sole'], iT['Shared'],iT['None']))
-			db.commit()
+			#belt and suspenders check here to see if the accessiionNunber is already in
+			#the 13FHolding Database and if it is don't do shit
+			cur.execute("SELECT COUNT(*) as count FROM 13FHoldings WHERE accessionNunber = %s" %(accessionNunber))
+			existingEntries = cur.fetchone()[0]
+
+			if existingEntries < len(infoTables):
+				for iT in infoTables:
+					cur.execute("INSERT INTO 13FHoldings (accessionNunber, nameOfIssuer, titleOfClass, cusip, \
+						value, sshPrnamt, sshPrnamtType, putCall, investmentDiscretion, Sole, Shared, None) \
+						VALUES ('%s', '%s', '%s', '%s','%s','%s','%s','%s','%s','%s','%s','%s')" 
+						% (accessionNunber, iT['nameOfIssuer'].replace("'","''"), iT['titleOfClass'].replace("'","''"), 
+							iT['cusip'], iT['value'],iT['sshPrnamt'], iT['sshPrnamtType'], iT['putCall'], 
+							iT['investmentDiscretion'], iT['Sole'], iT['Shared'],iT['None']))
+				db.commit()
+
+				#**********Add to 13F List when sucessful need to fix date first
+				#cur.execute("INSERT INTO 13FList (CIK, filingDate, accessionNunber) \
+				#	VALUES('%s' '%s', '%s')"
+				#	%
+
+			else:
+				#****Should log some error here if gets to this point and it has somethings in there already
+				pass
 
 		db.close()	
+
+
+
+
+
+
 

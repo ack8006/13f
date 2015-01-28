@@ -6,19 +6,19 @@ from xmlScraper import UpdateChecker, Form13FUpdater
 def main():
 
 	upCheck = UpdateChecker()
-	#cik = "1167483" #tiger
-	cik = "1336528" #persh
+	cik = "1167483" #tiger
+	#cik = "1336528" #persh
 	#entries = get13FListTest(upCheck, cik)
 	#entries = get13FListTest(upCheck, cik, '2010-02-16')
-	entries = get13FListTest(upCheck, cik, '2014-08-14')
+	#entries = get13FListTest(upCheck, cik, '2014-08-14')
 
 
-	#entries = [['000091957414004747', '2014-08-14']]
+	entries = [['000091957414004747', '2014-08-14']]
 	
 	formUpdate = Form13FUpdater(cik, entries)
 	entryParserTest(formUpdate)
+	
 	#connectionCheckTest(formUpdate)
-
 
 def get13FListTest(upCheck, cik, lastDate):
 	entries = upCheck.get13FList(cik, lastDate)
@@ -29,7 +29,7 @@ def entryParserTest(formUpdate):
 	formUpdate.entryParser()
 
 def connectionCheckTest(formUpdate):
-	formUpdate.uploadForm13F("test","test")
+	formUpdate.upload13FHoldings("test","test")
 
 if __name__ == "__main__":
     main()
