@@ -1,24 +1,36 @@
 
 from xmlScraper import UpdateChecker, Form13FUpdater
-
+import datetime
 
 
 def main():
 
 	upCheck = UpdateChecker()
-	cik = "1167483" #tiger
+	#cik = "1167483" #tiger
 	#cik = "1336528" #persh
-	#entries = get13FListTest(upCheck, cik)
-	#entries = get13FListTest(upCheck, cik, '2010-02-16')
-	#entries = get13FListTest(upCheck, cik, '2014-08-14')
+	cik = "1582090" #sachem
+	
+	lastDate = mostRecentFormTest(upCheck, cik)
+	entries = get13FListTest(upCheck, cik, lastDate)
+
+	#date1 = filingTime = datetime.datetime.strptime('2010-02-16', "%Y-%m-%d").strftime('%Y-%m-%d %H:%M:%S')
+	#entries = get13FListTest(upCheck, cik, date1)
+	
+	#date2 = filingTime = datetime.datetime.strptime('2014-08-14', "%Y-%m-%d").strftime('%Y-%m-%d %H:%M:%S')
+	#entries = get13FListTest(upCheck, cik, date2)
 
 
-	entries = [['000091957414004747', '2014-08-14']]
+	#entries = [['000091957414004747', '2014-08-14']]
 	
 	formUpdate = Form13FUpdater(cik, entries)
 	entryParserTest(formUpdate)
 	
 	#connectionCheckTest(formUpdate)
+
+def mostRecentFormTest(upCheck, cik):
+	lastDate = upCheck.mostRecentForm13F(cik)
+	print lastDate
+	return lastDate
 
 def get13FListTest(upCheck, cik, lastDate):
 	entries = upCheck.get13FList(cik, lastDate)

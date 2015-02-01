@@ -17,6 +17,7 @@ import MySQLdb
 import requests
 import lxml
 from contextlib import closing
+import datetime
 
 
 
@@ -36,8 +37,13 @@ class UpdateChecker(object):
 	#**** maybe this should be its own class that will track if and when a 13F needs to be checked
 	#for, then the get13FList and cleanEntryElement classes could be it's own class
 	def mostRecentForm13F(self, cik):
-		pass
-		#return lastDate
+		db = MySQLdb.connect(host="127.0.0.1",user = "user1", passwd = "password", db="Quarterly13Fs")
+		lastDate = None
+		with closing(db.cursor()) as cur:
+			cur.execute("SELECT MAX(filingDate) FROM 13FList WHERE CIK=%s" %(cik))
+			lastDate = cur.fetchone()[0]
+		db.close()
+		return lastDate
 
 	#********check the dates i have and which i should upload
 	#********check whether there are 40 lists, if so i need to run again
@@ -59,9 +65,9 @@ class UpdateChecker(object):
 			#get and clean accession from "-"
 			accessionNunber = entry.find('{0}content/{0}accession-nunber'.format(namespace)).text.replace("-","")
 			filingDate = entry.find('{0}content/{0}filing-date'.format(namespace)).text
-			#**********A bit hacky incase display format changes at all
-			#****this should really be comparing the date with a < instead of an ==
-			if (filingDate == lastDate):
+			#converst filingDate to a datetime format so it can be compared to the last date in datetime format
+			filingTime = datetime.datetime.strptime(filingDate, "%Y-%m-%d").strftime('%Y-%m-%d %H:%M:%S')
+			if (filingTime <= lastDate):
 				print filingDate
 				return entries
 			entries.append([accessionNunber,filingDate])
@@ -166,19 +172,23 @@ class Form13FUpdater(object):
 					cur.execute("INSERT INTO 13FHoldings (accessionNunber, nameOfIssuer, titleOfClass, cusip, \
 						value, sshPrnamt, sshPrnamtType, putCall, investmentDiscretion, Sole, Shared, None) \
 						VALUES ('%s', '%s', '%s', '%s','%s','%s','%s','%s','%s','%s','%s','%s')" 
-						% (accessionNunber, iT['nameOfIssuer'].replace("'","''"), iT['titleOfClass'].replace("'","''"), 
+						% (accessionNunber, iT['nameOfIssuer'].replace("'","''")[0:95], iT['titleOfClass'].replace("'","''"), 
 							iT['cusip'], iT['value'],iT['sshPrnamt'], iT['sshPrnamtType'], iT['putCall'], 
 							iT['investmentDiscretion'], iT['Sole'], iT['Shared'],iT['None']))
-				db.commit()
 
-				#**********Add to 13F List when sucessful need to fix date first
-				#cur.execute("INSERT INTO 13FList (CIK, filingDate, accessionNunber) \
-				#	VALUES('%s' '%s', '%s')"
-				#	%
+				#makes date object
+				filingTime = datetime.datetime.strptime(filingDate, "%Y-%m-%d").strftime('%Y-%m-%d %H:%M:%S')
+
+				cur.execute("INSERT INTO 13FList (CIK, filingDate, accessionNunber) \
+					VALUES('%s', '%s', '%s')"
+					%(self.cik, filingTime, accessionNunber))
+
+				db.commit()
 
 			else:
 				#****Should log some error here if gets to this point and it has somethings in there already
 				pass
+
 
 		db.close()	
 
