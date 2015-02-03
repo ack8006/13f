@@ -19,8 +19,6 @@ import lxml
 from contextlib import closing
 import datetime
 
-
-
 import xml.etree.cElementTree as ET
 
 #**************Files were submitted as text files prior to 3Q13...shit
@@ -65,9 +63,11 @@ class UpdateChecker(object):
 			#get and clean accession from "-"
 			accessionNunber = entry.find('{0}content/{0}accession-nunber'.format(namespace)).text.replace("-","")
 			filingDate = entry.find('{0}content/{0}filing-date'.format(namespace)).text
-			#converst filingDate to a datetime format so it can be compared to the last date in datetime format
-			filingTime = datetime.datetime.strptime(filingDate, "%Y-%m-%d").strftime('%Y-%m-%d %H:%M:%S')
-			if (filingTime <= lastDate):
+			#converst filingDate to a date format so it can be compared to the last date in date format
+			filingTime = datetime.datetime.strptime(filingDate, "%Y-%m-%d").date()
+
+			#only hits the if when the lastDate available is bigger than the filing date
+			if (lastDate is not None and filingTime <= lastDate):
 				print filingDate
 				return entries
 			entries.append([accessionNunber,filingDate])
@@ -87,15 +87,24 @@ class Form13FUpdater(object):
 	#entryParser goes through the entry list, and calls scrapeForm13F which returns infoTables
 	#it then passes infoTables to upload13FHoldings
 	def entryParser(self):
+		print "cik: %s" %(self.cik)
+		failCount = 0
 		for entry in self.entries:
 			accessionNunber = entry[0]
 			filingDate = entry[1]
-			infoTables = self.scrapeForm13F(accessionNunber)
+			print "Working on accessionNunber: %s, and filingDate: %s" %(accessionNunber, filingDate)
+			if failCount < 4:
+				print "Working on accessionNunber: %s, and filingDate: %s" %(accessionNunber, filingDate)
+				infoTables = self.scrapeForm13F(accessionNunber)
+			else:
+				print "Skipped accessionNunber: %s, and filingDate: %s" %(accessionNunber, filingDate)
 			#the only reason it wouldn't be info tables is if the http request is not 200
 			if infoTables:
 				#uploads the holdings into the database, the form info to 13FList
 				self.upload13FHoldings(accessionNunber, filingDate, infoTables)
-
+				failCount = 0
+			else:
+				failCount +=1
 				#***********Should take this opportunity to update CUSIP Database 
 				#Maybe in the process can implement fuzzywuzzy library when looking up cusip and tickers
 
@@ -115,9 +124,11 @@ class Form13FUpdater(object):
 			namespace = "{%s}" % (tree.nsmap[None])
 			infoTableElements = tree.findall('{0}infoTable'.format(namespace))
 			infoTables = self.cleanInfoTableElements(infoTableElements, namespace)
-			print infoTables
+			#print infoTables
 			return infoTables
 		else:
+			#*******ACTUALLY CATCH THIS ERROR
+			print "FAIL FAIL FAIL"
 			return 
 
 	#clean InfoTableElements takes infoTableElements and the namespace of the xml as 
@@ -177,7 +188,7 @@ class Form13FUpdater(object):
 							iT['investmentDiscretion'], iT['Sole'], iT['Shared'],iT['None']))
 
 				#makes date object
-				filingTime = datetime.datetime.strptime(filingDate, "%Y-%m-%d").strftime('%Y-%m-%d %H:%M:%S')
+				filingTime = datetime.datetime.strptime(filingDate, "%Y-%m-%d").date()
 
 				cur.execute("INSERT INTO 13FList (CIK, filingDate, accessionNunber) \
 					VALUES('%s', '%s', '%s')"
