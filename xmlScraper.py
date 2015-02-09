@@ -11,17 +11,18 @@
 
 #search for *** for $$$ for things to work on within the code
 
-from lxml import etree
+from lxml import etree, html
 
 import MySQLdb
 import requests
-import lxml
+#import lxml
 from contextlib import closing
 import datetime
-
 import xml.etree.cElementTree as ET
+import keys
 
 #**************Files were submitted as text files prior to 3Q13...shit
+#************Standardize uses of .format vs %s
 
 #Notes
 #Don't need zeros in front of CIK and should take those out at the initial upload level
@@ -35,8 +36,7 @@ class UpdateChecker(object):
 	#**** maybe this should be its own class that will track if and when a 13F needs to be checked
 	#for, then the get13FList and cleanEntryElement classes could be it's own class
 	def mostRecentForm13F(self, cik):
-		db = MySQLdb.connect(host="127.0.0.1",user = "user1", passwd = "password", db="Quarterly13Fs")
-		lastDate = None
+		db = MySQLdb.connect(host="127.0.0.1",user = keys.sqlUsername, passwd = keys.sqlPassword, db="Quarterly13Fs") 
 		with closing(db.cursor()) as cur:
 			cur.execute("SELECT MAX(filingDate) FROM 13FList WHERE CIK=%s" %(cik))
 			lastDate = cur.fetchone()[0]
@@ -68,7 +68,7 @@ class UpdateChecker(object):
 
 			#only hits the if when the lastDate available is bigger than the filing date
 			if (lastDate is not None and filingTime <= lastDate):
-				print filingDate
+				#print filingDate
 				return entries
 			entries.append([accessionNunber,filingDate])
 		return entries
@@ -92,8 +92,7 @@ class Form13FUpdater(object):
 		for entry in self.entries:
 			accessionNunber = entry[0]
 			filingDate = entry[1]
-			print "Working on accessionNunber: %s, and filingDate: %s" %(accessionNunber, filingDate)
-			if failCount < 4:
+			if failCount <= 3:
 				print "Working on accessionNunber: %s, and filingDate: %s" %(accessionNunber, filingDate)
 				infoTables = self.scrapeForm13F(accessionNunber)
 			else:
@@ -114,22 +113,49 @@ class Form13FUpdater(object):
 	#it then calls cleanInfoTableElements which returns a cleaned infoTables
 	#this function returns infoTables
 	def scrapeForm13F(self, accessionNunber):
-		#http://www.sec.gov/Archives/edgar/data/1167483/000091957414004747/infotable.xml
-		#data/CIKwoZeros/Accession-nunber/infotable.xml
-		xmlURLString = "http://www.sec.gov/Archives/edgar/data/{0}/{1}/infotable.xml".format(self.cik, accessionNunber)
+		#*********Some sort of smart selection to use the one that worked last time
+		#********NEED TO SCRAPE FOR THE NAME
+		#xmlNames = ("infotable", "form13fInfoTable", "Form13fInfoTable")
+
+		xmlName = self.getInformationTableName(accessionNunber)
+		print "xmlname: ", xmlName
+
+		#print xmlName
+		xmlURLString = "http://www.sec.gov/Archives/edgar/data/{0}/{1}/{2}.xml".format(self.cik, accessionNunber, xmlName)
+		print xmlURLString
 		page = requests.get(xmlURLString)
 		#checks if page returns
 		if page.status_code == 200:
 			tree = etree.fromstring(page.content)
+
+			#**********GMT has an F'd up xml, need to deal with that somehow
 			namespace = "{%s}" % (tree.nsmap[None])
 			infoTableElements = tree.findall('{0}infoTable'.format(namespace))
 			infoTables = self.cleanInfoTableElements(infoTableElements, namespace)
-			#print infoTables
+			print infoTables
 			return infoTables
 		else:
 			#*******ACTUALLY CATCH THIS ERROR
 			print "FAIL FAIL FAIL"
 			return 
+
+	#gets the name of the XML used by the SEC, this is not standardized for some reason
+	def getInformationTableName(self, accessionNunber):
+		pageURLString = "http://www.sec.gov/Archives/edgar/data/%s/%s-%s-%s-index.htm" % (self.cik, accessionNunber[0:10], accessionNunber[10:12], accessionNunber[12:])
+	
+		parser = etree.HTMLParser()
+		tree = etree.parse(pageURLString, parser)
+
+		#finds all the names and the descriptions
+		informationTableNames = tree.xpath('//*[@id="formDiv"]//*/tr/td[3]/a/text()')
+		typeNames = tree.xpath('//*[@id="formDiv"]//*/tr/td[4]/text()')
+
+		SEARCH_NAME = "INFORMATION TABLE"
+		#looks for the description of SEARCH_NAME then returns the name of the document
+		longInformationTableName = informationTableNames[typeNames.index(SEARCH_NAME)]
+		informationTableName = longInformationTableName[0:longInformationTableName.rfind('.')]
+		return informationTableName
+
 
 	#clean InfoTableElements takes infoTableElements and the namespace of the xml as 
 	#parameters.  The xml names are defined within this section in the keys
@@ -168,7 +194,7 @@ class Form13FUpdater(object):
 		return infoTables
 
 	def upload13FHoldings(self, accessionNunber, filingDate, infoTables):
-		db = MySQLdb.connect(host="127.0.0.1",user = "user1", passwd = "password", db="Quarterly13Fs")
+		db = MySQLdb.connect(host="127.0.0.1",user = keys.sqlUsername, passwd = keys.sqlPassword, db="Quarterly13Fs") 
 
 		#load the data into 13FHoldings and if successful then add to the 13FList database
 
