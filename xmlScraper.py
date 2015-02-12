@@ -20,6 +20,7 @@ from contextlib import closing
 import datetime
 import xml.etree.cElementTree as ET
 import keys
+import logging
 
 #**************Files were submitted as text files prior to 3Q13...shit
 #************Standardize uses of .format vs %s
@@ -36,7 +37,7 @@ class UpdateChecker(object):
 	#**** maybe this should be its own class that will track if and when a 13F needs to be checked
 	#for, then the get13FList and cleanEntryElement classes could be it's own class
 	def mostRecentForm13F(self, cik):
-		db = MySQLdb.connect(host="127.0.0.1",user = keys.sqlUsername, passwd = keys.sqlPassword, db="Quarterly13Fs") 
+		db = MySQLdb.connect(host = keys.sqlHost, user = keys.sqlUsername, passwd = keys.sqlPassword, db="Quarterly13Fs") 
 		with closing(db.cursor()) as cur:
 			cur.execute("SELECT MAX(filingDate) FROM 13FList WHERE CIK=%s" %(cik))
 			lastDate = cur.fetchone()[0]
@@ -46,7 +47,7 @@ class UpdateChecker(object):
 	#********check the dates i have and which i should upload
 	#********check whether there are 40 lists, if so i need to run again
 	def get13FList(self, cik, lastDate = None):
-		rssListString = "http://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=%s&type=13f&start=0&count=40&output=atom" % (cik)
+		rssListString = "http://www.sec.gov/cgi-bin/browse-edgar?action=getcompany&CIK=%s&type=13f-hr&start=0&count=40&output=atom" % (cik)
 		page = requests.get(rssListString)
 		tree = etree.fromstring(page.content)
 		namespace = "{%s}" % (tree.nsmap[None])
@@ -100,6 +101,7 @@ class Form13FUpdater(object):
 			#the only reason it wouldn't be info tables is if the http request is not 200
 			if infoTables:
 				#uploads the holdings into the database, the form info to 13FList
+				print "Uploading accessionNunber: %s, and filingDate: %s" %(accessionNunber, filingDate)
 				self.upload13FHoldings(accessionNunber, filingDate, infoTables)
 				failCount = 0
 			else:
@@ -118,31 +120,45 @@ class Form13FUpdater(object):
 		#xmlNames = ("infotable", "form13fInfoTable", "Form13fInfoTable")
 
 		xmlName = self.getInformationTableName(accessionNunber)
-		print "xmlname: ", xmlName
+		#*********if xml name doesn't exist i.e. if there are only text files...
+		if not xmlName:
+			return
 
-		#print xmlName
 		xmlURLString = "http://www.sec.gov/Archives/edgar/data/{0}/{1}/{2}.xml".format(self.cik, accessionNunber, xmlName)
-		print xmlURLString
+		#print xmlURLString
 		page = requests.get(xmlURLString)
 		#checks if page returns
 		if page.status_code == 200:
 			tree = etree.fromstring(page.content)
-
+			
 			#**********GMT has an F'd up xml, need to deal with that somehow
-			namespace = "{%s}" % (tree.nsmap[None])
+			#so namespace is found using the nsmap fuction.  nsmap returns a dictionary, normally
+			#of one pair with a key of None, but sometimes a single pair wih key of n1, and sometimes
+			#multiple pairs
+			namespace = None
+			if None in tree.nsmap:
+				namespace = "{%s}" %(tree.nsmap[None])
+			else:
+				for val in tree.nsmap.values():
+					if val.startswith("http://www.sec.gov"):
+						namespace = "{%s}" %(val)
+
+			#namespace = "{%s}" % (tree.nsmap.values()[0])
+			#namespace = "{%s}" % (tree.nsmap[None])
 			infoTableElements = tree.findall('{0}infoTable'.format(namespace))
 			infoTables = self.cleanInfoTableElements(infoTableElements, namespace)
-			print infoTables
+			#print infoTables
 			return infoTables
 		else:
 			#*******ACTUALLY CATCH THIS ERROR
+			#********can do a text scraping here...
 			print "FAIL FAIL FAIL"
 			return 
 
 	#gets the name of the XML used by the SEC, this is not standardized for some reason
 	def getInformationTableName(self, accessionNunber):
 		pageURLString = "http://www.sec.gov/Archives/edgar/data/%s/%s-%s-%s-index.htm" % (self.cik, accessionNunber[0:10], accessionNunber[10:12], accessionNunber[12:])
-	
+		#print pageURLString
 		parser = etree.HTMLParser()
 		tree = etree.parse(pageURLString, parser)
 
@@ -152,9 +168,12 @@ class Form13FUpdater(object):
 
 		SEARCH_NAME = "INFORMATION TABLE"
 		#looks for the description of SEARCH_NAME then returns the name of the document
-		longInformationTableName = informationTableNames[typeNames.index(SEARCH_NAME)]
-		informationTableName = longInformationTableName[0:longInformationTableName.rfind('.')]
-		return informationTableName
+		if SEARCH_NAME in typeNames:
+			longInformationTableName = informationTableNames[typeNames.index(SEARCH_NAME)]
+			informationTableName = longInformationTableName[0:longInformationTableName.rfind('.')]
+			return informationTableName
+		else:
+			return None
 
 
 	#clean InfoTableElements takes infoTableElements and the namespace of the xml as 

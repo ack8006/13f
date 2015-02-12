@@ -16,7 +16,7 @@ db.close()
 
 upCheck = UpdateChecker()
 #DAYS_TO_CHECK_FOR_UPDATES = 82
-DAYS_TO_CHECK_FOR_UPDATES =95
+DAYS_TO_CHECK_FOR_UPDATES =85
 
 for cik in cikList:
 	lastDate = upCheck.mostRecentForm13F(cik)
