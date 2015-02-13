@@ -24,6 +24,9 @@ import logging
 
 #**************Files were submitted as text files prior to 3Q13...shit
 #************Standardize uses of .format vs %s
+#******** Need to pull the acceptd date
+#*********When a new report is found the analyze class needs to be called
+
 
 #Notes
 #Don't need zeros in front of CIK and should take those out at the initial upload level
@@ -53,7 +56,6 @@ class UpdateChecker(object):
 		namespace = "{%s}" % (tree.nsmap[None])
 		entryElements = tree.findall('{0}entry'.format(namespace))
 		entries = self.cleanEntryElements(entryElements, namespace, lastDate)
-
 		#entries is a list of lists.  list has accessionNunber and date	
 		return entries
 
@@ -62,15 +64,15 @@ class UpdateChecker(object):
 		for entry in entryElements:
 			#yes it is nunber
 			#get and clean accession from "-"
-			accessionNunber = entry.find('{0}content/{0}accession-nunber'.format(namespace)).text.replace("-","")
 			filingDate = entry.find('{0}content/{0}filing-date'.format(namespace)).text
 			#converst filingDate to a date format so it can be compared to the last date in date format
 			filingTime = datetime.datetime.strptime(filingDate, "%Y-%m-%d").date()
-
 			#only hits the if when the lastDate available is bigger than the filing date
+			#this if statement assumes that the RSS feed is in chronlogical order top to bottom
 			if (lastDate is not None and filingTime <= lastDate):
 				#print filingDate
 				return entries
+			accessionNunber = entry.find('{0}content/{0}accession-nunber'.format(namespace)).text.replace("-","")
 			entries.append([accessionNunber,filingDate])
 		return entries
 
@@ -115,8 +117,7 @@ class Form13FUpdater(object):
 	#it then calls cleanInfoTableElements which returns a cleaned infoTables
 	#this function returns infoTables
 	def scrapeForm13F(self, accessionNunber):
-		#*********Some sort of smart selection to use the one that worked last time
-		#********NEED TO SCRAPE FOR THE NAME
+		#*********Some sort of smart selection to use the xmlName that worked last time
 		#xmlNames = ("infotable", "form13fInfoTable", "Form13fInfoTable")
 
 		xmlName = self.getInformationTableName(accessionNunber)
@@ -125,13 +126,10 @@ class Form13FUpdater(object):
 			return
 
 		xmlURLString = "http://www.sec.gov/Archives/edgar/data/{0}/{1}/{2}.xml".format(self.cik, accessionNunber, xmlName)
-		#print xmlURLString
 		page = requests.get(xmlURLString)
 		#checks if page returns
 		if page.status_code == 200:
 			tree = etree.fromstring(page.content)
-			
-			#**********GMT has an F'd up xml, need to deal with that somehow
 			#so namespace is found using the nsmap fuction.  nsmap returns a dictionary, normally
 			#of one pair with a key of None, but sometimes a single pair wih key of n1, and sometimes
 			#multiple pairs
@@ -140,6 +138,7 @@ class Form13FUpdater(object):
 				namespace = "{%s}" %(tree.nsmap[None])
 			else:
 				for val in tree.nsmap.values():
+					#assumes that the namespace will be the http://....
 					if val.startswith("http://www.sec.gov"):
 						namespace = "{%s}" %(val)
 
