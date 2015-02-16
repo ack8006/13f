@@ -18,7 +18,7 @@ import requests
 #import lxml
 from contextlib import closing
 import datetime
-import xml.etree.cElementTree as ET
+#import xml.etree.cElementTree as ET
 import keys
 import logging
 
@@ -26,6 +26,8 @@ import logging
 #************Standardize uses of .format vs %s
 #******** Need to pull the acceptd date
 #*********When a new report is found the analyze class needs to be called
+#******need to try/except all url calls 
+#***********Need to implement logging
 
 
 #Notes
@@ -231,25 +233,61 @@ class Form13FUpdater(object):
 							iT['cusip'], iT['value'],iT['sshPrnamt'], iT['sshPrnamtType'], iT['putCall'], 
 							iT['investmentDiscretion'], iT['Sole'], iT['Shared'],iT['None']))
 
+					#this little nibblet checks the CUSIPList table and updates it if there is a 
+					#cusip that I don't know
+					cur.execute("SELECT Ticker FROM CUSIPList WHERE CUSIP = '%s'" %(iT['cusip']))
+					if not cur.fetchone():
+						tickerPair = self.tickerLookup(iT['cusip'])
+						if tickerPair:
+							cur.execute("INSERT INTO CUSIPList (CUSIP, Ticker, LongName)\
+								VALUES ('%s','%s','%s')" % (iT['cusip'], tickerPair[0], tickerPair[1]))
+
 				#makes date object
 				filingTime = datetime.datetime.strptime(filingDate, "%Y-%m-%d").date()
+				#calculates quarter end
+				quarterDate = self.calculateQuarterDate(filingTime)
 
-				cur.execute("INSERT INTO 13FList (CIK, filingDate, accessionNunber) \
-					VALUES('%s', '%s', '%s')"
-					%(self.cik, filingTime, accessionNunber))
+				cur.execute("INSERT INTO 13FList (CIK, filingDate, quarterDate, accessionNunber) \
+					VALUES('%s', '%s', '%s','%s')"
+					%(self.cik, filingTime, quarterDate, accessionNunber))
 
 				db.commit()
 
 			else:
-				#****Should log some error here if gets to this point and it has somethings in there already
+				#****Should log some error here if gets to this point and it has somethings in database already
 				pass
-
-
 		db.close()	
 
+	def calculateQuarterDate(self, filingTime):
+		quarterYear = None
+		quarterMonth = None
+		quarterDay = None
+		if filingTime.month < 3:
+			quarterYear = filingTime.year - 1
+			quarterMonth = 12
+		else: 
+			quarterYear = filingTime.year
+			quarterMonth = filingTime.month - (filingTime.month % 3)
+		if quarterMonth == 3 or quarterMonth == 12:
+			quarterDay = 31
+		else:
+			quarterDay = 30
+		return datetime.date(quarterYear, quarterMonth, quarterDay)
 
-
-
-
+	#***********NEEEDDD TO DO SOME ERROR CATCHING HERE
+	def tickerLookup(self, cusip):
+		baseURL = "http://activequote.fidelity.com/mmnet/SymLookup.phtml?reqforlookup=REQUESTFORLOOKUP&for=stock&by=cusip&criteria=%s" %(cusip)
+		parser = etree.HTMLParser()
+		try:
+			tree = etree.parse(baseURL, parser)
+			#finds all the names and the descriptions
+			longName = tree.xpath('//*/tr[3]/td[1]/font/text()')[0]
+			ticker = tree.xpath('//*/tr[3]/td/font/a/text()')[0]
+			return [ticker, longName]
+		except Exception, e:
+			print "Error in TickerLookup, xmlScraper.py"
+			print e
+			return
+		
 
 

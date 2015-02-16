@@ -10,7 +10,7 @@ def main():
 
 	#upCheck = UpdateChecker()
 	#cik = "1167483" #tiger
-	#cik = "1336528" #persh
+	cik = "1336528" #persh
 	#cik = "1582090" #sachem
 	#cik = "1569175" #tigereye
 	
@@ -31,10 +31,20 @@ def main():
 	
 	#connectionCheckTest(formUpdate)
 
+	#cusip = "G5258J109"
+	#cusipList = ['N51488117', '62855J104', '65440R101', '741503403','74906P104','761152107','G87210103']
+	#for cusip in cusipList:
+	#	tickerLookupTest(formUpdate, cusip)
+
 #EquityDataUpdater
-	equityDataUpdater = EquityDataUpdater()
+	#equityDataUpdater = EquityDataUpdater()
 	#priceData = getPriceDataTest(equityDataUpdater, "AAPL", startDate = "2015-1-31")
-	updateLastPriceDatabaseTest(equityDataUpdater, ["XOM"])
+	#updateLastPriceDatabaseTest(equityDataUpdater, ["XOM"])
+
+#HoldingAnalysis
+	holdingAnalysis = HoldingAnalysis()
+	holdings = pullHoldingsTest(holdingAnalysis,"1336528", "2014-09-30")
+	holdings = getTickersTest(holdingAnalysis, holdings)
 
 def mostRecentFormTest(upCheck, cik):
 	lastDate = upCheck.mostRecentForm13F(cik)
@@ -52,12 +62,21 @@ def entryParserTest(formUpdate):
 def connectionCheckTest(formUpdate):
 	formUpdate.upload13FHoldings("test","test")
 
+def tickerLookupTest(formUpdate, cusip):
+	formUpdate.tickerLookup(cusip)
+
 #EquityDataUpdater
 def getPriceDataTest(equityDataUpdater, ticker, startDate=None, endDate=None, priceType=4):
 	return equityDataUpdater.getPriceData(ticker,startDate,endDate,priceType)
 
 def updateLastPriceDatabaseTest(equityDataUpdater, ticker):
 	return equityDataUpdater.updateLastPriceDatabase(ticker)
+
+#Holding Analysis
+def pullHoldingsTest(holdingAnalysis, cik, quarterDate):
+	return holdingAnalysis.pullHoldings(cik, quarterDate)
+def getTickersTest(holdingAnalysis, entryList):
+	return holdingAnalysis.getTickersAndOrganize(entryList)
 
 if __name__ == "__main__":
     main()
