@@ -21,6 +21,7 @@ class HoldingAnalysis(object):
 		return entryList
 		#(5300L, '000091957414006596', '21VIANET GROUP INC', 'SPONSORED ADR', '90138A103', 36000L, 2000000L, 'SH', 'n/a', 'SOLE', 2000000L, 0L, 0L)
 
+	#*********This should just get tickers and not organize
 	def getTickersAndOrganize(self, entryList):
 		portfolio = []
 		portfolioMarketCap = 0
@@ -43,9 +44,6 @@ class HoldingAnalysis(object):
 
 		print portfolio
 		print portfolioMarketCap
-
-
-
 
 
 class PortfolioGenerator(object):
