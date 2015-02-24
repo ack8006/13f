@@ -42,17 +42,16 @@ class HoldingAnalysis(object):
 			portfolio.append([entry[0], entry[4]/float(marketCap)])
 		return portfolio
 
-	def generatePortfolio(self, members, quarterDate):
+	#**********implement minimum weighting
+	def generatePortfolio(self, members, quarterDate, minOverallWeight = 0, minFundWeight = 0):
 		#********handle if quarter date isn't available yet
-		#members = {cik:weight, cik:weight}
 		portfolio = {}
 		for cik, weight in members.iteritems():
 			fundPortfolio = self.calculateWeights(self.pullHoldings(cik, quarterDate))
-			print fundPortfolio
 			for holding in fundPortfolio:
 				portfolio[holding[0]] = "{0:.5f}".format(float(portfolio.get(holding[0], 0.0)) + holding[1]*weight)
 		print portfolio
-
+		return portfolio
 
 
 
