@@ -43,8 +43,9 @@ def main():
 
 #HoldingAnalysis
 	holdingAnalysis = HoldingAnalysis()
-	holdings = pullHoldingsTest(holdingAnalysis,"1336528", "2014-09-30")
-	holdings = getTickersTest(holdingAnalysis, holdings)
+	#holdings = pullHoldingsTest(holdingAnalysis,"1336528", "2014-09-30")
+	#portfolio = calculateWeightsTest(holdingAnalysis, holdings)
+	portfolio = generatePortfolio(holdingAnalysis, {'1336528':0.5, '1582090':0.5}, "2014-12-31")
 
 def mostRecentFormTest(upCheck, cik):
 	lastDate = upCheck.mostRecentForm13F(cik)
@@ -75,8 +76,12 @@ def updateLastPriceDatabaseTest(equityDataUpdater, ticker):
 #Holding Analysis
 def pullHoldingsTest(holdingAnalysis, cik, quarterDate):
 	return holdingAnalysis.pullHoldings(cik, quarterDate)
-def getTickersTest(holdingAnalysis, entryList):
-	return holdingAnalysis.getTickersAndOrganize(entryList)
+
+def calculateWeightsTest(holdingAnalysis, holdings):
+	return holdingAnalysis.calculateWeights(holdings)
+
+def generatePortfolio(holdingAnalysis, members, quarterDate):
+	return holdingAnalysis.generatePortfolio(members, quarterDate)	
 
 if __name__ == "__main__":
     main()

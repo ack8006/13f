@@ -287,6 +287,7 @@ class Form13FUpdater(object):
 		except Exception, e:
 			print "Error in TickerLookup, xmlScraper.py"
 			print e
+			print "cusip: " + cusip
 			return
 		
 
