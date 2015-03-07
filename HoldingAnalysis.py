@@ -30,28 +30,54 @@ class HoldingAnalysis(object):
 		# ('PAH', '72766Q105', 'PLATFORM SPECIALTY PRODS COR', 'COM', 834000L, 33333330L, 'SH', 'n/a', 'SOLE', 33333330L, 0L, 0L)
 		return entryList
 
-	def calculateWeights(self, entryList):
+	def calculateWeights(self, entryList, minFundWeight):
 		marketCap = 0
 		for entry in entryList:
 			marketCap += entry[4]
 		portfolio = []
 		for entry in entryList:
-			#cusip, percent
-			#************should it be a dict?
-			#portfolio.append([entry[0], '{percent:.2%}'.format(percent=entry[4]/float(marketCap))])
-			portfolio.append([entry[0], entry[4]/float(marketCap)])
+			if entry[4]/float(marketCap) > minFundWeight:
+				portfolio.append([entry[0], entry[4]/float(marketCap)])
 		return portfolio
 
-	#**********implement minimum weighting
-	def generatePortfolio(self, members, quarterDate, minOverallWeight = 0, minFundWeight = 0):
+	#minPortfolioWeight is the minimum weight a position can have in the total portfolio
+	#minFundWeight is the minimum weight a position can be in the individual portoflios to be included
+	def generatePortfolio(self, members, quarterDate, minPortfolioWeight = 0, minFundWeight=0):
 		#********handle if quarter date isn't available yet
 		portfolio = {}
 		for cik, weight in members.iteritems():
-			fundPortfolio = self.calculateWeights(self.pullHoldings(cik, quarterDate))
+			fundPortfolio = self.calculateWeights(self.pullHoldings(cik, quarterDate), minFundWeight)
 			for holding in fundPortfolio:
 				portfolio[holding[0]] = "{0:.5f}".format(float(portfolio.get(holding[0], 0.0)) + holding[1]*weight)
-		print portfolio
-		return portfolio
+		#from here on just cleans up if minPortfolioWeight is used
+		if minPortfolioWeight:
+			portfolioSize = 1.0
+			toRemove = []
+			updatedPortfolio = {}
+			for ticker, weight in portfolio.iteritems():
+				if float(weight) < minPortfolioWeight:
+					toRemove.append(ticker)
+					portfolioSize -= float(weight)
+			for ticker in toRemove:
+				portfolio.pop(ticker)
+			for ticker, weight in portfolio.iteritems():
+				updatedPortfolio[ticker] = "{0:.5f}".format(float(weight)/portfolioSize)
+			self.printPortfolio(updatedPortfolio)
+			return updatedPortfolio
+		else:
+			self.printPortfolio(portfolio)
+			return portfolio
+
+	def changeInHoldings(self, cik, quarterDate1, quarterDate2):
+		pass
+
+	#takes portfolio as dicitonary and prints it out nicely
+	def printPortfolio(self, portfolio):
+			orderedPortfolio = sorted(portfolio.items(), key=lambda x: x[1], reverse=True)
+			for positionPair in orderedPortfolio:
+				print positionPair[0], " ", "{0:.2%}".format(float(positionPair[1]))
+
+
 
 
 
