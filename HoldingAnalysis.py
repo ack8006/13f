@@ -94,8 +94,8 @@ class HoldingAnalysis(object):
 		portfolio1 = self.calculateWeights(entryList1)
 		entryList2 = self.pullHoldings(cik, quarterDate2)
 		portfolio2 = self.calculateWeights(entryList2)
-
-
+		#('ACT', 'G0083B108', 'ACTAVIS PLC', 'SHS', 205928L, 800000L, 'SH', 'n/a', 'SOLE', 800000L, 0L, 0L)
+		#['ACT', 0.08212485827511795],
 
 	#takes portfolio as dicitonary and prints it out nicely
 	def printPortfolio(self, portfolio):
