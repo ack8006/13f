@@ -3,13 +3,14 @@ import MySQLdb
 from contextlib import closing
 from datetime import date
 import multiprocessing as mp
+import keys
 
 def checkAndUpdate(cik, lastDate):
 	entries = upCheck.get13FList(cik, lastDate)
 	formUpdate = Form13FUpdater(cik, entries)
 	formUpdate.entryParser()
 
-db = MySQLdb.connect(host="127.0.0.1",user = "user1", passwd = "password", db="Quarterly13Fs")
+db = MySQLdb.connect(host = keys.sqlHost, user = keys.sqlUsername, passwd = keys.sqlPassword, db="Quarterly13Fs")
 
 cikList = []
 
