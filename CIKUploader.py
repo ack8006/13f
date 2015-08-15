@@ -1,12 +1,13 @@
 import MySQLdb
 import csv
 from contextlib import closing
+import keys
 
 f = open('ciks.csv')
 csv_f = csv.reader(f)
 
 counter = 1
-db = MySQLdb.connect(host="127.0.0.1",user = "user1", passwd = "password", db="Quarterly13Fs")
+db = MySQLdb.connect(host = keys.sqlHost, user = keys.sqlUsername, passwd = keys.sqlPassword, db="Quarterly13Fs") 
 
 with closing(db.cursor()) as cur:
 	for row in csv_f:
