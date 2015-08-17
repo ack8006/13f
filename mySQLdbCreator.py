@@ -15,10 +15,10 @@ sql = '''CREATE TABLE IF NOT EXISTS 13FList (
 		id INT PRIMARY KEY NOT NULL AUTO_INCREMENT UNIQUE,
 		CIK VARCHAR(12) NOT NULL, 
 		filingDate DATE NOT NULL, 
-		accessionNunber VARCHAR(24) NOT NULL, 
+		accessionNunber VARCHAR(24) NOT NULL UNIQUE, 
 		quarterDate DATE)
 	'''
-cursor.execute(sql)
+cursor.execute(sql) 
 
 sql = '''CREATE TABLE IF NOT EXISTS 13FHoldings (
 		id INT PRIMARY KEY NOT NULL AUTO_INCREMENT UNIQUE,
@@ -41,7 +41,7 @@ sql = '''CREATE TABLE IF NOT EXISTS CUSIPList (
 		id INT PRIMARY KEY NOT NULL AUTO_INCREMENT UNIQUE,
 		CUSIP VARCHAR(9) NOT NULL UNIQUE,
 		Ticker VARCHAR(10),
-		LongName VARCHAR(45) NOT NULL,
+		LongName VARCHAR(60),
 		LastPrice DECIMAL(8,2) UNSIGNED,
 		LastPriceData DATETIME,
 		Shares INT(10) UNSIGNED
@@ -53,6 +53,13 @@ sql = '''CREATE TABLE IF NOT EXISTS CIKList (
 		CIK VARCHAR(12) UNIQUE,
 		firmName VARCHAR(45),
 		importance INT(2)
+		)'''
+cursor.execute(sql)
+
+sql = '''CREATE TABLE IF NOT EXISTS missingCUSIP (
+		id INT PRIMARY KEY NOT NULL AUTO_INCREMENT UNIQUE,
+		CUSIP VARCHAR(9) NOT NULL,
+		accessionNunber VARCHAR(24) NOT NULL
 		)'''
 cursor.execute(sql)
 
