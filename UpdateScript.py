@@ -4,6 +4,11 @@ from contextlib import closing
 from datetime import date
 import multiprocessing as mp
 import keys
+from time import sleep
+
+#Bugs
+#*******There is some request per second rate from the SEC that will shut me down. so now i'm pausing for 50ms between every request
+
 
 def checkAndUpdate(cik, lastDate):
 	entries = upCheck.get13FList(cik, lastDate)
@@ -37,4 +42,9 @@ for cik in cikList:
 
 for p in processes:
 	p.start()
+	#slows shit down so that not massively overloading SEC.  There is some SEC requests per second
+	#this seems to be fixing things, but it is not like i'm only hitting evry 500ms instead, this adds a new process 
+	#which starts a whole new list of numbers.  only really important on first loads, after that, assuming this is 
+	#run regularly, should only be a few each time.
+	sleep(0.5)
 

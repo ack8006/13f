@@ -22,12 +22,17 @@ import datetime
 import keys
 import logging
 
+#Errors
+#********Must deal with ammended 13Fs, 53417 in particular. looking at it, not only is it pulling 13fs incorrectly, it's marking them as 
+#an incorrect date
+
 #**************Files were submitted as text files prior to 3Q13...shit
 #************Standardize uses of .format vs %s
 #******** Need to pull the acceptd date
 #*********When a new report is found the analyze class needs to be called
 #******need to try/except all url calls 
 #***********Need to implement logging
+#**********Deal with Empty Ticker CUSIPs
 
 
 #Notes
@@ -219,7 +224,7 @@ class Form13FUpdater(object):
 		#load the data into 13FHoldings and if successful then add to the 13FList database
 
 		with closing(db.cursor()) as cur:
-			#belt and suspenders check here to see if the accessiionNunber is already in
+			#belt and suspenders check here to see if the accessionNunber is already in
 			#the 13FHolding Database and if it is don't do shit
 			cur.execute("SELECT COUNT(*) as count FROM 13FHoldings WHERE accessionNunber = %s" %(accessionNunber))
 			existingEntries = cur.fetchone()[0]
@@ -241,6 +246,10 @@ class Form13FUpdater(object):
 						if tickerPair:
 							cur.execute("INSERT INTO CUSIPList (CUSIP, Ticker, LongName)\
 								VALUES ('%s','%s','%s')" % (iT['cusip'], tickerPair[0], tickerPair[1]))
+						#this else is if the lookup on fidelity quotes fails, puts only cusip in if 
+						else:
+							cur.execute("INSERT INTO missingCUSIP (CUSIP, accessionNunber)\
+								VALUES ('%s', '%s')" % (iT['cusip'], accessionNunber))
 
 				#makes date object
 				filingTime = datetime.datetime.strptime(filingDate, "%Y-%m-%d").date()
@@ -258,6 +267,7 @@ class Form13FUpdater(object):
 				pass
 		db.close()	
 
+	#*******This is fundamentally incorrect, should pull actual date
 	def calculateQuarterDate(self, filingTime):
 		quarterYear = None
 		quarterMonth = None
@@ -276,8 +286,10 @@ class Form13FUpdater(object):
 
 	#***********NEEEDDD TO DO SOME ERROR CATCHING HERE
 	def tickerLookup(self, cusip):
-		baseURL = "http://activequote.fidelity.com/mmnet/SymLookup.phtml?reqforlookup=REQUESTFORLOOKUP&for=stock&by=cusip&criteria=%s" %(cusip)
+		#baseURL = "http://activequote.fidelity.com/mmnet/SymLookup.phtml?reqforlookup=REQUESTFORLOOKUP&for=stock&by=cusip&criteria=%s" %(cusip)
+		baseURL = "http://quotes.fidelity.com/mmnet/SymLookup.phtml?reqforlookup=REQUESTFORLOOKUP&productid=mmnet&isLoggedIn=mmnet&rows=50&for=stock&by=cusip&criteria=%s&submit=Search" % (cusip)
 		parser = etree.HTMLParser()
+		#******Before trying check to see if CUSIP is in the missingCUSIP db
 		try:
 			tree = etree.parse(baseURL, parser)
 			#finds all the names and the descriptions
@@ -285,10 +297,10 @@ class Form13FUpdater(object):
 			ticker = tree.xpath('//*/tr[3]/td/font/a/text()')[0]
 			return [ticker, longName]
 		except Exception, e:
-			print "Error in TickerLookup, xmlScraper.py"
+			print "CUSIP Unable to be found in TickerLookup, xmlScraper.py"
 			print e
 			print "cusip: " + cusip
-			return
+			return 
 		
 
 
