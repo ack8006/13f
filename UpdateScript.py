@@ -46,5 +46,5 @@ for p in processes:
 	#this seems to be fixing things, but it is not like i'm only hitting evry 500ms instead, this adds a new process 
 	#which starts a whole new list of numbers.  only really important on first loads, after that, assuming this is 
 	#run regularly, should only be a few each time.
-	sleep(0.5)
+	sleep(0.75)
 

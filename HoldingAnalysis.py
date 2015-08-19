@@ -87,6 +87,7 @@ class HoldingAnalysis(object):
 			self.printPortfolio(portfolio)
 			return portfolio
 
+	#**********This is not done
 	@timerWrap
 	def changeInHoldings(self, cik, quarterDate1, quarterDate2):
 		#ticker, currentShares, MarketValue, %Portfolio, %previousPortfolio, change in shares, %change

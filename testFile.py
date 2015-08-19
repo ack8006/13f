@@ -9,7 +9,7 @@ from EquityDataUpdater import *
 def main():
 
 	upCheck = UpdateChecker()
-	cik = "1167483" #tiger
+	#cik = "1167483" #tiger
 	#cik = "1336528" #persh
 	#cik = "1582090" #sachem
 	#cik = "1569175" #tigereye
@@ -46,9 +46,9 @@ def main():
 	#holdingAnalysis = HoldingAnalysis()
 	#holdings = pullHoldingsTest(holdingAnalysis,"1336528", "2014-09-30")
 	#portfolio = calculateWeightsTest(holdingAnalysis, holdings)
-	#portfolio = generatePortfolio(holdingAnalysis, {'1167483': 0.4, '1336528':0.3, '1582090':0.3}, "2014-12-31")
+	#portfolio = generatePortfolio(holdingAnalysis, {'1167483': 0.4, '1336528':0.3, '1582090':0.3}, "2015-06-30")
 	#portfolio = generatePortfolio(holdingAnalysis, {'1167483': 0.34, '1336528':0.33, '1582090':0.33}, "2014-12-31", 0.015, 0.0)
-	#portfolioChange = changeInHoldings(holdingAnalysis, '1167483',"2014-12-31","2014-09-30")
+	#portfolioChange = changeInHoldings(holdingAnalysis, '1167483',"2015-03-31","2015-06-30")
 
 def mostRecentFormTest(upCheck, cik):
 	lastDate = upCheck.mostRecentForm13F(cik)

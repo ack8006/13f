@@ -74,13 +74,19 @@ class UpdateChecker(object):
 			filingDate = entry.find('{0}content/{0}filing-date'.format(namespace)).text
 			#converst filingDate to a date format so it can be compared to the last date in date format
 			filingTime = datetime.datetime.strptime(filingDate, "%Y-%m-%d").date()
+			
+			filingType = entry.find('{0}content/{0}filing-type'.format(namespace)).text
+
+			updatedDate = entry.find('{0}updated'.format(namespace)).text.replace("T"," ")[:-6]
+			updated = datetime.datetime.strptime(updatedDate, "%Y-%m-%d %H:%M:%S")
+
 			#only hits the if when the lastDate available is bigger than the filing date
 			#this if statement assumes that the RSS feed is in chronlogical order top to bottom
 			if (lastDate is not None and filingTime <= lastDate):
 				#print filingDate
 				return entries
 			accessionNunber = entry.find('{0}content/{0}accession-nunber'.format(namespace)).text.replace("-","")
-			entries.append([accessionNunber,filingDate])
+			entries.append([accessionNunber,filingDate, updated, filingType])
 		return entries
 
 #This class is intialized with a cik (the firm id), and entries (which is a 2d list of the accession nunbers
@@ -102,20 +108,27 @@ class Form13FUpdater(object):
 		for entry in self.entries:
 			accessionNunber = entry[0]
 			filingDate = entry[1]
+			updated = entry[2]
+			filingType = entry[3]
+			infoTables = None
+			quarterDate = None
 			if failCount <= 3:
 				print "Working on accessionNunber: %s, and filingDate: %s" %(accessionNunber, filingDate)
-				infoTables = self.scrapeForm13F(accessionNunber)
+				scrapeResult = self.scrapeForm13F(accessionNunber)
+				if scrapeResult:
+					infoTables = scrapeResult[0]
+					quarterDate = scrapeResult[1][0]
+
 			else:
 				print "Skipped accessionNunber: %s, and filingDate: %s" %(accessionNunber, filingDate)
 			#the only reason it wouldn't be info tables is if the http request is not 200
 			if infoTables:
 				#uploads the holdings into the database, the form info to 13FList
 				print "Uploading accessionNunber: %s, and filingDate: %s" %(accessionNunber, filingDate)
-				self.upload13FHoldings(accessionNunber, filingDate, infoTables)
+				self.upload13FHoldings(accessionNunber, filingDate, updated, filingType, quarterDate, infoTables)
 				failCount = 0
 			else:
 				failCount +=1
-				#***********Should take this opportunity to update CUSIP Database 
 				#Maybe in the process can implement fuzzywuzzy library when looking up cusip and tickers
 
 
@@ -127,10 +140,14 @@ class Form13FUpdater(object):
 		#*********Some sort of smart selection to use the xmlName that worked last time
 		#xmlNames = ("infotable", "form13fInfoTable", "Form13fInfoTable")
 
-		xmlName = self.getInformationTableName(accessionNunber)
+		infoTableInformation = self.getInformationTableName(accessionNunber)
+
 		#*********if xml name doesn't exist i.e. if there are only text files...
-		if not xmlName:
+		if not infoTableInformation:
 			return
+
+		xmlName = infoTableInformation[0]
+		quarterDate = infoTableInformation[1]
 
 		xmlURLString = "http://www.sec.gov/Archives/edgar/data/{0}/{1}/{2}.xml".format(self.cik, accessionNunber, xmlName)
 		page = requests.get(xmlURLString)
@@ -154,7 +171,7 @@ class Form13FUpdater(object):
 			infoTableElements = tree.findall('{0}infoTable'.format(namespace))
 			infoTables = self.cleanInfoTableElements(infoTableElements, namespace)
 			#print infoTables
-			return infoTables
+			return [infoTables, quarterDate]
 		else:
 			#*******ACTUALLY CATCH THIS ERROR
 			#********can do a text scraping here...
@@ -162,11 +179,15 @@ class Form13FUpdater(object):
 			return 
 
 	#gets the name of the XML used by the SEC, this is not standardized for some reason
+	#also retrieves the quarter and accepted dates.  not great location, but this is the only time i access this page
 	def getInformationTableName(self, accessionNunber):
 		pageURLString = "http://www.sec.gov/Archives/edgar/data/%s/%s-%s-%s-index.htm" % (self.cik, accessionNunber[0:10], accessionNunber[10:12], accessionNunber[12:])
 		#print pageURLString
 		parser = etree.HTMLParser()
 		tree = etree.parse(pageURLString, parser)
+
+		#finds actual quarter date
+		quarterDate = tree.xpath('//*[@id="formDiv"]/div[2]/div[2]/div[2]/text()')
 
 		#finds all the names and the descriptions
 		informationTableNames = tree.xpath('//*[@id="formDiv"]//*/tr/td[3]/a/text()')
@@ -177,7 +198,7 @@ class Form13FUpdater(object):
 		if SEARCH_NAME in typeNames:
 			longInformationTableName = informationTableNames[typeNames.index(SEARCH_NAME)]
 			informationTableName = longInformationTableName[0:longInformationTableName.rfind('.')]
-			return informationTableName
+			return [informationTableName, quarterDate]
 		else:
 			return None
 
@@ -218,7 +239,7 @@ class Form13FUpdater(object):
 			
 		return infoTables
 
-	def upload13FHoldings(self, accessionNunber, filingDate, infoTables):
+	def upload13FHoldings(self, accessionNunber, filingDate, updated, filingType, quarterDate, infoTables):
 		db = MySQLdb.connect(host="127.0.0.1",user = keys.sqlUsername, passwd = keys.sqlPassword, db="Quarterly13Fs") 
 
 		#load the data into 13FHoldings and if successful then add to the 13FList database
@@ -253,12 +274,16 @@ class Form13FUpdater(object):
 
 				#makes date object
 				filingTime = datetime.datetime.strptime(filingDate, "%Y-%m-%d").date()
-				#calculates quarter end
-				quarterDate = self.calculateQuarterDate(filingTime)
+				quarterDate = datetime.datetime.strptime(quarterDate, "%Y-%m-%d").date()
+				
 
-				cur.execute("INSERT INTO 13FList (CIK, filingDate, quarterDate, accessionNunber) \
-					VALUES('%s', '%s', '%s','%s')"
-					%(self.cik, filingTime, quarterDate, accessionNunber))
+				#calculates quarter end		
+				#remove if works
+				#quarterDate = self.calculateQuarterDate(filingTime)
+
+				cur.execute("INSERT INTO 13FList (CIK, filingDate, accessionNunber, quarterDate, updated, filingType) \
+					VALUES('%s', '%s', '%s','%s', '%s', '%s')"
+					%(self.cik, filingTime, accessionNunber, quarterDate, updated, filingType))
 
 				db.commit()
 
@@ -266,23 +291,6 @@ class Form13FUpdater(object):
 				#****Should log some error here if gets to this point and it has somethings in database already
 				pass
 		db.close()	
-
-	#*******This is fundamentally incorrect, should pull actual date
-	def calculateQuarterDate(self, filingTime):
-		quarterYear = None
-		quarterMonth = None
-		quarterDay = None
-		if filingTime.month < 3:
-			quarterYear = filingTime.year - 1
-			quarterMonth = 12
-		else: 
-			quarterYear = filingTime.year
-			quarterMonth = filingTime.month - (filingTime.month % 3)
-		if quarterMonth == 3 or quarterMonth == 12:
-			quarterDay = 31
-		else:
-			quarterDay = 30
-		return datetime.date(quarterYear, quarterMonth, quarterDay)
 
 	#***********NEEEDDD TO DO SOME ERROR CATCHING HERE
 	def tickerLookup(self, cusip):
@@ -297,9 +305,9 @@ class Form13FUpdater(object):
 			ticker = tree.xpath('//*/tr[3]/td/font/a/text()')[0]
 			return [ticker, longName]
 		except Exception, e:
-			print "CUSIP Unable to be found in TickerLookup, xmlScraper.py"
-			print e
-			print "cusip: " + cusip
+			print "CUSIP Unable to be found in TickerLookup, xmlScraper.py: " + cusip
+			#print e
+			#print "cusip: " + cusip
 			return 
 		
 

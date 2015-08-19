@@ -16,7 +16,9 @@ sql = '''CREATE TABLE IF NOT EXISTS 13FList (
 		CIK VARCHAR(12) NOT NULL, 
 		filingDate DATE NOT NULL, 
 		accessionNunber VARCHAR(24) NOT NULL UNIQUE, 
-		quarterDate DATE)
+		quarterDate DATE,
+		updated DATETIME,
+		filingType VARCHAR(24) NOT NULL)
 	'''
 cursor.execute(sql) 
 
@@ -43,7 +45,7 @@ sql = '''CREATE TABLE IF NOT EXISTS CUSIPList (
 		Ticker VARCHAR(10),
 		LongName VARCHAR(60),
 		LastPrice DECIMAL(8,2) UNSIGNED,
-		LastPriceData DATETIME,
+		LastPriceDate DATETIME,
 		Shares INT(10) UNSIGNED
 		)'''
 cursor.execute(sql)
