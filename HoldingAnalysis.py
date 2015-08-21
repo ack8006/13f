@@ -20,22 +20,35 @@ class HoldingAnalysis(object):
 
 	#pulls holding information and tickers
 	#**********do something if incorrect date
-	@timerWrap
-	def pullHoldings(self, cik, quarterDate):
+	#Both either Filing Date or quarter date, not both, not neither
+	#@timerWrap
+	def pullHoldings(self, cik, quarterDate = None, filingDate = None):
+
+		fieldsSQLList = '''CUSIPList.Ticker, 13FHoldings.CUSIP, 13FHoldings.nameOfIssuer, 13FHoldings.titleOfClass, 
+								13FHoldings.value, 13FHoldings.sshPrnamt, 13FHoldings.sshPrnamtType, 13FHoldings.putCall, 
+								13FHoldings.investmentDiscretion, 13FHoldings.Sole, 13FHoldings.Shared, 13FHoldings.None'''
 		def consolidateAmmended():
 			for filing in ammended:
-				cur.execute("SELECT CUSIPList.Ticker, 13FHoldings.CUSIP, 13FHoldings.nameOfIssuer, 13FHoldings.titleOfClass, 13FHoldings.value, \
-								13FHoldings.sshPrnamt, 13FHoldings.sshPrnamtType, 13FHoldings.putCall, 13FHoldings.investmentDiscretion, 13FHoldings.Sole, \
-								13FHoldings.Shared, 13FHoldings.None \
-								FROM CUSIPList INNER JOIN 13FHoldings \
+				cur.execute("SELECT {} FROM CUSIPList INNER JOIN 13FHoldings \
 								ON CUSIPList.CUSIP = 13FHoldings.CUSIP \
-								WHERE 13FHoldings.accessionNunber = {}".format(filing[1]))
+								WHERE 13FHoldings.accessionNunber = {}".format(fieldsSQLList, filing[1]))
 				#print [x for x in cur.fetchall()]	
 				for holding in cur.fetchall():
 					#holding ('QCOM', '747525103', 'QUALCOMM INC', 'COM', 327104L, 4400705L, 'SH', 'n/a', 'SOLE', 4400705L, 0L, 0L)
 					cusipCompare = [hold for hold in holdingList if (holding[1] in hold and holding[7] in hold)]
 					if not cusipCompare:
 						holdingList.append(holding)
+
+		if (quarterDate and filingDate) or (not filingDate and not quarterDate):
+			print "ERROR: must choose EITHER quarter or filingDate"
+			return
+		elif filingDate:
+			quarterDate = self.calculateQuarterDate(filingDate)
+			print 'quarterdate ' + quarterDate 
+		#****really scrubby, setting super high filing date so that it won't affect method
+		else:
+			filingDate = "3"+quarterDate[1:]
+			print 'filingDate ' +filingDate
 
 
 		holdingList = []
@@ -47,28 +60,70 @@ class HoldingAnalysis(object):
 			#	IN (SELECT accessionNunber FROM 13FList WHERE cik = '%s' \
 			#		AND quarterDate = '%s')" %(cik, quarterDate))
 			
-			query = "SELECT filingDate, accessionNunber, filingType FROM 13FList WHERE cik = '{}' AND quarterDate = '{}'".format(cik, quarterDate)
-			cur.execute(query)
-			entryList = [x for x in cur.fetchall()]	
+			entryList = None
+			failCount = 0
+			while not entryList and failCount <3:
+				query = "SELECT filingDate, accessionNunber, filingType FROM 13FList WHERE cik = '{}' AND quarterDate = '{}'\
+								AND filingDate < '{}' ".format(cik, quarterDate, filingDate)
+				cur.execute(query)
+				entryList = [x for x in cur.fetchall()]	
+				if entryList: break
+				else: 
+					failCount +=1
+					quarterDate = self.calculateQuarterDate(quarterDate[0:8] + "25")
+					print quarterDate
+
 
 			ammended = sorted([(amd[0],amd[1]) for amd in entryList if "13F-HR/A" in amd], key = lambda x: x[1], reverse=True)
 			if ammended:
 				consolidateAmmended()
 			
-			cur.execute("SELECT CUSIPList.Ticker, 13FHoldings.CUSIP, 13FHoldings.nameOfIssuer, 13FHoldings.titleOfClass, 13FHoldings.value, \
-							13FHoldings.sshPrnamt, 13FHoldings.sshPrnamtType, 13FHoldings.putCall, 13FHoldings.investmentDiscretion, 13FHoldings.Sole, \
-							13FHoldings.Shared, 13FHoldings.None \
-							FROM CUSIPList INNER JOIN 13FHoldings \
+			cur.execute("SELECT {} FROM CUSIPList INNER JOIN 13FHoldings \
 							ON CUSIPList.CUSIP = 13FHoldings.CUSIP \
 							WHERE 13FHoldings.accessionNunber IN \
-							(SELECT accessionNunber FROM 13FList WHERE cik = '%s' AND quarterDate = '%s' AND filingType = '13F-HR')" %(cik, quarterDate))
+							(SELECT accessionNunber FROM 13FList WHERE cik = '{}' AND quarterDate = '{}' \
+							AND filingType = '13F-HR' AND filingDate < '{}')".format(fieldsSQLList, cik, quarterDate, filingDate))
 			for holding in cur.fetchall():
 				cusipCompare = [hold for hold in holdingList if (holding[1] in hold and holding[7] in hold)]
 				if not cusipCompare:
 					holdingList.append(holding)
 		db.close()
 
+		print holdingList
 		return holdingList
+
+
+	def calculateQuarterDate(self, filingTime):
+		qy = int(filingTime[0:4])
+		qm = int(filingTime[5:7])
+		qd = int(filingTime[8:])
+
+		quarterYear = None
+		quarterMonth = None
+		quarterDay = None
+
+		if qm < 3 or (qm ==3 and qd <31):
+			quarterYear = qy - 1
+			quarterMonth = 12
+		elif qm < 6 or (qm==6 and qd < 30):
+			quarterMonth = 3
+			quarterYear = qy
+		elif qm < 9 or (qm==9 and qd<30):
+			quarterMonth = 6
+			quarterYear = qy
+		elif qm <12 or (qm == 12 and qd <31):
+			quarterMonth = 9
+			quarterYear = qy
+		else: 
+			quarterMonth = 12
+			quarterYear = qy
+
+		if quarterMonth in [3, 12]:
+			quarterDay = 31
+		else:
+			quarterDay = 30
+		return str(datetime.date(quarterYear, quarterMonth, quarterDay))
+
 
 	#@timerWrap
 	def calculateWeights(self, entryList, minFundWeight=0):
