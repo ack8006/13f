@@ -13,10 +13,10 @@ def main():
 	#cik = "1336528" #persh
 	#cik = "1582090" #sachem
 	#cik = "1569175" #tigereye
-	cik = "1159159" #Jana for testing ammended shit
+	#cik = "1159159" #Jana for testing ammended shit
 	
-	lastDate = mostRecentFormTest(upCheck, cik)
-	entries = get13FListTest(upCheck, cik, lastDate)
+	#lastDate = mostRecentFormTest(upCheck, cik)
+	#entries = get13FListTest(upCheck, cik, lastDate)
 
 	#date1 = filingTime = datetime.datetime.strptime('2010-02-16', "%Y-%m-%d").strftime('%Y-%m-%d %H:%M:%S')
 	#entries = get13FListTest(upCheck, cik, date1)
@@ -27,8 +27,8 @@ def main():
 	#tiger
 	#entries = [['000091957415006282', '2015-08-14']]
 	
-	formUpdate = Form13FUpdater(cik, entries)
-	entryParserTest(formUpdate)
+	#formUpdate = Form13FUpdater(cik, entries)
+	#entryParserTest(formUpdate)
 	
 	#connectionCheckTest(formUpdate)
 
@@ -43,9 +43,9 @@ def main():
 	#updateLastPriceDatabaseTest(equityDataUpdater, ["XOM"])
 
 #HoldingAnalysis
-	#holdingAnalysis = HoldingAnalysis()
-	#holdings = pullHoldingsTest(holdingAnalysis,"1336528", "2014-09-30")
-	#portfolio = calculateWeightsTest(holdingAnalysis, holdings)
+	holdingAnalysis = HoldingAnalysis()
+	holdings = pullHoldingsTest(holdingAnalysis,"1159159", "2014-12-31")
+	portfolio = calculateWeightsTest(holdingAnalysis, holdings)
 	#portfolio = generatePortfolio(holdingAnalysis, {'1167483': 0.4, '1336528':0.3, '1582090':0.3}, "2015-06-30")
 	#portfolio = generatePortfolio(holdingAnalysis, {'1167483': 0.34, '1336528':0.33, '1582090':0.33}, "2014-12-31", 0.015, 0.0)
 	#portfolioChange = changeInHoldings(holdingAnalysis, '1167483',"2015-03-31","2015-06-30")
