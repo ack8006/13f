@@ -22,7 +22,6 @@ class HoldingAnalysis(object):
 	#**********do something if incorrect date
 	@timerWrap
 	def pullHoldings(self, cik, quarterDate):
-		
 		def consolidateAmmended():
 			for filing in ammended:
 				cur.execute("SELECT CUSIPList.Ticker, 13FHoldings.CUSIP, 13FHoldings.nameOfIssuer, 13FHoldings.titleOfClass, 13FHoldings.value, \
@@ -63,7 +62,6 @@ class HoldingAnalysis(object):
 							ON CUSIPList.CUSIP = 13FHoldings.CUSIP \
 							WHERE 13FHoldings.accessionNunber IN \
 							(SELECT accessionNunber FROM 13FList WHERE cik = '%s' AND quarterDate = '%s' AND filingType = '13F-HR')" %(cik, quarterDate))
-
 			for holding in cur.fetchall():
 				cusipCompare = [hold for hold in holdingList if (holding[1] in hold and holding[7] in hold)]
 				if not cusipCompare:
@@ -133,7 +131,36 @@ class HoldingAnalysis(object):
 		for positionPair in orderedPortfolio:
 			print positionPair[0], " ", "{0:.2%}".format(float(positionPair[1]))
 
+
+#****need to go by filingDate
+class PortfolioPerformance(HoldingAnalysis):
 	
+	def portfolioPerformance(self, members, startDate, endDate, minPortfolioWeight = 0, minFundWeight=0):
+		pass
+
+	def generateListOfPortfolios(self, members, startDate, endDate, minPortfolioWeight, minFundWeight):
+		portfolioList = []
+		#all changes of all members
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
