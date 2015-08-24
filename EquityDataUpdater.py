@@ -3,6 +3,7 @@ import MySQLdb
 import requests
 import datetime
 from contextlib import closing
+#import Quandl
 
 
 class EquityDataUpdater(object):
@@ -19,6 +20,7 @@ class EquityDataUpdater(object):
 	#returns dictionary of priceData with yyyy-mm-dd at key
 	def getPriceData(self, ticker, startDate = None, endDate = None, priceType = 4, rows = None):
 		baseURL = self.generateURL(ticker, startDate, endDate, priceType, rows)
+		print baseURL
 
 		page = requests.get(baseURL)
 
@@ -48,13 +50,14 @@ class EquityDataUpdater(object):
 		db.commit()
 		db.close()
 
-	def generateURL(self, ticker, startDate=None, endDate=None, priceData = 4, rows = None, collapse = None, transformation = None):
+	def generateURL(self, ticker, startDate=None, endDate=None, priceType = 4, rows = None, collapse = None, transformation = None):
 		baseURL = "https://www.quandl.com/api/v1/datasets/WIKI/%s.json?auth_token=%s" %(ticker, keys.quandlAPI)
+
 		if startDate:
 			baseURL = baseURL + "&trim_start=%s" %(startDate) 
 		if endDate:
 			baseURL = baseURL + "&trim_end=%s" %(endDate)
-		baseURL = baseURL + "&column=%s" %priceData
+		baseURL = baseURL + "&column=%s" %priceType
 		if rows:
 			baseURL = baseURL + "&rows=%s" %(rows)
 		if collapse:

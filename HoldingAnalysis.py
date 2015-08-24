@@ -200,9 +200,10 @@ class PortfolioPerformance(HoldingAnalysis):
 	def portfolioPerformance(self, members, startDate, endDate, minPortfolioWeight = 0, minFundWeight=0):
 		#list of tuples. tuples are date, portfolioDict
 		portfolioList = self.generateListOfPortfolios(members, startDate, endDate, minPortfolioWeight, minFundWeight)
-		
-		
-
+		startEndDict = self.calculateTickerDateRange(portfolioList, endDate)
+		dateChangeList = [portTup[0] for portTup in portfolioList]
+		dateChangeList.append(datetime.datetime.strptime(endDate, "%Y-%m-%d").date())
+		tickerPriceData = self.pullTickerPriceData(dateChangeList, startEndDict)
 
 
 	def generateListOfPortfolios(self, members, startDate, endDate, minPortfolioWeight, minFundWeight):
@@ -217,7 +218,7 @@ class PortfolioPerformance(HoldingAnalysis):
 		changeDatesList = self.portfolioChangeDates(ciks,startDate,endDate)
 		for dateChange in changeDatesList:
 			portfolioList.append((dateChange, self.generatePortfolio(members, None, dateChange.strftime('%Y-%m-%d'))))
-		portfolioList.sort(key= lambda x: x[0])
+		portfolioList.sort(key= lambda x: x[0], reverse=True)
 		return portfolioList
 
 #****may have to add 1 to change list date
@@ -236,8 +237,41 @@ class PortfolioPerformance(HoldingAnalysis):
 		return changeList
 
 
-	def portfolioPerformance(self, startDate, endDate, portfolio):
+	def calculateTickerDateRange(self, portfolioList, endDate):
+		startEndDict = {}
+		previousDate = datetime.datetime.strptime(endDate, "%Y-%m-%d").date()
+		for pDate, portfolio in portfolioList:
+			for ticker in portfolio.keys():
+				if ticker in startEndDict:
+					startEndDict[ticker] = (pDate, startEndDict[ticker][1])
+				else:
+					startEndDict[ticker] = (pDate, previousDate)
+			previousDate = pDate
+		return startEndDict
+
+	#***********right now only using opens, should probably use close for last date
+	#***********may fail if use date end date of today
+	def pullTickerPriceData(self, dateChangeList, startEndDict):
+		edu = EquityDataUpdater()
+		OPEN_PRICE_VALUE = 1
+		priceDataDict = {}
+		print startEndDict
+		for ticker, dateRange in startEndDict.iteritems():
+			#**********FAILING BECAUSE QUANDL Doesn't have data
+			priceData = edu.getPriceData(ticker, dateRange[0], dateRange[1], OPEN_PRICE_VALUE)
+			print "PRICEDATA"
+			print priceData
+			dateList = [x for x in dateChangeList if (x<=dateRange[1] and x>=dateRange[0])]
+			pricePoints = {}
+			for tDate in dateList:
+				pricePoints[tDate] = priceData[tDate]
+			priceDataDict[ticker] = pricePoints
+
+		print priceDataDict
+
+	#def portfolioPerformance(self, startDate, endDate, portfolio):
 		
+
 
 
 

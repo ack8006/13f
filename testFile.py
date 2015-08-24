@@ -43,12 +43,18 @@ def main():
 	#updateLastPriceDatabaseTest(equityDataUpdater, ["XOM"])
 
 #HoldingAnalysis
-	holdingAnalysis = HoldingAnalysis()
-	holdings = pullHoldingsTest(holdingAnalysis,"1159159", "2014-12-31")
-	portfolio = calculateWeightsTest(holdingAnalysis, holdings)
+	#holdingAnalysis = HoldingAnalysis()
+	#holdings = pullHoldingsTest(holdingAnalysis,"1159159", "2014-09-30")
+	#holdings = pullHoldingsTest(holdingAnalysis,"1159159", None, "2015-06-10")
+	#portfolio = calculateWeightsTest(holdingAnalysis, holdings)
 	#portfolio = generatePortfolio(holdingAnalysis, {'1167483': 0.4, '1336528':0.3, '1582090':0.3}, "2015-06-30")
 	#portfolio = generatePortfolio(holdingAnalysis, {'1167483': 0.34, '1336528':0.33, '1582090':0.33}, "2014-12-31", 0.015, 0.0)
+	#portfolio = generatePortfolio(holdingAnalysis, {1159159: 1.0}, "2015-03-31")
 	#portfolioChange = changeInHoldings(holdingAnalysis, '1167483',"2015-03-31","2015-06-30")
+
+	pp = PortfolioPerformance()
+	pp.portfolioPerformance({'1159159': 1.0}, "2015-01-05", "2015-05-20", 0.025)
+
 
 def mostRecentFormTest(upCheck, cik):
 	lastDate = upCheck.mostRecentForm13F(cik)
@@ -77,8 +83,8 @@ def updateLastPriceDatabaseTest(equityDataUpdater, ticker):
 	return equityDataUpdater.updateLastPriceDatabase(ticker)
 
 #Holding Analysis
-def pullHoldingsTest(holdingAnalysis, cik, quarterDate):
-	return holdingAnalysis.pullHoldings(cik, quarterDate)
+def pullHoldingsTest(holdingAnalysis, cik, quarterDate = None, filingDate = None):
+	return holdingAnalysis.pullHoldings(cik, quarterDate, filingDate)
 
 def calculateWeightsTest(holdingAnalysis, holdings, minFundWeight = 0):
 	return holdingAnalysis.calculateWeights(holdings, minFundWeight)
