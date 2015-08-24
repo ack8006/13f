@@ -3,6 +3,8 @@ import MySQLdb
 from EquityDataUpdater import *
 import time
 
+#***********Should differentiate between holdings and calls
+
 
 class HoldingAnalysis(object):
 	
@@ -44,7 +46,8 @@ class HoldingAnalysis(object):
 			return
 		elif filingDate:
 			quarterDate = self.calculateQuarterDate(filingDate)
-			print 'quarterdate ' + quarterDate 
+			print 'filingDate ' + filingDate
+			print 'calculated quarterdate as ' + quarterDate 
 		#****really scrubby, setting super high filing date so that it won't affect method
 		else:
 			filingDate = "3"+quarterDate[1:]
@@ -64,14 +67,14 @@ class HoldingAnalysis(object):
 			failCount = 0
 			while not entryList and failCount <3:
 				query = "SELECT filingDate, accessionNunber, filingType FROM 13FList WHERE cik = '{}' AND quarterDate = '{}'\
-								AND filingDate < '{}' ".format(cik, quarterDate, filingDate)
+								AND filingDate <= '{}' ".format(cik, quarterDate, filingDate)
 				cur.execute(query)
 				entryList = [x for x in cur.fetchall()]	
 				if entryList: break
 				else: 
 					failCount +=1
 					quarterDate = self.calculateQuarterDate(quarterDate[0:8] + "25")
-					print quarterDate
+					print 'Updated QuarterDate to ' + str(quarterDate)
 
 
 			ammended = sorted([(amd[0],amd[1]) for amd in entryList if "13F-HR/A" in amd], key = lambda x: x[1], reverse=True)
@@ -82,14 +85,14 @@ class HoldingAnalysis(object):
 							ON CUSIPList.CUSIP = 13FHoldings.CUSIP \
 							WHERE 13FHoldings.accessionNunber IN \
 							(SELECT accessionNunber FROM 13FList WHERE cik = '{}' AND quarterDate = '{}' \
-							AND filingType = '13F-HR' AND filingDate < '{}')".format(fieldsSQLList, cik, quarterDate, filingDate))
+							AND filingType = '13F-HR' AND filingDate <= '{}')".format(fieldsSQLList, cik, quarterDate, filingDate))
 			for holding in cur.fetchall():
 				cusipCompare = [hold for hold in holdingList if (holding[1] in hold and holding[7] in hold)]
 				if not cusipCompare:
 					holdingList.append(holding)
 		db.close()
 
-		print holdingList
+		#print holdingList
 		return holdingList
 
 
@@ -134,19 +137,23 @@ class HoldingAnalysis(object):
 		for entry in entryList:
 			if entry[4]/float(marketCap) > minFundWeight:
 				portfolio.append([entry[0], entry[4]/float(marketCap)])
-		print portfolio
+		#print portfolio
 		return portfolio
 
 	#minPortfolioWeight is the minimum weight a position can have in the total portfolio
 	#minFundWeight is the minimum weight a position can be in the individual portoflios to be included
 	#*********combine calls and stocks?
 	@timerWrap
-	def generatePortfolio(self, members, quarterDate, minPortfolioWeight = 0, minFundWeight=0):
+	def generatePortfolio(self, members, quarterDate = None, filingDate = None, minPortfolioWeight = 0, minFundWeight=0):
 		#********handle if quarter date isn't available yet
 		#********handle if missing ticker information
+		if (quarterDate and filingDate) or (not filingDate and not quarterDate):
+			print "ERROR: must choose EITHER quarter or filingDate"
+			return
+
 		portfolio = {}
 		for cik, weight in members.iteritems():
-			fundPortfolio = self.calculateWeights(self.pullHoldings(cik, quarterDate), minFundWeight)
+			fundPortfolio = self.calculateWeights(self.pullHoldings(cik, quarterDate, filingDate), minFundWeight)
 			for holding in fundPortfolio:
 				portfolio[holding[0]] = "{0:.5f}".format(float(portfolio.get(holding[0], 0.0)) + holding[1]*weight)
 		#from here on just cleans up if minPortfolioWeight is used
@@ -163,10 +170,10 @@ class HoldingAnalysis(object):
 				portfolio.pop(ticker)
 			for ticker, weight in portfolio.iteritems():
 				updatedPortfolio[ticker] = "{0:.5f}".format(float(weight)/portfolioSize)
-			self.printPortfolio(updatedPortfolio)
+			#self.printPortfolio(updatedPortfolio)
 			return updatedPortfolio
 		else:
-			self.printPortfolio(portfolio)
+			#self.printPortfolio(portfolio)
 			return portfolio
 
 	#**********This is not done
@@ -191,13 +198,46 @@ class HoldingAnalysis(object):
 class PortfolioPerformance(HoldingAnalysis):
 	
 	def portfolioPerformance(self, members, startDate, endDate, minPortfolioWeight = 0, minFundWeight=0):
-		pass
+		#list of tuples. tuples are date, portfolioDict
+		portfolioList = self.generateListOfPortfolios(members, startDate, endDate, minPortfolioWeight, minFundWeight)
+		
+		
+
+
 
 	def generateListOfPortfolios(self, members, startDate, endDate, minPortfolioWeight, minFundWeight):
+		ciks = []
+		for cik, weight in members.iteritems():
+			ciks.append(cik)
 		portfolioList = []
-		#all changes of all members
+		#first portfolio
+		portfolioList.append((datetime.datetime.strptime(startDate, "%Y-%m-%d").date(), 
+			self.generatePortfolio(members, None, startDate, minPortfolioWeight, minFundWeight)))
+
+		changeDatesList = self.portfolioChangeDates(ciks,startDate,endDate)
+		for dateChange in changeDatesList:
+			portfolioList.append((dateChange, self.generatePortfolio(members, None, dateChange.strftime('%Y-%m-%d'))))
+		portfolioList.sort(key= lambda x: x[0])
+		return portfolioList
+
+#****may have to add 1 to change list date
+#returns list of dates of new releases
+	def portfolioChangeDates(self, ciks, startDate, endDate):
+		changeList = []
+		db = MySQLdb.connect(host = keys.sqlHost, user = keys.sqlUsername, passwd = keys.sqlPassword, db="Quarterly13Fs") 
+		with closing(db.cursor()) as cur:
+			for cik in ciks:
+				cur.execute("SELECT filingDate FROM 13FList WHERE cik = {} AND filingDate >= '{}'\
+					AND filingDate <= '{}'".format(cik, startDate, endDate))
+				for pChange in cur.fetchall():
+					changeList.append(pChange[0])
+					
+		db.close()
+		return changeList
 
 
+	def portfolioPerformance(self, startDate, endDate, portfolio):
+		
 
 
 
