@@ -3,21 +3,24 @@ import numpy as np
 from pandas import DataFrame
 from dbconnection import *
 from contextlib import closing
+from operator import itemgetter
 
 
 DB_CONNECTION_TYPE = 'local'
 
 class GetHoldingsData(object):
-    def __init__(self, cik, quarter_date, filing_date = '2200-01-01'):
+    #def __init__(self, cik, quarter_date = None, filing_date = '2200-01-01'):
+    def __init__(self, cik, quarter_date = None, filing_date = None):
         self.cik = cik
+        if not quarter_date and not filing_date:
+            raise TypeError('must include at least quarter_date or filing_date')
         self.quarter_date = quarter_date
         self.filing_date = filing_date
 
     def get_portfolio(self):
-        self.form_list= self.get_forms()
-        #to help deal with ammends
-        self.form_list.sort(key=lambda x: x[0])
-        #[filingdate, accession, type]
+        self.form_list = self.get_forms()
+        self.parse_form_list()
+        #[filingdate, accession, type, quarterdate]
         self.pull_holdings()
         self.get_portfolio_weights()
         self.clean_putcall_values()
@@ -27,16 +30,35 @@ class GetHoldingsData(object):
         self.holdings['putcall'] = self.holdings['putcall'].fillna(value='Long')
 
     def get_forms(self):
+        sql_query, sql_parameters = self.generate_sql_query()
         conn = start_db_connection(DB_CONNECTION_TYPE)
         with closing(conn.cursor()) as cur:
-            cur.execute('''SELECT filingdate, accessionnunber, filingtype FROM
-                        form13flist WHERE cik=%s and quarterdate=%s and
-                        filingdate <= %s''',
-                        (self.cik, self.quarter_date, self.filing_date))
-
+            cur.execute(sql_query, sql_parameters)
             form_list = cur.fetchall()
         conn.close()
         return form_list
+
+    def generate_sql_query(self):
+        sql_query = '''SELECT filingdate, accessionnunber, filingtype, quarterdate
+                       FROM form13flist WHERE cik=%s'''
+        parameters = [self.cik]
+        if self.quarter_date:
+            sql_query += ' and quarterdate = %s'
+            parameters.append(self.quarter_date)
+        if self.filing_date:
+            sql_query += ' and filingdate <= %s'
+            parameters.append(self.filing_date)
+        return sql_query, tuple(parameters)
+
+    def parse_form_list(self):
+        if not self.quarter_date:
+            no_ammendments = [x for x in self.form_list if x[2] == '13F-HR']
+            self.quarter_date = max(no_ammendments, key=itemgetter(3))[3]
+            self.form_list = [x for x in self.form_list if x[3] == self.quarter_date]
+        #Top sort is only important when 13F and 13F-A are on the same day
+        #which happened 1503174, 2015-5-15
+        self.form_list.sort(key=lambda x: x[2])
+        self.form_list.sort(key=lambda x: x[0])
 
     def pull_holdings(self):
         sql_fields = ("CUSIPList.Ticker, {0}.CUSIP, {0}.nameOfIssuer,"
@@ -76,5 +98,8 @@ class GetHoldingsData(object):
 
 if __name__ == '__main__':
     #gd = GetHoldingsData('1159159', '2014-12-31')
-    gd = GetHoldingsData('1582090', '2014-12-31')
+    #gd = GetHoldingsData('1582090', quarter_date='2014-12-31')
+    #gd = GetHoldingsData('1159159', filing_date='2015-05-14')
+    gd = GetHoldingsData('1336528', filing_date='2015-02-16')
+
     gd.get_portfolio()

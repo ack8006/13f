@@ -4,7 +4,7 @@ from GetHoldingsData import GetHoldingsData
 
 
 class Portfolio(object):
-    def __init__(self, members_list, quarter_date, filing_date='2200-01-01',
+    def __init__(self, members_list, quarter_date=None, filing_date=None,
                  min_port_weight=0, min_underlying_weight=0, top_ideas=None):
         self.members_list = members_list
         self.quarter_date = quarter_date
@@ -73,12 +73,14 @@ class Portfolio(object):
 
 
 if __name__ == '__main__':
-    portfolio = Portfolio([('1336528',1.0)], '2014-12-31')
+    #portfolio = Portfolio([('1336528',1.0)], '2014-12-31')
     #portfolio2 = Portfolio([('1336528',1.0)], '2014-09-30')
     #portfolio = Portfolio([('1582090',1.0)], '2014-12-31')
     #portfolio = Portfolio([('1159159',1.0)], '2014-12-31')
     #portfolio = Portfolio([('1159159',1.0)], '2014-12-31',
     #                      min_underlying_weight = 0.05)
+    portfolio = Portfolio([('1159159',0.5), ('1582090',0.5)],
+                          filing_date = '2014-12-31')
     #portfolio = Portfolio([('1336528',0.5), ('1582090',0.5)], '2014-12-31')
     #portfolio = Portfolio([('1336528',0.5), ('1582090',0.5)], '2014-12-31',
     #                       min_port_weight=.05)

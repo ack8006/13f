@@ -17,6 +17,7 @@ class Form13FUpdater(object):
     def update_entries(self):
         if not self.entries: return
         for entry in self.entries:
+            print entry
             #ENTRIES BEFORE THIS DATE ARE TEXT
             if entry['filing_date'] < date(2013,6,30):
                 continue
@@ -33,23 +34,27 @@ class Form13FUpdater(object):
             existing_entries = self.check_for_existing_form(cur, accession_nunber)
             if existing_entries:
                 cur = self.delete_existing_entries(cur, accession_nunber)
-            for it in info_tables:
-                cur.execute('''INSERT INTO form13fholdings (accessionnunber,
-                            nameofissuer, titleofclass, cusip, value, sshprnamt,
-                            sshprnamttype, putcall, investmentdiscretion, sole,
-                            shared, none) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,
-                            %s,%s)''', (accession_nunber, it['nameOfIssuer'],
-                            it['titleOfClass'], it['cusip'], it['value'],
-                            it['sshPrnamt'], it['sshPrnamtType'], it['putCall'],
-                            it['investmentDiscretion'], it['Sole'], it['Shared'],
-                            it['None']))
-                cur = self.check_for_existing_cusip(cur, it['cusip'], accession_nunber)
-            cur.execute('''INSERT INTO form13flist (cik, filingdate, accessionnunber,
-                        quarterdate, updated, filingtype) VALUES (%s,%s,%s,%s,%s,%s)
-                        ''', (self.cik, entry['filing_date'], accession_nunber,
-                              quarter_date, entry['updated_time'],
-                              entry['filing_type']))
-            conn.commit()
+            try:
+                for it in info_tables:
+                    cur.execute('''INSERT INTO form13fholdings (accessionnunber,
+                                nameofissuer, titleofclass, cusip, value, sshprnamt,
+                                sshprnamttype, putcall, investmentdiscretion, sole,
+                                shared, none) VALUES (%s,%s,%s,%s,%s,%s,%s,%s,%s,%s,
+                                %s,%s)''', (accession_nunber, it['nameOfIssuer'],
+                                it['titleOfClass'], it['cusip'], it['value'],
+                                it['sshPrnamt'], it['sshPrnamtType'], it['putCall'],
+                                it['investmentDiscretion'], it['Sole'], it['Shared'],
+                                it['None']))
+                    cur = self.check_for_existing_cusip(cur, it['cusip'], accession_nunber)
+                cur.execute('''INSERT INTO form13flist (cik, filingdate, accessionnunber,
+                            quarterdate, updated, filingtype) VALUES (%s,%s,%s,%s,%s,%s)
+                            ''', (self.cik, entry['filing_date'], accession_nunber,
+                                quarter_date, entry['updated_time'],
+                                entry['filing_type']))
+                conn.commit()
+            except IntegrityError as e:
+                #***For Unique Value Vio, will also catch Null Vio, which is prob
+                print e
         conn.close()
 
     @classmethod

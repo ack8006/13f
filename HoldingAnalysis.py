@@ -7,7 +7,7 @@ import time
 
 
 class HoldingAnalysis(object):
-	
+
 	def timerWrap(func):
 		def timed(*args, **kw):
 			ts = time.time()
@@ -15,10 +15,10 @@ class HoldingAnalysis(object):
 			te = time.time()
 			print '%r (%r, %r) %2.2f sec' %(func.__name__, args, kw, te-ts)
 			return result
-		return timed	
+		return timed
 
-	#ticker, name, shares held, marketValueThen, %portfolio, %previous portfolio, 
-	#changes in shares, %change in portfolio size 
+	#ticker, name, shares held, marketValueThen, %portfolio, %previous portfolio,
+	#changes in shares, %change in portfolio size
 
 	#pulls holding information and tickers
 	#**********do something if incorrect date
@@ -26,15 +26,15 @@ class HoldingAnalysis(object):
 	#@timerWrap
 	def pullHoldings(self, cik, quarterDate = None, filingDate = None):
 
-		fieldsSQLList = '''CUSIPList.Ticker, 13FHoldings.CUSIP, 13FHoldings.nameOfIssuer, 13FHoldings.titleOfClass, 
-								13FHoldings.value, 13FHoldings.sshPrnamt, 13FHoldings.sshPrnamtType, 13FHoldings.putCall, 
+		fieldsSQLList = '''CUSIPList.Ticker, 13FHoldings.CUSIP, 13FHoldings.nameOfIssuer, 13FHoldings.titleOfClass,
+								13FHoldings.value, 13FHoldings.sshPrnamt, 13FHoldings.sshPrnamtType, 13FHoldings.putCall,
 								13FHoldings.investmentDiscretion, 13FHoldings.Sole, 13FHoldings.Shared, 13FHoldings.None'''
 		def consolidateAmmended():
 			for filing in ammended:
 				cur.execute("SELECT {} FROM CUSIPList INNER JOIN 13FHoldings \
 								ON CUSIPList.CUSIP = 13FHoldings.CUSIP \
 								WHERE 13FHoldings.accessionNunber = {}".format(fieldsSQLList, filing[1]))
-				#print [x for x in cur.fetchall()]	
+				#print [x for x in cur.fetchall()]
 				for holding in cur.fetchall():
 					#holding ('QCOM', '747525103', 'QUALCOMM INC', 'COM', 327104L, 4400705L, 'SH', 'n/a', 'SOLE', 4400705L, 0L, 0L)
 					cusipCompare = [hold for hold in holdingList if (holding[1] in hold and holding[7] in hold)]
@@ -47,7 +47,7 @@ class HoldingAnalysis(object):
 		elif filingDate:
 			quarterDate = self.calculateQuarterDate(filingDate)
 			print 'filingDate ' + filingDate
-			print 'calculated quarterdate as ' + quarterDate 
+			print 'calculated quarterdate as ' + quarterDate
 		#****really scrubby, setting super high filing date so that it won't affect method
 		else:
 			filingDate = "3"+quarterDate[1:]
@@ -55,23 +55,23 @@ class HoldingAnalysis(object):
 
 
 		holdingList = []
-		db = MySQLdb.connect(host = keys.sqlHost, user = keys.sqlUsername, passwd = keys.sqlPassword, db="Quarterly13Fs") 
+		db = MySQLdb.connect(host = keys.sqlHost, user = keys.sqlUsername, passwd = keys.sqlPassword, db="Quarterly13Fs")
 		with closing(db.cursor()) as cur:
 			#*******Should i instead have a linking table?
 			#http://stackoverflow.com/questions/5446778/sql-select-from-one-table-matching-criteria-in-another
 			#cur.execute("SELECT * FROM 13FHoldings WHERE accessionNunber \
 			#	IN (SELECT accessionNunber FROM 13FList WHERE cik = '%s' \
 			#		AND quarterDate = '%s')" %(cik, quarterDate))
-			
+
 			entryList = None
 			failCount = 0
 			while not entryList and failCount <3:
 				query = "SELECT filingDate, accessionNunber, filingType FROM 13FList WHERE cik = '{}' AND quarterDate = '{}'\
 								AND filingDate <= '{}' ".format(cik, quarterDate, filingDate)
 				cur.execute(query)
-				entryList = [x for x in cur.fetchall()]	
+				entryList = [x for x in cur.fetchall()]
 				if entryList: break
-				else: 
+				else:
 					failCount +=1
 					quarterDate = self.calculateQuarterDate(quarterDate[0:8] + "25")
 					print 'Updated QuarterDate to ' + str(quarterDate)
@@ -80,12 +80,13 @@ class HoldingAnalysis(object):
 			ammended = sorted([(amd[0],amd[1]) for amd in entryList if "13F-HR/A" in amd], key = lambda x: x[1], reverse=True)
 			if ammended:
 				consolidateAmmended()
-			
+
 			cur.execute("SELECT {} FROM CUSIPList INNER JOIN 13FHoldings \
 							ON CUSIPList.CUSIP = 13FHoldings.CUSIP \
 							WHERE 13FHoldings.accessionNunber IN \
 							(SELECT accessionNunber FROM 13FList WHERE cik = '{}' AND quarterDate = '{}' \
-							AND filingType = '13F-HR' AND filingDate <= '{}')".format(fieldsSQLList, cik, quarterDate, filingDate))
+							AND filingType = '13F-HR' AND filingDate <= '{}')".format(
+                                fieldsSQLList, cik, quarterDate, filingDate))
 			for holding in cur.fetchall():
 				cusipCompare = [hold for hold in holdingList if (holding[1] in hold and holding[7] in hold)]
 				if not cusipCompare:
@@ -117,7 +118,7 @@ class HoldingAnalysis(object):
 		elif qm <12 or (qm == 12 and qd <31):
 			quarterMonth = 9
 			quarterYear = qy
-		else: 
+		else:
 			quarterMonth = 12
 			quarterYear = qy
 
@@ -196,7 +197,7 @@ class HoldingAnalysis(object):
 
 #****need to go by filingDate
 class PortfolioPerformance(HoldingAnalysis):
-	
+
 	def portfolioPerformance(self, members, startDate, endDate, minPortfolioWeight = 0, minFundWeight=0):
 		#list of tuples. tuples are date, portfolioDict
 		portfolioList = self.generateListOfPortfolios(members, startDate, endDate, minPortfolioWeight, minFundWeight)
@@ -212,7 +213,7 @@ class PortfolioPerformance(HoldingAnalysis):
 			ciks.append(cik)
 		portfolioList = []
 		#first portfolio
-		portfolioList.append((datetime.datetime.strptime(startDate, "%Y-%m-%d").date(), 
+		portfolioList.append((datetime.datetime.strptime(startDate, "%Y-%m-%d").date(),
 			self.generatePortfolio(members, None, startDate, minPortfolioWeight, minFundWeight)))
 
 		changeDatesList = self.portfolioChangeDates(ciks,startDate,endDate)
@@ -225,14 +226,14 @@ class PortfolioPerformance(HoldingAnalysis):
 #returns list of dates of new releases
 	def portfolioChangeDates(self, ciks, startDate, endDate):
 		changeList = []
-		db = MySQLdb.connect(host = keys.sqlHost, user = keys.sqlUsername, passwd = keys.sqlPassword, db="Quarterly13Fs") 
+		db = MySQLdb.connect(host = keys.sqlHost, user = keys.sqlUsername, passwd = keys.sqlPassword, db="Quarterly13Fs")
 		with closing(db.cursor()) as cur:
 			for cik in ciks:
 				cur.execute("SELECT filingDate FROM 13FList WHERE cik = {} AND filingDate >= '{}'\
 					AND filingDate <= '{}'".format(cik, startDate, endDate))
 				for pChange in cur.fetchall():
 					changeList.append(pChange[0])
-					
+
 		db.close()
 		return changeList
 
@@ -270,12 +271,6 @@ class PortfolioPerformance(HoldingAnalysis):
 		print priceDataDict
 
 	#def portfolioPerformance(self, startDate, endDate, portfolio):
-		
-
-
-
-
-
 
 
 

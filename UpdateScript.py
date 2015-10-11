@@ -12,7 +12,7 @@ from time import sleep
 #*******There is some request per second rate from the SEC that will
     #shut me down. so now i'm pausing between every request
 
-
+#***SHOULD ONLY SELECT CIKS where last update in range of possibilities
 def getCIKList():
     conn = start_db_connection('local')
     with closing(conn.cursor()) as cur:
@@ -21,14 +21,14 @@ def getCIKList():
     conn.close()
     return cikList
 
-def createProcessesList(cikList):
-    processes = []
-    for cik in cikList:
-        lastDate = upCheck.mostRecentForm13F(cik)
-        print cik + ": " + str(lastDate)
-        if not lastDate or (lastDate and
-                    abs(date.today()-lastDate).days > days_for_update_check):
-            processes.append(mp.Process(target=checkAndUpdate, args=(cik, lastDate)))
+#def createProcessesList(cikList):
+#    processes = []
+#    for cik in cikList:
+#        lastDate = upCheck.mostRecentForm13F(cik)
+#        print cik + ": " + str(lastDate)
+#        if not lastDate or (lastDate and
+#                    abs(date.today()-lastDate).days > days_for_update_check):
+#            processes.append(mp.Process(target=checkAndUpdate, args=(cik, lastDate)))
 
 def checkAndUpdate(cik):
     uc = UpdateChecker(cik)
