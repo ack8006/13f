@@ -68,14 +68,13 @@ class InvestorAnalysis(object):
         perf = PortfolioReturn(self.portfolios[portfolio_changes[0]],
                                 portfolio_changes[0],
                                 portfolio_changes[1]).get_portfolio_performance()
-        print perf
+
+        print portfolio_changes[0]+ " " + str(perf)
         if len(portfolio_changes) == 2:
             return perf
         else:
             perf2 = self.calculate_cumulative_performance(portfolio_changes[1:])
             return (1+perf)*(1+perf2)-1
-
-
 
 
 if __name__ == '__main__':
@@ -84,9 +83,10 @@ if __name__ == '__main__':
     #print pa.calculate_monthly_performance('2015-06-30', 7, 2015)
 
     #ia = InvestorAnalysis([('1336528',1.0)])
-    ia = InvestorAnalysis([('1503174',1.0)])
+    #ia = InvestorAnalysis([('1503174',1.0)])
+    ia = InvestorAnalysis([('1159159',1.0)])
     #ia = InvestorAnalysis([('1336528',0.5), ('1582090',0.5)])
-    #perf = ia.get_investment_performance('2014-01-01','2015-06-30')
-    perf = ia.get_investment_performance('2015-07-15','2015-10-10')
+    perf = ia.get_investment_performance('2013-11-20','2015-06-30')
+    #perf = ia.get_investment_performance('2015-07-15','2015-10-10')
     print perf
 

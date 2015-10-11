@@ -39,7 +39,8 @@ def checkAndUpdate(cik):
 
 if __name__ == '__main__':
     #DAYS_TO_CHECK_FOR_UPDATES = 82
-    days_for_update_check =85
+    days_for_update_check = 60
+    #days_for_update_check =85
     cikList = getCIKList()
     processes = []
     for cik in cikList:

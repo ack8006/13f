@@ -2,6 +2,8 @@ from Portfolio import Portfolio
 import numpy as np
 import pandas as pd
 import pandas.io.data as web
+import quandlpy as qp
+from keys import quandl_api_key
 from pandas import DataFrame
 from datetime import datetime
 from dbconnection import start_db_connection
@@ -19,6 +21,7 @@ class PortfolioReturn(object):
     def get_portfolio_performance(self):
         self.get_price_data()
         self.calculate_pct_chg()
+        self.export_to_excel()
         return self.calculate_return()
 
     #***Could have DB that stores prices on specific days
@@ -41,22 +44,33 @@ class PortfolioReturn(object):
     #                self.start_date, self.end_date))
     #    return cur.fetchall()
 
+    #***Need to Alert if No Price Data Found
     def request_price_data(self,ticker):
         try:
-            priceData = web.DataReader(ticker, 'yahoo', self.start_date,
+            price_data = web.DataReader(ticker, 'yahoo', self.start_date,
                                        self.end_date)['Close']
             #***Handle Empty data better
-            if priceData.empty: return None
-            return priceData
+            if price_data.empty: return None
+            return price_data
         except IOError:
             print 'YAHOO Data Access for {} Failed'.format(ticker)
         try:
-            priceData = web.DataReader(ticker, 'google', self.start_date,
+            price_data = web.DataReader(ticker, 'google', self.start_date,
                                     self.end_date)['Close']
-            if priceData.empty: return None
-            return priceData
+            if price_data.empty: return None
+            return price_data
         except IOError:
             print 'Google Data Access for {} Failed'.format(ticker)
+        try:
+            price_data = qp.get('WIKI', ticker, api_key=quandl_api_key,
+                               start_date=self.start_date,
+                               end_date=self.end_date)#['Adj. Close']
+            price_data.set_index('Date', inplace=True)
+            price_data = price_data.loc[:,'Adj. Close']
+            if price_data.empty: return None
+            return price_data
+        except KeyError:
+            print 'WIKI Data Access for {} Failed'.format(ticker)
         return
     #def request_price_data(self, datetype, date):
     #    date = datetime.strptime(date, '%Y-%m-%d')
@@ -77,8 +91,13 @@ class PortfolioReturn(object):
         total_return = 0
         for df in [longs, calls, puts]:
             total_return+= (df.ix[:,'pctchg']*df.ix[:, 'weight']).sum()
+        #self.export_to_excel()
         return total_return
 
+    def export_to_excel(self):
+        writer = pd.ExcelWriter(str(self.start_date)+'.xlsx', engine = 'xlsxwriter')
+        self.portfolio.to_excel(writer)
+        writer.save()
 
 if __name__ == '__main__':
     portfolio = Portfolio([('1336528', 1.0)], '2014-12-31')
