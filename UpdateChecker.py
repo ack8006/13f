@@ -14,11 +14,12 @@ from datetime import datetime, date
 #***Should differentiate between 13F and 13F Ammendments
 
 
-DB_CONNECTION_TYPE = 'local'
+#DB_CONNECTION_TYPE = 'local'
+DB_CONNECTION_TYPE = 'AWS'
 
 #This class will return forms submitted since the last check
 class UpdateChecker(object):
-    def __init__(self, cik, days_to_check=85):
+    def __init__(self, cik, days_to_check=60):
         self.cik = cik
         self.days_to_check = days_to_check
 

@@ -5,9 +5,11 @@ from bs4 import BeautifulSoup
 from datetime import datetime, date
 import re
 import logging
+from psycopg2 import IntegrityError
 
 
-DB_CONNECTION_TYPE = 'local'
+#DB_CONNECTION_TYPE = 'local'
+DB_CONNECTION_TYPE = 'AWS'
 
 class Form13FUpdater(object):
     def __init__(self, cik, entries):
@@ -17,7 +19,7 @@ class Form13FUpdater(object):
     def update_entries(self):
         if not self.entries: return
         for entry in self.entries:
-            print entry
+            #print entry
             #ENTRIES BEFORE THIS DATE ARE TEXT
             if entry['filing_date'] < date(2013,6,30):
                 continue
@@ -28,7 +30,7 @@ class Form13FUpdater(object):
 
     def upload_13f_holdings(self, info_tables, entry, quarter_date):
         accession_nunber = entry['accession_nunber'].replace('-','')
-        print accession_nunber, quarter_date
+        print self.cik, accession_nunber, quarter_date
         conn = start_db_connection(DB_CONNECTION_TYPE)
         with closing (conn.cursor()) as cur:
             existing_entries = self.check_for_existing_form(cur, accession_nunber)
@@ -53,6 +55,7 @@ class Form13FUpdater(object):
                                 entry['filing_type']))
                 conn.commit()
             except IntegrityError as e:
+                print 'FAILED: ' + self.cik + accession_nunber
                 #***For Unique Value Vio, will also catch Null Vio, which is prob
                 print e
         conn.close()

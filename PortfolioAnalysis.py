@@ -86,7 +86,7 @@ if __name__ == '__main__':
     #ia = InvestorAnalysis([('1503174',1.0)])
     ia = InvestorAnalysis([('1159159',1.0)])
     #ia = InvestorAnalysis([('1336528',0.5), ('1582090',0.5)])
-    perf = ia.get_investment_performance('2013-11-20','2015-06-30')
-    #perf = ia.get_investment_performance('2015-07-15','2015-10-10')
+    #perf = ia.get_investment_performance('2013-11-20','2015-06-30')
+    perf = ia.get_investment_performance('2015-07-15','2015-10-10')
     print perf
 

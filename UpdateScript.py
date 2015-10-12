@@ -14,9 +14,11 @@ from time import sleep
 
 #***SHOULD ONLY SELECT CIKS where last update in range of possibilities
 def getCIKList():
-    conn = start_db_connection('local')
+    #conn = start_db_connection('local')
+    conn = start_db_connection('AWS')
     with closing(conn.cursor()) as cur:
-        cur.execute("SELECT CIK FROM CIKList")
+        cur.execute('''SELECT CIK FROM CIKList
+                    WHERE importance<=3''')
         cikList = [x[0] for x in cur.fetchall()]
     conn.close()
     return cikList
@@ -38,31 +40,8 @@ def checkAndUpdate(cik):
 
 
 if __name__ == '__main__':
-    #DAYS_TO_CHECK_FOR_UPDATES = 82
     days_for_update_check = 60
     #days_for_update_check =85
     cikList = getCIKList()
-    processes = []
-    for cik in cikList:
-        processes.append(mp.Process(target=checkAndUpdate, args=(cik,)))
-    for p in processes:
-        p.start()
-        #sleep(0.75)
-
-
-
-#processes = []
-#for cik in cikList:
-#	lastDate = upCheck.mostRecentForm13F(cik)
-#	print cik + ": " + str(lastDate)
-#	if not lastDate or (lastDate and abs(date.today()-lastDate).days > DAYS_TO_CHECK_FOR_UPDATES):
-#		processes.append(mp.Process(target=checkAndUpdate, args=(cik, lastDate)))
-#
-#for p in processes:
-#	p.start()
-#	#slows shit down so that not massively overloading SEC.  There is some SEC requests per second
-#	#this seems to be fixing things, but it is not like i'm only hitting evry 500ms instead, this adds a new process
-#	#which starts a whole new list of numbers.  only really important on first loads, after that, assuming this is
-#	#run regularly, should only be a few each time.
-#	sleep(0.75)
-#
+    pool = mp.Pool(6)
+    pool.map(checkAndUpdate, cikList)
