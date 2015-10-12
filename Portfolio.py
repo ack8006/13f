@@ -5,21 +5,24 @@ from GetHoldingsData import GetHoldingsData
 
 class Portfolio(object):
     def __init__(self, members_list, quarter_date=None, filing_date=None,
-                 min_port_weight=0, min_underlying_weight=0, top_ideas=None):
+                 min_port_weight=0, min_underlying_weight=0, max_port_size=None):
         self.members_list = members_list
         self.quarter_date = quarter_date
         self.filing_date = filing_date
         self.min_port_weight = min_port_weight
         self.min_underlying_weight = min_underlying_weight
+        self.max_port_size = max_port_size
         self.portfolio = self.generate_portfolio()
 
     def generate_portfolio(self):
         portfolios = self.get_portfolios()
         portfolio = self.combine_portfolios(portfolios)
         portfolio = self.filter_min_weight(portfolio, self.min_port_weight)
+        portfolio.sort(columns='weight', inplace=True, ascending=False)
+        portfolio = self.apply_max_port_size(portfolio)
         portfolio = self.update_portfolio_weights(portfolio)
         portfolio = self.drop_columns(portfolio)
-        portfolio.sort(columns='weight', inplace=True, ascending=False)
+        #print self.filing_date, portfolio
         return portfolio
 
     def get_portfolios(self):
@@ -57,7 +60,17 @@ class Portfolio(object):
         return portfolio.drop(['sshprnamt','value','sole','shared','none'],
                               axis=1)
 
+    def apply_max_port_size(self, portfolio):
+        print 'MAX SIZE'
+        print portfolio
+        if self.max_port_size:
+            portfolio = portfolio.head(self.max_port_size)
+        return portfolio
+
+
+
     def update_portfolio_weights(self, portfolio):
+        print portfolio
         reduced_weight= portfolio['weight'].sum(axis=0)
         weight_func = lambda x: x/float(reduced_weight)
         portfolio['weight'] = portfolio['weight'].map(weight_func)
@@ -80,7 +93,8 @@ if __name__ == '__main__':
     #portfolio = Portfolio([('1159159',1.0)], '2014-12-31',
     #                      min_underlying_weight = 0.05)
     portfolio = Portfolio([('1159159',0.5), ('1582090',0.5)],
-                          filing_date = '2014-12-31')
+                          filing_date = '2014-12-31',
+                          max_port_size = 10)
     #portfolio = Portfolio([('1336528',0.5), ('1582090',0.5)], '2014-12-31')
     #portfolio = Portfolio([('1336528',0.5), ('1582090',0.5)], '2014-12-31',
     #                       min_port_weight=.05)

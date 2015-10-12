@@ -21,7 +21,7 @@ class PortfolioReturn(object):
     def get_portfolio_performance(self):
         self.get_price_data()
         self.calculate_pct_chg()
-        self.export_to_excel()
+        #self.export_to_excel()
         return self.calculate_return()
 
     #***Could have DB that stores prices on specific days
@@ -32,46 +32,47 @@ class PortfolioReturn(object):
         with closing(conn.cursor()) as cur:
             for ticker in tickers:
                 #price_data = self.get_db_price_data(cur, ticker)
-                price_data = self.request_price_data(ticker)
+                price_data = self.request_price_data(cur, ticker)
                 if price_data is not None and price_data.any():
                     self.portfolio.loc[self.portfolio.ticker==ticker, 'startdate'] = price_data[0]
                     self.portfolio.loc[self.portfolio.ticker==ticker, 'enddate'] = price_data[-1]
         conn.close()
 
     #def get_db_price_data(self, cur, ticker):
-    #    cur.execute('''SELECT * date, price FROM equitypricedata WHERE
+    #    cur.execute('''SELECT date, price FROM equitypricedata WHERE
     #                ticker = %s AND (date = %s OR date = %s)''', (ticker,
     #                self.start_date, self.end_date))
     #    return cur.fetchall()
 
     #***Need to Alert if No Price Data Found
-    def request_price_data(self,ticker):
+    def request_price_data(self, cur, ticker):
+        #price_data = self.get_db_price_data(cur, ticker)
+        #if len(price_data) == 2:
+        #    print price_data
+        #    return
         try:
             price_data = web.DataReader(ticker, 'yahoo', self.start_date,
-                                       self.end_date)['Close']
-            #***Handle Empty data better
-            if price_data.empty: return None
-            return price_data
+                                       self.end_date)['Adj Close']
         except IOError:
             print 'YAHOO Data Access for {} Failed'.format(ticker)
-        try:
-            price_data = web.DataReader(ticker, 'google', self.start_date,
-                                    self.end_date)['Close']
-            if price_data.empty: return None
-            return price_data
-        except IOError:
-            print 'Google Data Access for {} Failed'.format(ticker)
-        try:
-            price_data = qp.get('WIKI', ticker, api_key=quandl_api_key,
-                               start_date=self.start_date,
-                               end_date=self.end_date)#['Adj. Close']
-            price_data.set_index('Date', inplace=True)
-            price_data = price_data.loc[:,'Adj. Close']
-            if price_data.empty: return None
-            return price_data
-        except KeyError:
-            print 'WIKI Data Access for {} Failed'.format(ticker)
-        return
+            try:
+                price_data = web.DataReader(ticker, 'google', self.start_date,
+                                        self.end_date)['Close']
+            except IOError:
+                print 'Google Data Access for {} Failed'.format(ticker)
+                try:
+                    price_data = qp.get('WIKI', ticker, api_key=quandl_api_key,
+                                    start_date=self.start_date,
+                                    end_date=self.end_date)#['Adj. Close']
+                    price_data.set_index('Date', inplace=True)
+                    price_data = price_data.loc[:,'Adj. Close']
+                    if price_data.empty: return None
+                except KeyError:
+                    print 'WIKI Data Access for {} Failed'.format(ticker)
+                    return
+        return price_data
+
+
     #def request_price_data(self, datetype, date):
     #    date = datetime.strptime(date, '%Y-%m-%d')
     #    price_func = lambda x: web.DataReader(x, 'yahoo', date).iloc[0]['Close']

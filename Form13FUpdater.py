@@ -12,7 +12,7 @@ from psycopg2 import IntegrityError
 DB_CONNECTION_TYPE = 'AWS'
 
 class Form13FUpdater(object):
-    def __init__(self, cik, entries):
+    def __init__(self, cik, entries, email=False):
         self.cik = cik
         self.entries = entries
 
