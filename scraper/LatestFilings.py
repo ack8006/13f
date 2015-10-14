@@ -1,14 +1,17 @@
+import sys
+sys.path.append('../')
 from dbconnection import start_db_connection
 from contextlib import closing
 import requests
 from bs4 import BeautifulSoup
 import re
 
-#DB_CONNECTION_TYPE = 'local'
-DB_CONNECTION_TYPE = 'AWS'
+DB_CONNECTION_TYPE = 'local'
+#DB_CONNECTION_TYPE = 'AWS'
 
 #http://www.sec.gov/cgi-bin/browse-edgar?action=getcurrent&type=13F&start=1&count=100&output=atom
 
+#***NEEDS TO BE AFTER QUARTER END NOT AFTER LAST DATE
 class LatestFilingsChecker(object):
     def __init__(self, filing_type):
         self.filing_type = filing_type

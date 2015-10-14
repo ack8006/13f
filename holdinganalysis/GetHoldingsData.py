@@ -1,6 +1,8 @@
 import pandas as pd
 import numpy as np
 from pandas import DataFrame
+import sys
+sys.path.append('../')
 from dbconnection import *
 from contextlib import closing
 from operator import itemgetter
@@ -102,4 +104,5 @@ if __name__ == '__main__':
     #gd = GetHoldingsData('1159159', filing_date='2015-05-14')
     gd = GetHoldingsData('1336528', filing_date='2015-02-16')
 
-    gd.get_portfolio()
+    print gd.get_portfolio()
+

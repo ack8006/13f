@@ -1,3 +1,5 @@
+import sys
+sys.path.append('../')
 from contextlib import closing
 from dbconnection import start_db_connection
 import requests
@@ -8,8 +10,8 @@ import logging
 from psycopg2 import IntegrityError
 
 
-#DB_CONNECTION_TYPE = 'local'
-DB_CONNECTION_TYPE = 'AWS'
+DB_CONNECTION_TYPE = 'local'
+#DB_CONNECTION_TYPE = 'AWS'
 
 class Form13FUpdater(object):
     def __init__(self, cik, entries, email=False):

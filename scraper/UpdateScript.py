@@ -1,6 +1,8 @@
 #from xmlScraper import UpdateChecker, Form13FUpdater
 from Form13FUpdater import Form13FUpdater
 from UpdateChecker import UpdateChecker
+import sys
+sys.path.append('../')
 from dbconnection import start_db_connection
 from contextlib import closing
 from datetime import date
@@ -14,8 +16,8 @@ from time import sleep
 
 #***SHOULD ONLY SELECT CIKS where last update in range of possibilities
 def getCIKList():
-    #conn = start_db_connection('local')
-    conn = start_db_connection('AWS')
+    conn = start_db_connection('local')
+    #conn = start_db_connection('AWS')
     with closing(conn.cursor()) as cur:
         cur.execute('''SELECT CIK FROM CIKList
                     WHERE importance<=3''')
