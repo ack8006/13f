@@ -1,0 +1,42 @@
+Text 13F Formats
+
+VALUE - most specifc
+SECTION - broader
+
+1)  - No <S> tag, only two randomly located tags at top level
+    - Well definied value dashes at bottom level
+    https://www.sec.gov/Archives/edgar/data/1346554/000117266111000071/ten4q10.txt
+
+2)  - 12 well defined tags at lowest level 
+    - Well defined section dashes at top level
+    https://www.sec.gov/Archives/edgar/data/1346554/000114420406032732/v049908_13f-hr.txt
+
+3)  - 12 well defined tags at lowest level 
+    - Well defined value dashes mid level
+    - Well defined section dashes at top level
+    https://www.sec.gov/Archives/edgar/data/1159159/000090266412000315/p12-0206form13fhr.txt
+
+4)  - 8 well defined section tags at lowest level
+    - Two full lines of undefined dashes
+    https://www.sec.gov/Archives/edgar/data/1159159/000090266403001037/srz-jana_aug.txt
+
+5)  - 12 well defined section tags at lowest level
+    - Well defined section dashes at top level
+    https://www.sec.gov/Archives/edgar/data/1346554/000114420408028547/v114008_13fhr.txt
+
+6)  - 12 well definied section tags at lowest level
+    - No Dashes present
+
+
+
+
+
+
+Data
+- Each line is an entry
+- data over multiple lines with additional information above
+    https://www.sec.gov/Archives/edgar/data/1346554/000114420408046735/v123116_13f-hr.txt
+- Dashes between each line
+- Empty line between each line
+
+
