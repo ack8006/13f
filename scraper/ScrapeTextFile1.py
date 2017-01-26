@@ -6,7 +6,7 @@ def scrape_text_13f(data):
     data = table_data.split('\n')
     cat_tag_loc, val_tag_loc, title_loc, val_dash_loc, cat_dash_loc = parse_data_for_locations(data)
     max_loc = max(cat_tag_loc, val_tag_loc, title_loc, val_dash_loc, cat_dash_loc)
-    print cat_tag_loc
+    print val_dash_loc
 
     #EXAMPLES 1, 2
     if val_dash_loc:
@@ -40,9 +40,10 @@ def parse_data_for_locations(data):
             elif len(line.split()) == 8:
                 cat_tag_loc = ind
         elif line.startswith('--'):
-            if len(line.split(' ')) == 8:
+            print line
+            if len(line.split()) == 8:
                 cat_dash_loc = ind
-            elif len(line.split(' ')) == 12:
+            elif len(line.split()) == 12:
                 val_dash_loc = ind
         elif line.startswith('name of issuer'):
             title_loc = ind
@@ -59,8 +60,19 @@ def get_tag_format_line(line):
     return list(np.cumsum([format_inds]))
 
 def get_dash_format_line(line):
-    format_inds = [0]+[len(x)+1 for x in line.split()]
-    return list(np.cumsum([format_inds[:-1]]))
+    format_inds = [0]
+    while True:
+        ind = line.find(' -')
+        if ind < 0:
+            break
+        format_inds.append(ind+1)
+        line = line[ind+1:]
+    print format_inds
+    return list(np.cumsum([format_inds]))
+
+#def get_dash_format_line(line):
+#    format_inds = [0]+[len(x)+1 for x in line.split()]
+#    return list(np.cumsum([format_inds[:-1]]))
 
 def get_table(data):
     text_data = ' '.join(data)
@@ -94,7 +106,8 @@ def flatten(x):
         return [x]
 
 def parse_12(format_line, lines):
-    return [[lines[x][i:j].strip() for i,j in zip(format_line, format_line[1:]+[None])] for x in xrange(len(lines))]
+    return [[lines[x].strip()[i:j].strip() for i,j in zip(format_line, format_line[1:]+[None])] for x in xrange(len(lines))]
+    #return [[lines[x][i:j].strip() for i,j in zip(format_line, format_line[1:]+[None])] for x in xrange(len(lines))]
 
 def clean_lines(parsed_lines):
     print 'DROPPED LINES: '
@@ -151,7 +164,7 @@ if __name__ == '__main__':
     file_base = 'ExampleFiles/'
     #for text_file in ['example2.txt', 'example3.txt', 'example5.txt']:
     #for text_file in ['example5.txt']:
-    for text_file in ['example4.txt']:
+    for text_file in ['example9.txt']:
         print text_file 
         with open(file_base + text_file) as f:
             data = f.readlines()
