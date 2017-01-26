@@ -1,0 +1,253 @@
+<DOCUMENT>
+<TYPE>13F-HR
+<SEQUENCE>1
+<FILENAME>p09-1673form13fhr.txt
+<DESCRIPTION>JANA PARTNERS LLC
+<TEXT>
+                                 UNITED STATES
+                       SECURITIES AND EXCHANGE COMMISSION
+                             Washington, D.C. 20549
+
+                                    Form 13F
+
+                               Form 13F COVER PAGE
+
+Report for the Calendar Year or Quarter Ended:  June 30, 2009
+                                                ------------------------
+
+Check here if Amendment [   ]; Amendment Number:
+                                                  -----
+   This Amendment (Check only one.):  [   ] is a restatement.
+                                      [   ] adds new holdings entries.
+
+Institutional Investment Manager Filing this Report:
+
+Name:      JANA PARTNERS LLC
+           --------------------------------------------------
+Address:   767 Fifth Avenue, 8th Floor
+           --------------------------------------------------
+           New York, New York 10153
+           --------------------------------------------------
+
+           --------------------------------------------------
+
+Form 13F File Number:     028-10328
+                          ------------------
+
+The institutional investment manager filing this report and the person by whom
+it is signed hereby represent that the person signing the report is authorized
+to submit it, that all information contained herein is true, correct and
+complete, and that it is understood that all required items, statements,
+schedules, lists, and tables, are considered integral parts of this form.
+
+Person Signing this Report on Behalf of Reporting Manager:
+
+Name:      Charles Penner
+           --------------------------------------------------
+Title:     General Counsel
+           --------------------------------------------------
+Phone:     212 455-0900
+           --------------------------------------------------
+
+Signature, Place, and Date of Signing:
+
+/s/ Charles Penner             New York, New York         August 14, 2009
+------------------------   ---------------------------    ---------------
+
+
+<PAGE>
+
+
+Report Type (Check only one.):
+
+[ X ]   13F HOLDINGS REPORT. (Check here if all holdings of this reporting
+        manager are reported in this report.)
+
+[   ]   13F NOTICE. (Check here if no holdings reported are in this report,
+        and all holdings are reported by other reporting manager(s).)
+
+[   ]   13F COMBINATION REPORT. (Check here if a portion of the holdings for
+        this reporting manager are reported in this report and a portion are
+        reported by other reporting manager(s).)
+
+
+
+<PAGE>
+
+
+Report Summary:
+
+
+Number of Other Included Managers:             0
+                                               -------------
+
+Form 13F Information Table Entry Total:        63
+                                               -------------
+
+Form 13F Information Table Value Total:        $1,213,099
+                                               -------------
+                                                (thousands)
+
+
+List of Other Included Managers:
+
+Provide a numbered list of the name(s) and Form 13F file number(s) of all
+institutional investment managers with respect to which this report is filed,
+other than the manager filing this report.     NONE
+
+
+<PAGE>
+
+
+<TABLE>
+<CAPTION>
+                                                    FORM 13F INFORMATION TABLE
+<S>                          <c>             <c>          <c>      <c>                    <c>         <c>        <c>
+
+         COLUMN 1             COLUMN 2        COLUMN 3     COLUMN 4         COLUMN 5      COLUMN 6     COLUMN 7        COLUMN 8
+
+                              TITLE OF                      VALUE    SHRS OR    SH/  PUT  INVESTMENT   OTHER       VOTING AUTHORITY
+NAME OF ISSUER                CLASS             CUSIP      (x$1000)  PRN AMT    PRN  CALL DISCRETION  MANAGERS   SOLE   SHARED  NONE
+----------------------------  ----------      ----------   -------   -------------------- ----------  --------   -------------------
+A D C TELECOMMUNICATIONS      FRNT 6/1        000886AB7      2,207   3,000,000  PRN        SOLE
+
+                              NOTE 3.500%
+A D C TELECOMMUNICATIONS      7/1             000886AE1      2,636   4,000,000  PRN        SOLE
+
+                              NOTE 5.750%
+ADVANCED MICRO DEVICES INC    8/1             007903AN7     12,435  20,000,000  PRN        SOLE
+
+AFFILIATED COMPUTER SERVICES  CL A            008190100     28,755     647,335  SH         SOLE                 647,335
+
+ALPHA NATURAL RESOURCES INC   COM             02076X102      7,408     282,000  SH         SOLE                 282,000
+
+AMERICAN ITALIAN PASTA CO     CL A            027070101     25,019     858,297  SH         SOLE                 858,297
+
+ARCADIA RES INC               COM             039209101     10,195  25,298,102  SH         SOLE              25,298,102
+
+ARCH CAP GROUP LTD            ORD             G0450A105     18,787     320,699  SH         SOLE                 320,699
+
+ARMSTRONG WORLD INDS INC NEW  COM             04247X102      1,781     108,000  SH         SOLE                 108,000
+
+BANK OF AMERICA               COM             060505104     48,155   3,648,100  SH         SOLE               3,648,100
+
+CADENCE DESIGN SYSTEM INC     NOTE            127387AF5      1,986   3,000,000  PRN        SOLE
+                              1.500%12/1
+
+CAREER EDUCATION CORP         COM             141665109     34,257   1,376,343  SH         SOLE               1,376,343
+
+                              NOTE
+                              1.125%
+CHARMING SHOPPES INC          5/0             161133AE3      7,245  12,742,000  PRN        SOLE
+
+CHUBB CORP                    COM             171232101     49,724   1,246,845  SH         SOLE               1,246,845
+
+COLEMAN CABLE INC             COM             193459302      4,597   1,635,929  SH         SOLE               1,635,929
+
+COMCAST CORP NEW              CL A            20030N101     39,967   2,764,000  SH         SOLE               2,764,000
+
+COMCAST CORP NEW              CL A SPL        20030N200     36,961   2,621,346  SH         SOLE               2,621,346
+
+COMPUWARE CORP                COM             205638109     10,315   1,503,607  SH         SOLE               1,503,607
+
+COMTECH TELECOMMUNICATIONS C  COM NEW         205826209      3,188     100,000  SH         SOLE                 100,000
+
+CONVERGYS CORP                COM             212485106     95,991  10,343,808  SH         SOLE                  10,344
+
+COPART INC                    COM             217204106     20,972     604,897  SH         SOLE                 604,897
+
+COREL CORP NEW                COM             21869X103      4,494   2,090,232  SH         SOLE               2,090,232
+
+COWEN GROUP INC               COM             223621103        752      90,000  SH         SOLE                  90,000
+
+DIODES INC                    NOTE            254543AA9      4,339   5,000,000  PRN        SOLE
+                              2.250%10/0
+
+DOW CHEM CO                   COM             260543103      9,361     580,000  SH   PUT   SOLE
+
+ENSCO INTL INC                COM             26874Q100      7,113     204,000  SH         SOLE                 204,000
+
+                              NOTE
+                              2.375%
+EPICOR SOFTWARE CORP          5/1             29426LAA6      3,402   5,000,000
+
+GENERAL MLS INC               COM             370334104     15,971     285,100  SH         SOLE                285,100
+
+                              COM SHS
+GOVERNMENT PPTYS INCOME TR    BEN INT         38376A103     13,550     660,000                                 660,000
+
+HEALTH NET INC                COM             42222G108     39,611   2,547,357  SH         SOLE              2,547,357
+
+HEARTLAND PMT SYS INC         COM             42235N108        558      58,300  SH         SOLE                 58,300
+
+HILLTOP HOLDINGS INC          COM             432748101      5,331     449,100  SH         SOLE                449,100
+
+                              COM SH
+HOSPITALITY PPTYS TR          BEN INT         44106M102     27,866   2,343,643  SH         SOLE              2,343,643
+
+IBERIABANK CORP               COM             450828108        985      25,000  SH         SOLE                 25,000
+
+IESI BFC LTD                  COM             44951D108      2,177     186,890  SH         SOLE                186,890
+
+IMMUCOR INC                   COM             452526106     57,076   4,147,968  SH         SOLE              4,147,968
+
+INSIGHT ENTERPRISES INC       COM             45765U103        725      75,000  SH         SOLE                 75,000
+
+ITT EDUCATIONAL SERVICES INC  COM             45068B109     24,642     244,800  SH         SOLE                244,800
+
+LIBERTY ACQUISITION HLDGS CO  COM             53015Y107     12,864   1,419,900  SH         SOLE              1,419,900
+
+MAXIMUS INC                   COM             577933104      2,475      60,000  SH         SOLE                 60,000
+
+MCKESSON CORP                 COM             58155Q103     32,793     745,292  SH         SOLE                745,292
+
+MDS INC                       COM             55269P302      1,709     320,000  SH         SOLE                320,000
+
+MEDAREX INC                   COM             583916101     12,887   1,543,306  SH         SOLE              1,543,306
+
+MF GLOBAL LTD                 SHS             G60642108      7,091   1,195,832  SH         SOLE              1,195,832
+
+NATIONAL FUEL GAS CO N J      COM             636180101     71,958   1,994,412  SH         SOLE              1,994,412
+
+NEWS CORP                     CL B            65248E203      7,763     852,096  SH         SOLE                852,096
+
+PINNACLE ENTMT INC            COM             723456109      6,451     694,400  SH         SOLE                694,400
+
+PRG-SCHULTZ INTERNATIONAL IN  COM NEW         69357C503      6,242   2,311,669  SH         SOLE              2,311,669
+
+RALCORP HLDGS INC NEW         COM             751028101     50,625     831,000  SH         SOLE                831,000
+
+SAIC INC                      COM             78390X101     16,787     904,954  SH         SOLE                904,954
+
+SCHERING PLOUGH CORP          COM             806605101     75,767   3,016,200  SH         SOLE              3,016,200
+
+SOLUTIA INC                   COM NEW         834376501      1,728     300,000  SH         SOLE                300,000
+
+SUN MICROSYSTEMS INC          COM NEW         866810203     23,908   2,593,100  SH   CALL  SOLE
+
+SYMANTEC CORP                 COM             871503108      4,394     282,000  SH         SOLE                282,000
+
+TESSERA TECHNOLOGIES INC      COM             88164L100     10,690     422,702  SH         SOLE                422,702
+
+TICKETMASTER ENTMT INC        COM             88633P302      1,284     200,000  SH         SOLE                200,000
+
+TRANSATLANTIC HLDGS INC       COM             893521104     45,969   1,060,900  SH         SOLE              1,060,900
+
+TRIUMPH GROUP INC NEW         COM             896818101        560      14,000  SH         SOLE                 14,000
+
+TYCO INTL LTD BERMUDA         SHS             G9143X208     29,343   1,129,451  SH         SOLE              1,129,451
+
+VERIFONE HLDGS INC            NOTE            92342YAB5      3,644   5,000,000  PRN        SOLE
+                              1.375%
+                              6/1
+
+WATSON WYATT WORLDWIDE INC    CL A            942712100      7,656     204,000  SH         SOLE                204,000
+
+WENDYS ARBYS GROUP INC        COM             950587105        500     125,000  SH         SOLE                125,000
+
+WYETH                         COM             983024100     97,477   2,147,543  SH         SOLE              2,147,543
+
+
+</TABLE>
+</TEXT>
+</DOCUMENT>

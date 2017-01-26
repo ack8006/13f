@@ -1,0 +1,184 @@
+<DOCUMENT>
+<TYPE>13F-HR
+<SEQUENCE>1
+<FILENAME>v114008_13fhr.txt
+<TEXT>
+
+                                  UNITEDSTATES
+                         SECURITIESANDEXCHANGECOMMISSION
+                             Washington, D.C. 20549
+
+                                    Form 13F
+
+                               FORM 13F COVER PAGE
+
+Report for the Calendar Year or Quarter Ended: March 31, 2008
+
+Check here if Amendment [ ]; Amendment Number: ______
+  This Amendment (Check only one.): [ ] is a restatement.
+                                    [ ] adds new holdings entries.
+
+Institutional Investment Manager Filing this Report:
+
+Name:    TENOR CAPITAL MANAGEMENT Co., L.P.
+Address: 1180 AVE. OF THE AMERICAS
+         SUITE 1940
+         NEW YORK, NY 10036
+
+Form 13F File Number: 28-11620
+
+The institutional investment manager filing this report and the person by whom
+it is signed hereby represent that the person signing the report is authorized
+to submit it, that all information contained herein is true, correct and
+complete, and that it is understood that all required items, statements,
+schedules, lists, and tables, are considered integral parts of this form.
+
+Person Signing this Report on Behalf of Reporting Manager:
+
+Name:  MATTHEW STARR
+Title: PARTNER
+Phone: (212) 918-5302
+
+Signature, Place, and Date of Signing:
+
+
+/s/ Matthew Starr                          New York, NY                  5-13-08
+---------------------------                -------------                 -------
+       [Signature]                         [City, State]                  [Date]
+
+Report Type (Check only one.):
+
+[X]   13F HOLDINGS REPORT. (Check here if all holdings of this reporting manager
+      are reported in this report.)
+
+[ ]   13F NOTICE. (Check here if no holdings reported are in this report, and
+      all holdings are reported by other reporting manager(s).)
+
+[ ]   13F COMBINATION REPORT. (Check here if a portion of the holdings for this
+      reporting manager are reported in this report and a portion are reported
+      by other reporting manager(s).)
+
+<PAGE>
+
+                             Form 13F SUMMARY PAGE
+
+Report Summary:
+
+Number of Other Included Managers:             0
+                                          -----------
+
+Form 13F Information Table Entry Total:        59
+                                          -----------
+
+Form 13F Information Table Value Total:    $ 510091
+                                          -----------
+                                          (thousands)
+
+List of Other Included Managers:
+
+Name and 13F file numbers of ALL Institutional  Investment Managers with respect
+to which this schedule is filed (other than the one filing this  report):  (List
+in alphabetical order).
+
+[If there are no entries in this list, state "NONE" and omit the column headings
+and list entries.]
+
+13F File Numbers will be assigned to  Institutional  Investment  Managers  after
+they file their first report.
+
+
+      NONE
+
+<PAGE>
+
+<TABLE>
+<CAPTION>
+ITEM 1                               ITEM 2    ITEM 3     ITEM 4    ITEM 5               ITEM 6      ITEM 7    ITEM 8
+-----------------------------------  --------  ---------  --------  -------------------  ----------  --------  ---------------------
+                                     TITLE OF             VALUE     SHARES/   SH/  PUT/  INVESTMENT  OTHER       VOTING AUTHORITY
+NAME OF ISSUER                       CLASS     CUSIP      (x$1000)  PRN AMT   PRN  CALL  DISCRETION  MANAGERS  SOLE     SHARED  NONE
+<S>                                  <C>       <C>        <C>       <C>       <C>  <C>    <C>         <C>      <C>      <C>     <C>
+AFFYMETRIX INC NOTE 0.750%12/1       NOTE      00826taf5  18611     19000000  PRN         Sole                 19000000
+AMERICAN FINL GROUP INC OHIO
+     NOTE 1.486% 6/0                 NOTE      025932AD6   3474      7700000  PRN         Sole                  7700000
+APRIA HEALTHCARE GROUP INC
+     NOTE 3.375% 9/0                 NOTE      037933AB4  15569     15420000  PRN         Sole                 15420000
+LUCENT TECHNOLOGIES INC
+     DBCV 2.750% 6/1                 DBCV      549463ag2   5201      5850000  PRN         Sole                  5850000
+AMGEN INC NOTE 0.125% 2/0            NOTE      031162an0  11359     12500000  PRN         Sole                 12500000
+AMAZON COM INC NOTE 4.750% 2/0       NOTE      023135AF3  10568     10000000  PRN         Sole                 10000000
+BIOMARIN PHARMACEUTICAL INC
+     NOTE 1.875% 4/2                 NOTE      09061gad3   9369      5000000  PRN         Sole                  5000000
+COEUR D ALENE MINES CORP
+     IDA NOTE 3.250%                 NOTE      192108AR9   9671     10000000  PRN         Sole                 10000000
+CADENCE DESIGN SYSTEM INC NOTE 8/1   NOTE      127387AB4  32016     32400000  PRN         Sole                 32400000
+CEPHALON INC NOTE 6/1                NOTE      156708al3  12261     10000000  PRN         Sole                 10000000
+COUNTRYWIDE FINANCIAL CORP DBCV 4/1  DBCV      222372AN4   3556      4000000  PRN         Sole                  4000000
+COUNTRYWIDE FINANCIAL CORP DBCV 5/1  DBCV      222372AP9   1720      2000000  PRN         Sole                  2000000
+SEACOR HOLDINGS INC DBCV 2.875%12/1  DBCV      811904aj0   6319      5000000  PRN         Sole                  5000000
+SEACOR HOLDINGS INC DBCV 2.875%12/1  DBCV      811904ah4   6319      5000000  PRN         Sole                  5000000
+COOPER COS INC DBCV 2.625% 7/0       DBCV      216648ag0  17132     17000000  PRN         Sole                 17000000
+CV THERAPEUTICS INC NOTE 2.750% 5/1  NOTE      126667AF1   7653     10200000  PRN         Sole                 10200000
+CV THERAPEUTICS INC NOTE 2.000% 5/1  NOTE      126667AD6   1717      2000000  PRN         Sole                  2000000
+CYMER INC NOTE 3.500% 2/1            NOTE      232572ae7   5851      5926000  PRN         Sole                  5926000
+DICKS SPORTING GOODS INC
+     NOTE 1.606% 2/1                 NOTE      253393AB8   4913      5000000  PRN         Sole                  5000000
+ELECTRONIC DATA SYS NEW
+     NOTE 3.875% 7/1                 NOTE      285661AF1   9288      9500000  PRN         Sole                  9500000
+EDWARDS LIFESCIENCES CORP
+     DBCV 3.875% 5/1                 DBCV      28176EAB4  16964     16847000  PRN         Sole                 16847000
+ADVANCED MEDICAL OPTICS INC
+     NOTE 2.500% 7/1                 NOTE      00763MAG3  16043     17525000  PRN         Sole                 17525000
+FEI CO NOTE 2.875% 6/0               NOTE      30241LAF6   1589      1592000  PRN         Sole                  1592000
+FEI CO NOTE 6/1                      NOTE      30241LAD1   3023      3000000  PRN         Sole                  3000000
+GENCORP INC NOTE 4.000% 1/1          NOTE      368682aj9  11538     12000000  PRN         Sole                 12000000
+INVITROGEN CORP NOTE 3.250% 6/1      NOTE      46185ram2  15972     14500000  PRN         Sole                 14500000
+JETBLUE AWYS CORP NOTE 3.500% 7/1    NOTE      477143ab7   2844      2894000  PRN         Sole                  2894000
+JUNIPER NETWORKS INC NOTE 6/1        NOTE      48203RAC8  13682     10750000  PRN         Sole                 10750000
+LANDAMERICA FINL GROUP INC
+     DBCV 3.250% 5/1                 DBCV      514936ad5   4257      4500000  PRN         Sole                  4500000
+LINEAR TECHNOLOGY CORP
+     NOTE 3.000% 5/0                 NOTE      535678AC0   2347      2500000  PRN         Sole                  2500000
+MCMORAN EXPLORATION CO
+     NOTE 6.000% 7/0                 NOTE      582411AB0   2823      2300000  PRN         Sole                  2300000
+MEDICIS PHARMACEUTICAL
+     CORP NOTE 1.500% 6/0            NOTE      584690ab7  57423     57856000  PRN         Sole                 57856000
+MACROVISION CORP NOTE 2.625% 8/1     NOTE      555904ab7   5538      6500000  PRN         Sole                  6500000
+NOVELL INC DBCV 0.500% 7/1           DBCV      670006ac9  16161     17095000  PRN         Sole                 17095000
+OMNICOM GROUP INC NOTE 2/0           NOTE      681919ak2  16935     17075000  PRN         Sole                 17075000
+OSCIENT PHARMACEUTICALS
+     CORP NOTE 3.500% 4/1            NOTE      68812RAC9   2088      6000000  PRN         Sole                  6000000
+REGENERON PHARMACEUTICALS
+     NOTE 5.500%10/1                 NOTE      75886fab3  16814     16400000  PRN         Sole                 16400000
+TRANSOCEAN SEDCO FOREX INC
+     NOTE 1.625%12/1                 NOTE      893830AU3   9817      9000000  PRN         Sole                  9000000
+TRANSOCEAN SEDCO FOREX INC
+     NOTE 1.500%12/1                 NOTE      893830AV1   7647      7000000  PRN         Sole                  7000000
+TRANSOCEAN SEDCO FOREX INC
+     NOTE 1.500%12/1                 NOTE      893830AW9   1093      1000000  PRN         Sole                  1000000
+SEPRACOR INC NOTE 10/1               NOTE      817315aw4  11721     13000000  PRN         Sole                 13000000
+SIRIUS SATELLITE RADIO INC NOTE
+     2.500% 2/1                      NOTE      82966uac7  12609     12500000  PRN         Sole                 12500000
+SYMANTEC CORP NOTE 0.750% 6/1        NOTE      871503AD0   2688      2500000  PRN         Sole                  2500000
+SYNAPTICS INC NOTE 0.750%12/0        NOTE      87157DAB5   7555      8000000  PRN         Sole                  8000000
+TEKELEC NOTE 2.250% 6/1              NOTE      879101ae3   8175      8258000  PRN         Sole                  8258000
+VISHAY INTERTECHNOLOGY INC
+     NOTE 3.625% 8/0                 NOTE      928298AF5  38860     38918000  PRN         Sole                 38918000
+AMR CORP COM                         COM       001765106     99        11000  SH          Sole                    11000
+CRYSTALLEX INTL CORP COM             COM       22942F101     68        30000  SH          Sole                    30000
+SYMMETRICOM INC COM                  COM       871543104   1045       299300  SH          Sole                   299300
+TRANS-INDIA ACQUISITION CORP COM     COM       893237107   2244       300000  SH          Sole                   300000
+AK STL HLDG CORP PUT                 PUT       001547958     65          150       PUT    Sole                      150
+AMR CORP PUT                         PUT       001765956    715         1135       PUT    Sole                     1135
+CONTINENTAL AIRLS INC PUT            PUT       210795958     93          250       PUT    Sole                      250
+COUNTRYWIDE FINANCIAL CORP PUT       PUT       222372954    780         2535       PUT    Sole                     2535
+FORD MTR CO DEL PUT                  PUT       345370950     74          500       PUT    Sole                      500
+LEAR CORP PUT                        PUT       521865955     37          150       PUT    Sole                      150
+UAL CORP PUT                         PUT       902549957    134          357       PUT    Sole                      357
+CHIQUITA BRANDS INTL INC *W
+     EXP 03/19/200                   W         170032114   5858       968300  W           Sole                   968300
+TRANS-INDIA ACQUISITION CORP
+     *W EXP 02/08/201                W         893237115    107       150000  W           Sole                   150000
+</TABLE>
+</TEXT>
+</DOCUMENT>

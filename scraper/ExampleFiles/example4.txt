@@ -1,0 +1,169 @@
+<DOCUMENT>
+<TYPE>13F-HR
+<SEQUENCE>1
+<FILENAME>srz-jana_aug.txt
+<DESCRIPTION>JANA PARTNERS, LLC 13F-HR
+<TEXT>
+                                  UNITED STATES
+                       SECURITIES AND EXCHANGE COMMISSION
+                             Washington, D.C. 20549
+
+                                    FORM 13F
+
+                               FORM 13F COVER PAGE
+
+Report for the Calendar Year or Quarter Ended:         June 30, 2003
+                                                ------------------------
+
+Check here if Amendment [   ]; Amendment Number:
+                                                  -------
+   This Amendment (Check only one.):  [   ] is a restatement.
+                                      [   ] adds new holdings entries.
+
+Institutional Investment Manager Filing this Report:
+
+Name:      JANA Partners LLC
+           --------------------------------------------------
+Address:   200 Park Avenue, Suite 3900
+           --------------------------------------------------
+           New York, NY 10166
+           --------------------------------------------------
+
+           --------------------------------------------------
+
+Form 13F File Number:  028-10328
+                       ---------
+
+The institutional investment manager filing this report and the person by whom
+it is signed hereby represent that the person signing the report is authorized
+to submit it, that all information contained herein is true, correct and
+complete, and that it is understood that all required items, statements,
+schedules, lists, and tables, are considered integral parts of this form.
+
+Person Signing this Report on Behalf of Reporting Manager:
+
+Name:      Joel Brebbia
+           --------------------------------------------------
+Title:     CFO
+           --------------------------------------------------
+Phone:     212-692-7693
+           --------------------------------------------------
+
+Signature, Place, and Date of Signing:
+
+     /s/  Joel Brebbia                  New York, NY            08/08/03
+     ------------------------   ------------------------------  --------
+
+
+<PAGE>
+
+
+Report Type (Check only one.):
+
+[ X ]   13F HOLDINGS REPORT.  (Check here if all holdings of this
+        reporting manager are reported in this report.)
+
+[   ]   13F NOTICE.  (Check here if no holdings reported are in this
+        report, and all holdings are reported by other reporting
+        manager(s).)
+
+[   ]   13F COMBINATION REPORT.  (Check here if a portion of the
+        holdings for this reporting manager are reported in this report
+        and a portion are reported by other reporting manager(s).)
+
+
+<PAGE>
+
+
+                              FORM 13F SUMMARY PAGE
+
+Report Summary:
+
+
+Number of Other Included Managers:                      0
+                                               -------------
+
+Form 13F Information Table Entry Total:                48
+                                               -------------
+
+Form 13F Information Table Value Total:          $371,000
+                                               -------------
+                                                (thousands)
+
+
+List of Other Included Managers:
+
+
+Provide a numbered list of the name(s) and Form 13F file number(s) of all
+institutional investment managers with respect to which this report is filed,
+other than the manager filing this report.
+
+NONE
+
+
+<PAGE>
+
+
+<TABLE>
+<CAPTION>
+
+
+------------------------------------------------------------------------------------------------------------------------------------
+                                    Title Of                Value     Shares/   Sh/   Put /  Inv     Other
+Name of Issuer                       Class       Cusip     (X$1000)   Prn Amt   Prn   Call   Disc    Mgrs      Sole    Shared  None
+------------------------------------------------------------------------------------------------------------------------------------
+<S>                                   <C>      <C>          <C>      <C>        <C>          <C>             <C>
+           3COM CORP                  COM      885535104     5721     1225000    SH           SOLE            1225000
+  ADVANCED MEDICAL OPTICS INC         COM      00763M108    14748      865000    SH           SOLE             865000
+   AMERICAN MEDICAL SECURITY          COM      02744P101     6286      329100    SH           SOLE             329100
+  APRIA HEALTHCARE GROUP INC          COM       37933108     7872      316400    SH           SOLE             316400
+         CENDANT CORP                 COM      151313103    11109      606400    SH           SOLE             606400
+ CITIZENS FIRST FINANCIAL CORP        COM      174623108     2792      119435    SH   PUT     SOLE             119435
+    COBRA ELECTRONICS CORP            COM      191042100     4384      632580         PUT     SOLE             632580
+          COPART INC                  COM      217204106     3464      366612    SH           SOLE             366612
+    CORNELL CORRECTIONS INC           COM      219141108    12330      814400    SH           SOLE             814400
+           COSI INC                   COM      22122P101       99       74500    SH           SOLE              74500
+      CROWN HOLDINGS INC              COM      228368106    20730     2903400    SH           SOLE            2903400
+  DANKA BUSINESS SYSTEMS PLC          COM      236277109     3830      989800    SH           SOLE             989800
+            DPL INC                   COM      233293109     1275       80000    SH           SOLE              80000
+       ELAN CORP PLC-ADR              COM      284131208    14383     2550100    SH           SOLE            2550100
+     ENPRO INDUSTRIES INC             COM      29355X107     7095      663700    SH           SOLE             663700
+        FOOT LOCKER INC               COM      344849104     9067      684300    SH           SOLE             684300
+   GEMSTAR TV GUIDE INTL INC          COM      36866W106     3507      700000    SH           SOLE             700000
+     GENERAL MARITIME CORP            COM      Y2692M103     2538      250000    SH           SOLE             250000
+         HANDLEMAN CO                 COM      410252100    14602      912600    SH           SOLE             912600
+      I2 TECHOLOGIES INC              COM      465754109     1020     1000000    SH           SOLE            1000000
+           IDT CORP                   COM      448947101     5019      280400    SH           SOLE             280400
+        IDT CORPORATION               COM      448947309     1697       96400    SH           SOLE              96400
+  INTERSTATE HOTELS & RESORTS         COM      46088S106     1335      284000    SH           SOLE             284000
+       JO-ANN STORES INC              COM      47758P109     1311       51800    SH           SOLE              51800
+       JO-ANN STORES INC              COM      47758P208     1294       58400    SH           SOLE              58400
+    JONES APPAREL GROUP INC           COM      480074103    29260     1000000    SH           SOLE            1000000
+      JPS INTDUSTRIES INC             COM      46624E405      475      387936    SH           SOLE             387936
+    KINDRED HEALTHCARE INC            COM      494580103     4691      264000    SH           SOLE             264000
+    LOUISIANA PACIFIC CORP            COM      546347105    17992     1659800    SH           SOLE            1659800
+  MCDERMOTT INTL INC-W/RTS TO         COM      580037109     9701     1532600    SH           SOLE            1532600
+ MDC COMMUNICATION INC - CL A         COM      55267W309    15129     1965000    SH           SOLE            1965000
+         MIDDLEBY CORP                COM      596278101     8411      600800    SH           SOLE             600800
+MILLENNIUM PHARMACEUTICALS INC        COM      599902103     5637      358356    SH           SOLE             358356
+       MOORE WALLACE INC              COM      615857109    18221     1241200    SH           SOLE            1241200
+     MTR GAMING GROUP INC             COM      553769100     4746      616300    SH           SOLE             616300
+  NEW CENTURY FINANCIAL CORP          COM      64352D101    20591      474000    SH           SOLE             474000
+         NOVOSTE CORP                 COM      67010C100    12807     2130920    SH           SOLE            2130920
+           PG&E CORP                  COM      69331C108     7403      350000    SH           SOLE             350000
+ PROVIDENT FINANCIAL SERVICES         COM      74386T105     2858      150000    SH           SOLE             150000
+        RADIOLOGIX INC                COM      75040K109     8747     2082500    SH           SOLE            2082500
+       REDWOOD TRUST INC              COM      758075402    10297      258000    SH           SOLE             258000
+   REGAL ENTERTAINMENT GROUP          COM      758766109     2948      125000    SH           SOLE             125000
+     RELIANT RESOURCES INC            COM      75952B105     6590     1075000    SH           SOLE            1075000
+           SPX CORP                   COM      784635104     4406      100000    SH           SOLE             100000
+       STAGE STORES INC               COM      85254C305     6209      264194    SH           SOLE             264194
+    TYCO INTERNATIONAL LTD            COM      902124106     8921      470000    SH           SOLE             470000
+      U S I HOLDINGS CORP             COM      90333H101     2033      173800    SH           SOLE             173800
+       WARNACO GROUP INC              COM      934390402     5425      403927    SH           SOLE             403927
+
+</TABLE>
+
+
+</TEXT>
+</DOCUMENT>

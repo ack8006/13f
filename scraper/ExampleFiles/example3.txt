@@ -1,0 +1,176 @@
+<SEC-DOCUMENT>0000902664-11-001302.txt : 20110812
+<SEC-HEADER>0000902664-11-001302.hdr.sgml : 20110812
+<ACCEPTANCE-DATETIME>20110812161554
+ACCESSION NUMBER:		0000902664-11-001302
+CONFORMED SUBMISSION TYPE:	13F-HR
+PUBLIC DOCUMENT COUNT:		1
+CONFORMED PERIOD OF REPORT:	20110630
+FILED AS OF DATE:		20110812
+DATE AS OF CHANGE:		20110812
+EFFECTIVENESS DATE:		20110812
+
+FILER:
+
+	COMPANY DATA:	
+		COMPANY CONFORMED NAME:			JANA PARTNERS LLC
+		CENTRAL INDEX KEY:			0001159159
+		IRS NUMBER:				000000000
+		STATE OF INCORPORATION:			DE
+		FISCAL YEAR END:			1231
+
+	FILING VALUES:
+		FORM TYPE:		13F-HR
+		SEC ACT:		1934 Act
+		SEC FILE NUMBER:	028-10328
+		FILM NUMBER:		111031603
+
+	BUSINESS ADDRESS:	
+		STREET 1:		767 FIFTH AVENUE, 8TH FLOOR
+		CITY:			NEW YORK
+		STATE:			NY
+		ZIP:			10153
+		BUSINESS PHONE:		212-455-0900
+
+	MAIL ADDRESS:	
+		STREET 1:		767 FIFTH AVENUE, 8TH FLOOR
+		CITY:			NEW YORK
+		STATE:			NY
+		ZIP:			10153
+</SEC-HEADER>
+<DOCUMENT>
+<TYPE>13F-HR
+<SEQUENCE>1
+<FILENAME>p11-1454form13fhr.txt
+<DESCRIPTION>JANA PARTNERS LLC
+<TEXT>
+                                 UNITED STATES
+                       SECURITIES AND EXCHANGE COMMISSION
+                             Washington, D.C. 20549
+
+                                    Form 13F
+
+                               Form 13F COVER PAGE
+
+Report for the Calendar Year or Quarter Ended: June 30, 2011
+
+Check here if Amendment []; Amendment Number:
+                                               -------
+This Amendment (Check only one.):               [] is a restatement.
+                                                [] adds new holdings entries.
+
+Institutional Investment Manager Filing this Report:
+
+
+Name:      JANA PARTNERS LLC
+Address:   767 Fifth Avenue, 8th Floor
+           New York, New York  10153
+
+
+Form 13F File Number: 028-10328
+
+
+The institutional investment manager filing this report and the person by whom
+it is signed hereby represent that the person signing the report is authorized
+to submit it, that all information contained herein is true, correct and
+complete, and that it is understood that all required items, statements,
+schedules, lists, and tables, are considered integral parts of this form.
+
+Person Signing this Report on Behalf of Reporting Manager:
+
+Name:   Jennifer Fanjiang
+Title:  General Counsel
+Phone:  212-455-0900
+
+Signature,  Place,  and  Date  of  Signing:
+
+/s/ Jennifer Fanjiang              New York, New York        August 12, 2011
+---------------------------------  ------------------------  ---------------
+[Signature]                        [City, State]              [Date]
+
+
+
+<PAGE>
+
+Report  Type  (Check  only  one):
+
+[X]     13F HOLDINGS REPORT. (Check here if all holdings of this reporting
+        manager are reported in this report.)
+
+[ ]     13F NOTICE. (Check here if no holdings reported are in this report,
+        and all holdings are reported by other reporting manager(s).)
+
+[ ]     13F COMBINATION REPORT. (Check here if a portion of the holdings for
+        this reporting manager are reported in this report and a portion are
+        reported by other reporting manager(s).)
+
+
+
+
+
+<PAGE>
+                              Form 13F SUMMARY PAGE
+
+Report Summary:
+
+Number of Other Included Managers:                    0
+
+Form 13F Information Table Entry Total:              27
+
+Form 13F Information Table Value Total:  $    1,981,962
+                                         --------------
+                                         (in thousands)
+
+
+List of Other Included Managers:
+
+Provide a numbered list of the name(s) and 13F file number(s) of all
+institutional investment managers with respect to which this report is filed,
+other than the manager filing this report.
+NONE
+
+
+
+
+<PAGE>
+<TABLE>
+<CAPTION>
+                                                  FORM 13F INFORMATION TABLE
+
+          COLUMN 1              COLUMN 2     COLUMN 3  COLUMN 4      COLUMN 5        COLUMN 6  COLUMN 7         COLUMN 8
+---------------------------- --------------- --------- -------- ------------------- ---------- -------- -------------------------
+                                                        VALUE    SHRS OR   SH/ PUT/ INVESTMENT  OTHER       VOTING AUTHORITY
+       NAME OF ISSUER        TITLE OF CLASS    CUSIP   (x$1000)  PRN AMT   PRN CALL DISCRETION MANAGERS    SOLE     SHARED   NONE
+---------------------------- --------------- --------- -------- ---------- --- ---- ---------- -------- ---------- --------- ----
+<S>                          <C>             <C>       <C>      <C>        <C> <C>  <C>        <C>      <C>        <C>       <C>
+APPLE INC                    COM             037833100   92,147    274,517 SH       SOLE                   257,784    16,733
+ARCADIA RES INC              COM             039209101    1,897 25,298,102 SH       SOLE                25,298,102         0
+CABLEVISION SYS CORP         CL A NY CABLVS  12686C109   60,594  2,391,723 SH       SOLE                 2,242,857   148,866
+CHARLES RIV LABS INTL INC    COM             159864107  167,035  4,109,113 SH       SOLE                 3,847,823   261,290
+COCA COLA ENTERPRISES INC NE COM             19122T109   52,947  1,814,511 SH       SOLE                 1,677,792   136,719
+CONVERGYS CORP               COM             212485106  112,132  8,220,806 SH       SOLE                 7,678,797   542,009
+EL PASO CORP                 COM             28336L109  489,376 24,226,531 SH       SOLE                23,655,513   571,018
+EXPEDIA INC DEL              COM             30212P105   54,436  1,877,762 SH       SOLE                 1,764,638   113,124
+FOREST OIL CORP              COM PAR $0.01   346091705   88,097  3,298,281 SH       SOLE                 3,101,515   196,766
+GARMIN LTD                   SHS             H2906T109   10,074    305,000 SH  PUT  SOLE
+GOOGLE INC                   CL A            38259P508   64,763    127,894 SH       SOLE                   120,036     7,858
+HERTZ GLOBAL HOLDINGS INC    COM             42805T105   38,943  2,452,302 SH       SOLE                 2,296,086   156,216
+LIBERTY GLOBAL INC           COM SER A       530555101    4,975    110,448 SH       SOLE                   102,316     8,132
+LIBERTY MEDIA CORP NEW       INT COM SER A   53071M104   65,976  3,934,143 SH       SOLE                 3,688,381   245,762
+LIBERTY MEDIA CORP NEW       LIB STAR COM A  53071M708   95,911  1,274,735 SH       SOLE                 1,199,337    75,398
+LONE PINE RES INC            COM             54222A106    9,930    934,987 SH       SOLE                   877,054    57,933
+LYONDELLBASELL INDUSTRIES N  SHS - A -       N53745100   37,081    962,644 SH       SOLE                   909,384    53,260
+MCGRAW HILL COS INC          COM             580645109  322,957  7,705,959 SH       SOLE                 7,502,934   203,025
+OPKO HEALTH INC              COM             68375N103    9,469  2,566,252 SH       SOLE                 2,379,781   186,471
+ROCK-TENN CO                 CL A            772739207   32,885    495,703 SH       SOLE                   458,340    37,363
+SAVIENT PHARMACEUTICALS INC  NOTE 4.750% 2/0 80517QAA8   28,804 28,807,000 PRN      SOLE
+SAVIENT PHARMACEUTICALS INC  COM             80517Q100      509     68,000 SH       SOLE                    62,889     5,111
+SEALED AIR CORP NEW          COM             81211K100   30,558  1,284,482 SH       SOLE                 1,206,601    77,881
+SPDR GOLD TRUST              GOLD SHS        78463V107   22,435    153,666 SH       SOLE                    90,155    63,511
+STRAYER ED INC               COM             863236105    2,755     21,794 SH       SOLE                    20,190     1,604
+SUNOCO INC                   COM             86764P109   75,036  1,798,987 SH       SOLE                 1,689,582   109,405
+VIACOM INC NEW               CL B            92553P201   10,240    200,788 SH       SOLE                   185,654    15,134
+</TABLE>
+
+</TEXT>
+</DOCUMENT>
+</SEC-DOCUMENT>

@@ -1,0 +1,155 @@
+<DOCUMENT>
+<TYPE>13F-HR
+<SEQUENCE>1
+<FILENAME>ten4q10.txt
+<DESCRIPTION>FORM 13F HOLDINGS REPORT
+<TEXT>
+                                  UNITED STATES
+                       SECURITIES AND EXCHANGE COMMISSION
+                            Washington, D.C.  20549
+
+                                    Form 13F
+
+                              Form 13F COVER PAGE
+
+Report for the Calendar Year or Quarter Ended: December 31, 2010
+
+Check here if Amendment [  ]; Amendment Number:
+This Amendment (Check only one.): [  ] is a restatement.
+                                  [  ] adds new holdings entries.
+
+Institutional Investment Manager Filing this Report:
+
+Name:    Tenor Capital Management Co., L.P.
+Address: 1180 Avenue of the Americas
+         Suite 1940
+         New York, NY  10036
+
+13F File Number:  28-11620
+
+The institutional investment manager filing this report and the person by whom
+it is signed hereby represent that the person signing the report is authorized
+to submit it, that all information contained herein is true, correct and
+complete, and that it is understood that all required items, statements,
+schedules, lists, and tables, are considered integral parts of this form.
+
+Person Signing this Report on Behalf of Reporting Manager:
+
+Name:      Matthew Starr
+Title:     Partner
+Phone:     (212) 918-5302
+
+Signature, Place, and Date of Signing:
+
+     /s/  Matthew Starr     New York, NY     February 11, 2011
+
+
+Report Type (Check only one.):
+
+[ X]         13F HOLDINGS REPORT.
+
+[  ]         13F NOTICE.
+
+[  ]         13F COMBINATION REPORT.
+
+
+
+
+
+<PAGE>
+
+                              FORM 13F SUMMARY PAGE
+
+
+Report Summary:
+
+Number of Other Included Managers:         0
+
+Form13F Information Table Entry Total:     62
+
+Form13F Information Table Value Total:     $1,633,468 (thousands)
+
+
+List of Other Included Managers:
+
+Provide a numbered list of the name(s) and Form 13F file number(s) of all
+institutional managers with respect to which this report is filed, other
+than the manager filing this report.
+
+NONE
+
+
+<PAGE>
+
+
+
+<TABLE>                       <C>             <C>
+                                                     FORM 13F INFORMATION TABLE
+                                                             VALUE  SHARES/ SH/ PUT/ INVSTMT  OTHER            VOTING AUTHORITY
+NAME OF ISSUER                 TITLE OF CLASS   CUSIP     (x$1000)  PRN AMT PRN CALL DSCRETN MANAGERS         SOLE   SHARED     NONE
+------------------------------ ---------------- --------- -------- -------- --- ---- ------- ------------ -------- -------- --------
+ACCELRYS INC                   COM              00430U103      550    66315 SH       SOLE                    66315        0        0
+ADVANCED MICRO DEVICES INC     NOTE 5.750% 8/1  007903AN7    31750 30188000 PRN      SOLE                 30188000        0        0
+ALLIANT TECHSYSTEMS INC        NOTE 2.750% 9/1  018804AN4    55577 54110000 PRN      SOLE                 54110000        0        0
+AMGEN INC                      NOTE 0.125% 2/0  031162an0    51477 51500000 PRN      SOLE                 51500000        0        0
+AMGEN INC                      NOTE 0.375% 2/0  031162AQ3    55803 55589000 PRN      SOLE                 55589000        0        0
+AMGEN INC                      NOTE 0.375% 2/0  031162AQ3    55804 55589000 PRN      SOLE                 55589000        0        0
+AMYLIN PHARMACEUTICALS INC     NOTE 2.500% 4/1  032346AD0    56648 56399000 PRN      SOLE                 56399000        0        0
+BARNES GROUP INC               NOTE 3.750% 8/0  067806AB5     2144  2000000 PRN      SOLE                  2000000        0        0
+CBIZ INC                       NOTE 3.125% 6/0  124805AB8     2004  2000000 PRN      SOLE                  2000000        0        0
+CEPHALON INC                   NOTE 2.000% 6/0  156708ap4   100189 71125000 PRN      SOLE                 71125000        0        0
+CHESAPEAKE ENERGY CORP         NOTE 2.750%11/1  165167BW6     7427  7500000 PRN      SOLE                  7500000        0        0
+CHESAPEAKE ENERGY CORP         NOTE 2.500% 5/1  165167CA3     7555  8500000 PRN      SOLE                  8500000        0        0
+CHINA INTEGRATED ENERGY INC    COM              16948P105      921   124781 SH       SOLE                   124781        0        0
+CIENA CORP                     NOTE 0.250% 5/0  171779ab7     2309  2500000 PRN      SOLE                  2500000        0        0
+COINSTAR INC                   NOTE 4.000% 9/0  19259PAF9     7225  4500000 PRN      SOLE                  4500000        0        0
+COMMSCOPE INC                  NOTE 3.250% 7/0  203372AG2    42707 32451000 PRN      SOLE                 32451000        0        0
+CONVERGYS CORP                 SDCV 5.750% 9/1  212485AE6    57488 41090000 PRN      SOLE                 41090000        0        0
+DECODE GENETICS INC            NOTE 3.500% 4/1  243586AD6       61  6092000 PRN      SOLE                  6092000        0        0
+DRYSHIPS INC                   SHS              Y2109Q101      835   152104 SH       SOLE                   152104        0        0
+DRYSHIPS INC.                  NOTE 5.000%12/0  262498AB4      689   665000 PRN      SOLE                   665000        0        0
+EQUINIX INC                    NOTE 2.500% 4/1  29444UAF3    39228 38098000 PRN      SOLE                 38098000        0        0
+EQUINIX INC                    NOTE 3.000%10/1  29444UAG1    24079 23865000 PRN      SOLE                 23865000        0        0
+FINISAR CORP                   NOTE 5.000%10/1  31787AAK7     3303  1135000 PRN      SOLE                  1135000        0        0
+FORD MTR CO CAP TR II          PFD TR CV6.5%    345395206    24556   473000 PRN      SOLE                   473000        0        0
+GENERAL MTRS CO                COM              37045V100     7593   206000 SH       SOLE                   206000        0        0
+GOLDEN STAR RES LTD CDA        DBCV 4.000%11/3  38119TAC8    24851 21667000 PRN      SOLE                 21667000        0        0
+HEARUSA INC                    COM NEW          422360305      456   500900 SH       SOLE                   500900        0        0
+HOLOGIC INC                    FRNT 2.000%12/1  436440AA9    31350 33141000 PRN      SOLE                 33141000        0        0
+ILLUMINA INC                   NOTE 0.625% 2/1  452327AB5    55170 19000000 PRN      SOLE                 19000000        0        0
+INCYTE CORP                    NOTE 4.750%10/0  45337CAJ1    23003 11000000 PRN      SOLE                 11000000        0        0
+INFORMATICA CORP               NOTE 3.000% 3/1  45666QAB8    17142  7750000 PRN      SOLE                  7750000        0        0
+JETBLUE AIRWAYS CORP           DBCV 6.750%10/1  477143AG6    12370  7478000 PRN      SOLE                  7478000        0        0
+JETBLUE AIRWAYS CORP           DBCV 6.750%10/1  477143AF8    12624  7841000 PRN      SOLE                  7841000        0        0
+KINROSS GOLD CORP              NOTE 1.750% 3/1  496902AD9    10398 10000000 PRN      SOLE                 10000000        0        0
+L-3 COMMUNICATIONS CORP        DEBT 3.000% 8/0  502413AW7    88133 86788500 PRN      SOLE                 86788500        0        0
+L-3 COMMUNICATIONS CORP        DEBT 3.000% 8/0  502413AW7    88133 86788500 PRN      SOLE                 86788500        0        0
+LANNET INC                     COM              516012101      531    95000 SH       SOLE                    95000        0        0
+LDK SOLAR CO LTD               SPONSORED ADR    50183L107     6567   648948 SH       SOLE                   648948        0        0
+LIBERTY GLOBAL INC             NOTE 4.500%11/1  530555AB7    58068 38750000 PRN      SOLE                 38750000        0        0
+LIBERTY MEDIA CORP             DEB 3.750% 2/1   530715AL5     9348 16500000 PRN      SOLE                 16500000        0        0
+MEDTRONIC INC                  NOTE 1.625% 4/1  585055AM8     5051  5000000 PRN      SOLE                  5000000        0        0
+MGIC INVT CORP WIS             NOTE 5.000% 5/0  552848AD5     4667  4000000 PRN      SOLE                  4000000        0        0
+MYLAN INC                      NOTE 3.750% 9/1  628530AJ6    18312 10500000 PRN      SOLE                 10500000        0        0
+NETAPP INC                     NOTE 1.750% 6/0  64110DAB0    50355 28250000 PRN      SOLE                 28250000        0        0
+NII HLDGS INC                  NOTE 3.125% 6/1  62913FAJ1    38079 38636000 PRN      SOLE                 38636000        0        0
+OMNICOM GROUP INC              NOTE 7/3         681919AV8    55085 54530500 PRN      SOLE                 54530500        0        0
+OMNICOM GROUP INC              NOTE 7/3         681919AV8    55085 54530500 PRN      SOLE                 54530500        0        0
+ON SEMICONDUCTOR CORP          NOTE 4/1         682189AE5    15211 13597000 PRN      SOLE                 13597000        0        0
+OXYGEN BIOTHERAPEUTICS INC     COM NEW          69207P209      427   222461 SH       SOLE                   222461        0        0
+SESI L L C                     FRNT 1.500%12/1  78412FAH7    20945 20500000 PRN      SOLE                 20500000        0        0
+SHANDA INTERACTIVE ENTMT LTD   NOTE 2.000% 9/1  81941QAD6    11199  9700000 PRN      SOLE                  9700000        0        0
+STEWART ENTERPRISES INC        NOTE 3.125% 7/1  860370AH8     3717  3750000 PRN      SOLE                  3750000        0        0
+THORATEC CORP                  FRNT 1.380% 5/1  885175AB5     9752 11500000 PRN      SOLE                 11500000        0        0
+TRINA SOLAR LIMITED            NOTE 4.000% 7/1  89628EAA2    34888 22375000 PRN      SOLE                 22375000        0        0
+UAL CORP                       NOTE 4.500% 6/3  902549AH7    39649 38500000 PRN      SOLE                 38500000        0        0
+US AIRWAYS GROUP INC           NOTE 7.250% 5/1  911905AC1     1204   500000 PRN      SOLE                   500000        0        0
+VALEANT PHARMACEUTICALS INTL   COM              91911K102        3      119 SH       SOLE                      119        0        0
+VALEANT PHARMACEUTICALS INTL   COM              91911K102      444    15700 SH  PUT  SOLE                    15700        0        0
+VALEANT PHARMACEUTICALS INTL   NOTE 4.000%11/1  91911XAD6    25509 11351000 PRN      SOLE                 11351000        0        0
+VERIGY LTD                     NOTE 5.250% 7/1  92345XAB4     1209  1000000 PRN      SOLE                  1000000        0        0
+VIRGIN MEDIA INC               NOTE 6.500%11/1  92769LAB7   161767 96925000 PRN      SOLE                 96925000        0        0
+WYNDHAM WORLDWIDE CORP         NOTE 3.500% 5/0  98310WAC2     4844  2000000 PRN      SOLE                  2000000        0        0
+</TABLE>
+</TEXT>
+</DOCUMENT>

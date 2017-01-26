@@ -1,0 +1,174 @@
+<DOCUMENT>
+<TYPE>13F-HR
+<SEQUENCE>1
+<FILENAME>v049908_13f-hr.txt
+<TEXT>
+                                                    ----------------------------
+                                                            OMB APPROVAL
+                                                    ----------------------------
+                                                    OMB Number:
+                                                    Expires:
+                                                    Estimated average burden
+                                                    hours per response.....
+                                                    ----------------------------
+                                                           SEC USE ONLY
+                                                    ----------------------------
+
+                                                    ----------------------------
+
+                                  UNITED STATES
+                       SECURITIES AND EXCHANGE COMMISSION
+                             Washington, D.C. 20549
+
+                                    FORM 13F
+
+                               FORM 13F Cover Page
+
+
+            Report for the Calendar Year or Quarter Ended: June 30, 2006
+                                                           -------------
+
+If amended report check here:      |_|                    Amendment Number:
+                                                                            ----
+
+This Amendment (Check only one):   |_| is a restatement
+                                   |_| adds new holding
+                                       entries.
+
+TENOR CAPITAL MANAGEMENT Co., L.P.
+--------------------------------------------------------------------------------
+Name of Institutional Investment Manager
+
+65 EAST 55TH STREET, 35TH FLOOR         NEW YORK,        NEW YORK        10022
+--------------------------------------------------------------------------------
+Business Address         (Street)       (City)            (State)          (Zip)
+
+
+13F File Number: 28-11620
+                 --------
+
+The institutional  investment  manager filing this report and the person by whom
+it is signed hereby  represent  that the person signing the report is authorized
+to  submit  it,  that all  information  contained  herein is true,  correct  and
+complete,  and  that it is  understood  that  all  required  items,  statements,
+schedules, and tables, are considered integral parts of this form.
+
+Person Signing this Report on Behalf of Reporting Manager:
+
+Name:  Matthew Starr
+Title: Partner
+Phone: 212-918-5302
+
+Signature, Place and Date of Signing:
+
+/s/ Matthew Starr               New York, New York                 08/14/06
+------------------     ----------------------------------     ------------------
+Name                               City, State                       Date
+
+
+Report Type:
+
+|X|   13F HOLDINGS REPORT.
+|_|   13F NOTICE.
+|_|   13F COMBINATION REPORT.
+<PAGE>
+
+                             Form 13F SUMMARY PAGE
+
+Report Summary:
+
+Number of Other Included Managers:           0
+                                        ----------
+
+Form 13F Information Table Entry Total:     47
+                                        ----------
+
+Form 13F Information Table Value Total:  $299,920
+                                        ----------
+                                        (thousands)
+
+List of Other Included Managers:
+
+Name and 13F file numbers of ALL Institutional  Investment Managers with respect
+to which this schedule is filed (other than the one filing this  report):  (List
+in alphabetical order).
+
+[If there are no entries in this list, state "NONE" and omit the column headings
+and list entries.]
+
+13F File Numbers will be assigned to  Institutional  Investment  Managers  after
+they file their first report.
+
+NONE
+
+
+<PAGE>
+
+<TABLE>
+<CAPTION>
+FORM 13F INFORMATION TABLE
+
+ITEM 1                               ITEM 2    ITEM 3     ITEM 4    ITEM 5               ITEM 6      ITEM 7    ITEM 8
+-----------------------------------  --------  ---------  --------  -------------------  ----------  --------  ---------------------
+                                     TITLE OF             VALUE     SHARES/   SH/  PUT/  INVESTMENT  OTHER       VOTING AUTHORITY
+NAME OF ISSUER                       CLASS     CUSIP      (x$1000)  PRN AMT   PRN  CALL  DISCRETION  MANAGERS  SOLE     SHARED  NONE
+<S>                                  <C>       <C>        <C>       <C>       <C>  <C>   <C>         <C>       <C>      <C>     <C>
+AMR CORP NOTE 4.250%                 NOTE      001765ba3      4816   3000000  PRN        Sole                   3000000
+ASM INTL NV NOTE 5.250%              NOTE      00207DAE2      2183   2125000  PRN        Sole                   2125000
+AMERICAN FINL RLTY TR NOTE 4.375%    NOTE      02607PAB3      9031  10000000  PRN        Sole                  10000000
+APRIA HEALTHCARE GROUP INC NOTE
+  3.375%                             NOTE      037933AB4     13326  14000000  PRN        Sole                  14000000
+CADENCE DESIGN SYSTEM INC NOTE       NOTE      127387AB4     20684  18000000  PRN        Sole                  18000000
+CELL THERAPEUTICS INC NOTE 4.000%
+  7/0                                NOTE      150934AF4       875   1750000  PRN        Sole                   1750000
+CONNETICS CORP NOTE 2.250%           NOTE      208192AB0     11257  11825000  PRN        Sole                  11825000
+FEI CO NOTE                          NOTE      30241LAD1     11294  11500000  PRN        Sole                  11500000
+GENCORP INC NOTE 4.000%              NOTE      368682AJ9      4028   3500000  PRN        Sole                   3500000
+GOODYEAR TIRE & RUBR CO NOTE 4.000%  NOTE      382550AR2     21501  19500000  PRN        Sole                  19500000
+GREY GLOBAL GROUP INC SDCV           NOTE      39787MAB4      6882   5500000  PRN        Sole                   5500000
+HUTCHINSON TECHNOLOGY INC NOTE
+  2.250%                             NOTE      448407AE6      6459   7000000  PRN        Sole                   7000000
+ICOS CORP NOTE 2.000%                NOTE      449295AB0      4156   5000000  PRN        Sole                   5000000
+JETBLUE AWYS CORP DBCV 3.750%        NOTE      477143AC5     15119  15500000  PRN        Sole                  15500000
+LANDAMERICA FINL GROUP INC DBCV
+  3.250%                             NOTE      514936AD5     12458   9500000  PRN        Sole                   9500000
+MCMORAN EXPLORATION CO NOTE 6.000%   NOTE      582411AB0      7420   5550000  PRN        Sole                   5550000
+MEDICIS PHARMACEUTICAL CORP NOTE
+  1.500%                             NOTE      584690AB7      9381  10000000  PRN        Sole                  10000000
+MEDICIS PHARMACEUTICAL CORP NOTE
+  2.500%                             NOTE      58470KAA2     11692  11500000  PRN        Sole                  11500000
+NOVELL INC DBCV 0.500%               NOTE      670006AC9      6232   7000000  PRN        Sole                   7000000
+OSCIENT PHARMACEUTICALS CORP NOTE
+  3.500%                             NOTE      68812RAB1       683   1000000  PRN        Sole                   1000000
+SEACOR HOLDINGS INC DBCV             NOTE      811904AH4      6225   5000000  PRN        Sole                   5000000
+SEACOR HOLDINGS INC DBCV             NOTE      811904AJ0     14941  12000000  PRN        Sole                  12000000
+SHANDA INTERACTIVE ENTMT LTD NOTE    NOTE      81941QAB0      8517   9500000  PRN        Sole                   9500000
+SIRIUS SATELLITE RADIO INC NOTE
+  2.500%                             NOTE      82966UAC7     20398  16500000  PRN        Sole                  16500000
+SIRIUS SATELLITE RADIO INC NOTE      NOTE      82966UAD5      8058   7000000  PRN        Sole                   7000000
+TERREMARK WORLDWIDE INC NOTE 9.000%  NOTE      881448AC8      3168   3500000  PRN        Sole                   3500000
+WILD OATS MARKETS INC DBCV 3.250%    NOTE      96808BAB3       618    500000  PRN        Sole                    500000
+XCEL ENERGY INC NOTE                 NOTE      98389BAB6     14626   9200000  PRN        Sole                   9200000
+EQUITY OFFICE PROPERTIES TRU         COM       294741103      1093     29942  SH         Sole                     29942
+FORD MTR CO DEL COM PAR              COM       345370860       973    140375  SH         Sole                    140375
+GENERAL MTRS CORP DEB SR CONV        COM       370442741     21144    863900  SH         Sole                    863900
+ICOS CORP                            COM       449295104        53      2400  SH         Sole                      2400
+INDYMAC BANCORP INC WIRES            COM       456607209      8028    108400  SH         Sole                    108400
+LEAR CORP                            COM       521865105       366     16500  SH         Sole                     16500
+MILLS CORP                           COM       601148109        56      2080  SH         Sole                      2080
+SYMANTEC CORP                        COM       871503108      7835    504185  SH         Sole                    504185
+AK STL HLDG CORP                     Put       001547958        53      3379       Put   Sole                      3379
+AMR CORP                             Put       001765956       829      2000       Put   Sole                      2000
+CELL THERAPEUTICS INC                Put       150934957       678      1173       Put   Sole                      1173
+CONTINENTAL AIRLS INC                Put       210795958        33       130       Put   Sole                       130
+FORD MTR CO DEL                      Put       345370950      1601      8656       Put   Sole                      8656
+GENERAL MTRS CORP                    Put       370442955       354      2445       Put   Sole                      2445
+GOODYEAR TIRE & RUBR CO              Put       382550951        66       565       Put   Sole                       565
+JETBLUE AWYS CORP                    Put       477143951        46       900       Put   Sole                       900
+LEAR CORP                            Put       521865955       409      2661       Put   Sole                      2661
+MOVIE GALLERY INC                    Put       624581954        40       350       Put   Sole                       350
+U S AIRWAYS GROUP INC                Put       90341W958        33       150       Put   Sole                       150
+CHIQUITA BRANDS INTL INC *W EXP      Warrants  170032114       200    100000  SH         Sole                    100000
+</TABLE>
+</TEXT>
+</DOCUMENT>
