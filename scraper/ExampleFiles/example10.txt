@@ -1,0 +1,164 @@
+<DOCUMENT>
+<TYPE>13F-HR/A
+<SEQUENCE>1
+<FILENAME>d807683_13f-hra.txt
+<TEXT>
+                                  UNITED STATES
+                       SECURITIES AND EXCHANGE COMMISSION
+                             Washington, D.C. 20549
+
+                                    FORM 13F
+
+                               FORM 13F Cover Page
+
+
+
+            Report for the Calendar Year or Quarter Ended June 30, 2007
+
+Check here if Amendment:           |X|; Amendment Number: _1__
+
+This Amendment (Check only one):   |_| is a restatement
+                                   |X| adds new holding entries.
+
+Institutional Manager Filing this Report:
+
+Name:     Tiger Global Management, LLC
+
+Address:  101 Park Avenue, 48th Floor
+          New York, New York 10178
+
+13F File Number: 028-10100
+
+
+The institutional  investment  manager filing this report and the person by whom
+it is signed hereby  represent  that the person signing the report is authorized
+to  submit  it,  that all  information  contained  herein is true,  correct  and
+complete,  and  that it is  understood  that  all  required  items,  statements,
+schedules, lists, and tables, are considered integral parts of this form.
+
+
+Person Signing this Report on Behalf of Reporting Manager:
+
+Name:   Charles P. Coleman III
+Title:  Managing Member
+Phone:  212 984 2500
+
+
+Signature, Place and Date of Signing:
+
+
+/s/ Charles P. Coleman           New York, New York          September 4, 2007
+-----------------------     --------------------------    ----------------------
+     [Signature]                   [City, State]                  [Date]
+
+
+<PAGE>
+
+
+Report Type:  (Check only one):
+
+[X]      13F HOLDINGS REPORT.  (Check here if all holdings of this reporting
+         manager are reported in this report).
+
+[ ]      13F NOTICE.  (Check here if no holdings reported are in this report,
+         and all holdings are reported by other reporting managers(s).)
+
+[ ]      13F COMBINATION REPORT.  (Check here if a portion of the holdings for
+         this reporting manager are reported in this report and a portion are
+         reported by other reporting manager(s).)
+
+
+List of Other Managers Reporting for this Manager: NONE
+
+
+
+
+<PAGE>
+
+
+Form 13F SUMMARY PAGE
+
+
+Report Summary:
+
+
+Number of Other Included Managers:       0
+
+Form 13F Information Table Entry Total:  52
+
+Form 13F Information Table Value Total:  $2,747,361
+                                        (thousands)
+
+
+
+
+
+
+<PAGE>
+<TABLE>
+
+                                                     FORM 13F INFORMATION TABLE
+<CAPTION>
+
+                                                            VALUE   SHARES/     SH/ PUT/ INVSTMT  OTHER        VOTING AUTHORITY
+         NAME OF ISSUER        TITLE OF CLASS     CUSIP   x($1000) PRN AMT      PRN CALL DISCRETN MGRS         SOLE    SHARED   NONE
+------------------------------ ---------------- --------- -------- --------     --- ---- -------- --------- -------- -------- ------
+<S>                            <C>              <C>        <C>       <C>        <C> <C>  <C>        <C>    <C>          <C>      <C>
+AMERICAN SCIENCE & ENGR INC    COM              29429107     11,086     195,000 SH       SOLE       1        195,000    0        0
+AMERICA MOVIL SAB DE CV        SPON ADR L SHS   02364W105   299,741   4,840,000 SH       SOLE       1      4,840,000    0        0
+AMERICAN TOWER CORP            CL A             29912201    246,960   5,880,000 SH       SOLE       1      5,880,000    0        0
+BAIDU COM INC                  SPON ADR REP A   56752108    187,970   1,119,000 SH       SOLE       1      1,119,000    0        0
+BEAZER HOMES USA INC           COM              07556Q105    19,736     800,000 SH       SOLE       1        800,000    0        0
+BURLINGTON NORTHN SANTA FE C   COM              12189T104    33,903     398,200 SH       SOLE       1        398,200    0        0
+CLEARWIRE CORP                 CL A             185385309    28,827   1,180,000 SH       SOLE       1      1,180,000    0        0
+COMCAST CORP NEW               CL A SPL         20030N200   122,045   4,364,999 SH       SOLE       1      4,364,999    0        0
+CREE INC                       COM              225447101    25,411     983,000 SH       SOLE       1        983,000    0        0
+CROCS INC                      COM              227046109    37,840     880,000 SH       SOLE       1        880,000    0        0
+CSX CORP                       COM              126408103    49,750   1,103,600 SH       SOLE       1      1,103,600    0        0
+E M C CORP MASS                COM              268648102   144,348   7,975,000 SH       SOLE       1      7,975,000    0        0
+FOCUS MEDIA HLDG LTD           SPONSORED ADR    34415V109    93,397   1,850,000 SH       SOLE       1      1,850,000    0        0
+FORCE PROTECTION INC           COM NEW          345203202    38,190   1,850,300 SH       SOLE       1      1,850,300    0        0
+GIGAMEDIA LTD                  ORD              Y2711Y104    24,264   1,800,000 SH       SOLE       1      1,800,000    0        0
+GOOGLE INC                     CL A             38259P508   309,569     592,250 SH       SOLE       1        592,250    0        0
+HEELYS INC                     COM              42279M107    24,179     935,000 SH       SOLE       1        935,000    0        0
+HOME SOLUTIONS AMER INC        COM              437355100     3,797     635,000 SH       SOLE       1        635,000    0        0
+HORIZON LINES INC              COM              44044K101    40,128   1,224,900 SH       SOLE       1      1,224,900    0        0
+HOVNANIAN ENTERPRISES INC      CL A             442487203     8,265     500,000 SH       SOLE       1        500,000    0        0
+INDYMAC BANCORP INC            COM              456607100    48,896   1,676,259 SH       SOLE       1      1,676,259    0        0
+INNERWORKINGS INC              COM              45773Y105    28,035   1,750,000 SH       SOLE       1      1,750,000    0        0
+INPHONIC INC                   COM              45772G105     8,120   1,735,000 SH       SOLE       1      1,735,000    0        0
+IONATRON INC                   COM              462070103     3,900   1,000,000 SH       SOLE       1      1,000,000    0        0
+JONES SODA CO                  COM              48023P106     1,150      82,000 SH       SOLE       1         82,000    0        0
+LA Z BOY INC                   COM              505336107    13,924   1,215,000 SH       SOLE       1      1,215,000    0        0
+MARCHEX INC                    CL B             56624R108    16,320   1,000,000 SH       SOLE       1      1,000,000    0        0
+MARTIN MARIETTA MATLS INC      COM              573284106    86,794     535,700 SH       SOLE       1        535,700    0        0
+NEW ORIENTAL ED & TECH GRP I   SPON ADR         647581107     1,074      20,000 SH       SOLE       1         20,000    0        0
+NIKE INC                       CL B             654106103    64,993   1,115,000 SH       SOLE       1      1,115,000    0        0
+NUTRI SYS INC NEW              COM              67069D108   118,779   1,700,483 SH       SOLE       1      1,700,483    0        0
+PARLUX FRAGRANCES INC          COM              701645103     3,832     863,116 SH       SOLE       1        863,116    0        0
+PARTNER COMMUNICATIONS CO LT    ADR             70211M109    17,056   1,056,755 SH       SOLE       1      1,056,755    0        0
+PREMIER EXIBITIONS INC         COM              70211M109    15,760   1,000,000 SH       SOLE       1      1,000,000    0        0
+QUALCOMM INC                   COM              747525103    27,336     630,000 SH       SOLE       1        630,000    0        0
+REDIFF COM INDIA LTD           SPONSORED ADR    757479100    17,920   1,000,000 SH       SOLE       1      1,000,000    0        0
+SBA COMMUNICATIONS CORP        COM              78388J106   108,832   3,240,000 SH       SOLE       1      3,240,000    0        0
+SHUFFLE MASTER INC             COM              825549108    28,220   1,700,000 SH       SOLE       1      1,700,000    0        0
+SINA CORP                      ORD              G81477104     1,250      29,865 SH       SOLE       1         29,865    0        0
+STANDARD PAC CORP NEW          COM              85375C101    17,530   1,000,000 SH       SOLE       1      1,000,000    0        0
+SYNTAX BRILLIAN CORP           COM              87163L103    17,269   3,510,000 SH       SOLE       1      3,510,000    0        0
+TELKONET INC                   COM              879604106     1,319     676,600 SH       SOLE       1        676,600    0        0
+TOUSA INC                      COM              872962105    11,732   2,800,000 SH       SOLE       1      2,800,000    0        0
+TRANSACTION SYS ARCHITECTS     COM              893416107    33,660   1,000,000 SH       SOLE       1      1,000,000    0        0
+TRANSDIGM GROUP INC            COM              893641100    95,081   2,350,000 SH       SOLE       1      2,350,000    0        0
+UNION PAC CORP                 COM              907818108    31,850     276,600 SH       SOLE       1        276,600    0        0
+UTSTARCOM INC                  COM              918076100    32,103   5,722,500 SH       SOLE       1      5,722,500    0        0
+VCG HLDG CORP                  COM              91821K101     2,078     256,600 SH       SOLE       1        256,600    0        0
+WCI CMNTYS INC                 COM              92923C104     3,336     200,000 SH       SOLE       1        200,000    0        0
+WNS HOLDINGS LTD               SPON ADR         92932M101    79,861   2,806,081 SH       SOLE       1      2,806,081    0        0
+XINHUA FIN MEDIA LTD           SPONSORED ADR    983982109    18,415   2,224,000 SH       SOLE       1      2,224,000    0        0
+ZOLTEK COS INC                 COM              98975W104    41,530   1,000,000 SH       SOLE       1      1,000,000    0        0
+                                                          2,747,361  84,277,808
+
+</TABLE>
+
+</TEXT>
+</DOCUMENT>

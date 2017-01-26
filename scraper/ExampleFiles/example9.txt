@@ -1,0 +1,130 @@
+<DOCUMENT>
+<TYPE>13F-HR
+<SEQUENCE>1
+<FILENAME>d1358343_13f-hr.txt
+<TEXT>
+                                 UNITED STATES
+                       SECURITIES AND EXCHANGE COMMISSION
+                             Washington, D.C. 20549
+
+                                    FORM 13F
+
+                              FORM 13F COVER PAGE
+
+      Report for the Calendar Year or Quarter Ended: December 31, 2012
+
+Check here if Amendment           [  ]; Amendment Number:__
+
+This amendment (Check only one.): [ ] is a restatement.
+                                  [ ] adds new holdings entries.
+
+Institutional Investment Manager Filing this Report:
+
+Name:     Tiger Global Management, L.L.C.
+Address:  101 Park Avenue, 48th Floor
+          New York, NY 10178
+
+13 File Number: 028-10100
+
+The institutional investment manager filing this report and the person by whom
+it is signed hereby represent that the person signing the report is authorized
+to submit it, that all information contained herein is true, correct, and
+complete, and and that it is understood that all required items, statements,
+schedules, lists, and tables, are considered integral parts of this form
+
+Person Signing this Report on Behalf of Reporting Manager:
+
+Name:      Charles P. Coleman III
+Title:     Managing Member
+Phone:     212-984-2500
+Signature, Place and Date of Signing:
+
+
+/s/ Charles P. Coleman III     New York, New York        February 14, 2013
+--------------------------     -------------------       ------------------
+[Signature]                      [City, State]                 [Date]
+
+
+<PAGE>
+
+
+Report Type (Check only one.):
+
+[X]   13F HOLDINGS REPORT.
+
+[ ]   13F NOTICE.
+
+[ ]   13F COMBINATION REPORT.
+
+List of Other Managers Reporting for this Manager:  NONE
+
+<PAGE>
+                           FORM 13F SUMMARY PAGE
+
+Report Summary:
+
+Number of Other Included Managers:            0
+
+Form 13F Information Table Entry Total:       42
+
+Form 13F Information Table Value Total: $5,385,851
+                                         (thousands)
+
+<PAGE>
+
+<TABLE>
+                                                                FORM 13F INFORMATION TABLE
+                                                                    December 31, 2012
+
+<CAPTION>
+
+                                                              VALUE   SHARES/    SH/ PUT/ INVSTMT  OTHER       VOTING AUTHORITY
+         NAME OF ISSUER        TITLE OF CLASS   CUSIP      x($1000) PRN AMT    PRN CALL DISCRETN MNGRS   SOLE      SHARED   NONE
+------------------------------ ---------------- ---------  -------- --------   --- ---- -------- -----  --------   -------  -----
+<S>                              <C>              <C>         <C>     <C>        <C>      <C>        <C>  <C>          <C>      <C>
+3-D SYS CORP DEL               COM NEW          88554D205    55,484  1,040,000 SH       SOLE       0     1,040,000   0        0
+AMAZON COM INC                 COM              023135106   311,079  1,240,000 SH       SOLE       0     1,240,000   0        0
+APPLE INC                      COM              037833100   558,782  1,050,000 SH       SOLE       0     1,050,000   0        0
+ARCOS DORADOS HOLDINGS INC     SHS CLASS -A-    G0457F107    15,070  1,260,000 SH       SOLE       0     1,260,000   0        0
+BAIDU INC                      SPON ADR REP A   056752108   215,624  2,150,000 SH       SOLE       0     2,150,000   0        0
+BURGER KING WORLDWIDE INC      COM              121220107   118,368  7,200,000 SH       SOLE       0     7,200,000   0        0
+COMPANIA CERVECERIAS UNIDAS    SPONSORED ADR    204429104     6,010    190,000 SH       SOLE       0       190,000   0        0
+CHARTER COMMUNICATIONS INC D   CL A NEW         16117M305    99,112  1,300,000 SH       SOLE       0     1,300,000   0        0
+DECKERS OUTDOOR CORP           COM              243537107    60,405  1,500,000    CALL  SOLE       0     1,500,000   0        0
+DONNELLEY R R & SONS CO        COM              257867101    31,451  3,498,394 SH       SOLE       0     3,498,394   0        0
+FIDELITY NATL INFORMATION SV   COM              31620M106    40,902  1,175,000 SH       SOLE       0     1,175,000   0        0
+FIRST SOLAR INC                COM              336433107    30,856  1,000,000 SH       SOLE       0     1,000,000   0        0
+FLEETCOR TECHNOLOGIES INC      COM              339041105   140,295  2,615,000 SH       SOLE       0     2,615,000   0        0
+FRANCESCAS HLDGS CORP          COM              351793104    12,965    500,000 SH       SOLE       0       500,000   0        0
+FRONTIER COMMUNICATIONS CORP   COM              35906A108    46,157 10,784,293 SH       SOLE       0    10,784,293   0        0
+GRACE W R & CO DEL NEW         COM              38388F108   189,925  2,825,000 SH       SOLE       0     2,825,000   0        0
+GROUPON INC                    COM CL A         399473107   315,900 65,000,000 SH       SOLE       0    65,000,000   0        0
+LIBERTY GLOBAL INC             COM SER A        530555101   144,808  2,300,000 SH       SOLE       0     2,300,000   0        0
+LIBERTY GLOBAL INC             COM SER C        530555309   170,375  2,900,000 SH       SOLE       0     2,900,000   0        0
+LIBERTY MEDIA CORPORATION      LIB CAP COM A    530322106   385,733  3,325,000 SH       SOLE       0     3,325,000   0        0
+LIVE NATION ENTERTAINMENT IN   COM              538034109    50,274  5,400,000 SH       SOLE       0     5,400,000   0        0
+MAKEMYTRIP LIMITED MAURITIUS   SHS              V5633W109    89,380  7,184,866 SH       SOLE       0     7,184,866   0        0
+MASTERCARD INC                 CL A             57636Q104   326,701    665,000 SH       SOLE       0       665,000   0        0
+MCGRAW HILL COS INC            COM              580645109   112,620  2,060,000 SH       SOLE       0     2,060,000   0        0
+MELLANOX TECHNOLOGIES LTD      SHS              M51363113    41,566    700,000 SH       SOLE       0       700,000   0        0
+MOODYS CORP                    COM              615369105    82,525  1,640,000 SH       SOLE       0     1,640,000   0        0
+MOTOROLA SOLUTIONS INC         COM NEW          620076307    83,520  1,500,000 SH       SOLE       0     1,500,000   0        0
+NEWS CORP                      CL A             65248E104    29,337  1,150,000 SH       SOLE       0     1,150,000   0        0
+PANDORA MEDIA INC              COM              698354107    77,571  8,450,000 SH       SOLE       0     8,450,000   0        0
+PITNEY BOWES INC               COM              724479100    19,578  1,840,000 SH       SOLE       0     1,840,000   0        0
+PRICELINE COM INC              COM NEW          741503403   313,917    506,000 SH       SOLE       0       506,000   0        0
+ROUNDYS INC                    COM              779268101     2,832    636,314 SH       SOLE       0       636,314   0        0
+STURM RUGER & CO INC           COM              864159108    36,320    800,000 SH       SOLE       0       800,000   0        0
+TAL ED GROUP                   ADS REPSTG COM   874080104    97,584 10,165,000 SH       SOLE       0    10,165,000   0        0
+VERA BRADLEY INC               COM              92335C106     6,903    275,000 SH       SOLE       0       275,000   0        0
+VERISIGN INC                   COM              92343E102    60,171  1,550,000 SH       SOLE       0     1,550,000   0        0
+VISA INC                       COM CL A         92826C839   300,128  1,980,000 SH       SOLE       0     1,980,000   0        0
+WORKDAY INC                    CL A             98138H101    28,613    525,000 SH       SOLE       0       525,000   0        0
+YAHOO INC                      COM              984332106   278,600 14,000,000 SH       SOLE       0    14,000,000   0        0
+YANDEX N V                     SHS CLASS A      N97284108   329,562 15,300,000 SH       SOLE       0    15,300,000   0        0
+YY INC                         ADS REPCOM CLA   98426T106    54,695  3,835,532 SH       SOLE       0     3,835,532   0        0
+ZILLOW INC                     CL A             98954A107    14,153    510,000 SH       SOLE       0       510,000   0        0
+
+</TABLE>
+</TEXT>
+</DOCUMENT>
