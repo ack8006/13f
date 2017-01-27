@@ -11,10 +11,12 @@ SECTION - broader
     - Well defined section dashes at top level
     https://www.sec.gov/Archives/edgar/data/1346554/000114420406032732/v049908_13f-hr.txt
 
+BEST
 3)  - 12 well defined tags at lowest level 
     - Well defined value dashes mid level
     - Well defined section dashes at top level
     https://www.sec.gov/Archives/edgar/data/1159159/000090266412000315/p12-0206form13fhr.txt
+    jana06302011.txt
 
 4)  - 8 well defined section tags at lowest level
     - Two full lines of undefined dashes
@@ -22,12 +24,23 @@ SECTION - broader
 
 5)  - 12 well defined section tags at lowest level
     - Well defined section dashes at top level
+    - Multi level above information
     https://www.sec.gov/Archives/edgar/data/1346554/000114420408028547/v114008_13fhr.txt
 
 6)  - 12 well definied section tags at lowest level
     - No Dashes present
 
+7)  - 8 poorly defined tags at top level
+    - poorly definied section dashes as lowest level
+    jana06302009.txt
 
+8)  - 6 undefined tags at top level
+    - 2 undefined lines of dashes at lowest level
+    - Rows
+        - Multline below
+        - dashes between each line
+        - 2 spaces separate
+    example8 - jana12312009.txt
 
 
 
@@ -36,7 +49,19 @@ Data
 - Each line is an entry
 - data over multiple lines with additional information above
     https://www.sec.gov/Archives/edgar/data/1346554/000114420408046735/v123116_13f-hr.txt
+- data over multiple lines with additional information below
+    jana12312009.txt
 - Dashes between each line
 - Empty line between each line
+
+
+Name of Issuer
+
+
+
+
+
+
+
 
 
